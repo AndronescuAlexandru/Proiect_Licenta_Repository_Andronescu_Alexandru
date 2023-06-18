@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Home_Page"
+             Title="Căutare">
+    <!-- #c0c0c0 Culoare veche pentru buton culoare actuala #dedede -->
+    <Shell.TitleView>
+        <Grid>
+            <Image Source="factura_logo_small"
+               HorizontalOptions="StartAndExpand"
+               VerticalOptions="CenterAndExpand"
+                   Margin="-5,10,0,0"></Image>
+            <Label Text="Căutare"
+                   TextColor="Black"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="21"
+                   FontAttributes="Bold"
+                   Margin="40,0,0,0"
+                   Grid.Column="0"></Label>
+        </Grid>
+    </Shell.TitleView>
+    <Shell.NavBarIsVisible>True</Shell.NavBarIsVisible>
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <NavigationPage.TitleView>
+        <Button Text="Sign In"></Button>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#F2F4F8">
+            <StackLayout>
+                <Label Text="Căutați bilete pentru destinația dorită"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalOptions="Center"
+                       Margin="0,30,0,0"
+                       FontFamily="Droid Sans Mono"
+                       TextColor="Black"></Label>
+                <Label Text="sau accesați una din funcțiile de mai jos"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalOptions="CenterAndExpand"
+                       Margin="0,0,0,0"
+                       FontFamily="Droid Sans Mono"
+                       TextColor="Black"></Label>
+                <Grid Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Grid.Row="1" Height="50"></RowDefinition>
+                        <RowDefinition Grid.Row="2" Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Frame BorderColor="LightGray"
+                           HeightRequest="50"
+                           Padding="0,0,0,0"
+                           Margin="10,0,0,-10"
+                           CornerRadius="12"
+                           BackgroundColor="#FFFFFF"
+                           Grid.Column="0"
+                           Grid.Row="0">
+                        <StackLayout>
+                            <Button Grid.Column="0"
+                                Grid.Row="0"
+                                Text="Zboruri"
+                                Margin="10,0,0,-1"
+                                Padding="15,0,35,-10"
+                                Clicked="RedirectCautareAvion"
+                                CornerRadius="15"
+                                BackgroundColor="Transparent"
+                                TextColor="Black"
+                                TextTransform="None"
+                                ImageSource="avion_icon3.png"></Button>
+                            <Rectangle BackgroundColor="#d24c4c"
+                                       HeightRequest="10"></Rectangle>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="LightGray"
+                           HeightRequest="50"
+                           Padding="0,0,0,0"
+                           Margin="0,0,10,-10"
+                           CornerRadius="12"
+                           BackgroundColor="#FFFFFF"
+                           Grid.Column="1"
+                           Grid.Row="0">
+                        <StackLayout>
+                            <Button Grid.Column="1"
+                                Grid.Row="0"
+                                Text="Trenuri"
+                                Margin="0,0,0,-1"
+                                Padding="25,0,35,-10"
+                                Clicked="RedirectCautareTren"
+                                CornerRadius="15"
+                                BackgroundColor="Transparent"
+                                TextColor="Black"
+                                TextTransform="None"
+                                ImageSource="tren_icon2.png"></Button>
+                            <Rectangle BackgroundColor="#61aed9"
+                                       HeightRequest="10"
+                                       Margin="0,0,0,0"></Rectangle>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="LightGray"
+                           HeightRequest="50"
+                           Padding="0,0,0,0"
+                           Margin="10,10,0,-10"
+                           CornerRadius="12"
+                           BackgroundColor="#FFFFFF"
+                           Grid.Column="0"
+                           Grid.Row="1">
+                        <StackLayout>
+                            <Button Grid.Column="0"
+                            Grid.Row="1"
+                            Text="Autocare"
+                            Margin="0,0,0,-1"
+                            Padding="25,0,35,-10"
+                            Clicked="RedirectCautareAutocar"
+                            CornerRadius="15"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            TextTransform="None"
+                            ImageSource="autocar_icon2.png"></Button>
+                            <Rectangle BackgroundColor="#5e3dc6"
+                                       HeightRequest="10"></Rectangle>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="LightGray"
+                           HeightRequest="50"
+                           Padding="0,0,0,0"
+                           Margin="0,10,10,-10"
+                           CornerRadius="12"
+                           BackgroundColor="#FFFFFF"
+                           Grid.Column="1"
+                           Grid.Row="1">
+                        <StackLayout>
+                            <Button Grid.Column="1"
+                            Grid.Row="1"
+                            Text="Rezervare hotel"
+                            Margin="0,4,0,-5"
+                            Padding="20,0,35,0"
+                            CornerRadius="15"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            Clicked="BookingSearch"
+                            TextTransform="None"
+                            ImageSource="hotel.png"></Button>
+                            <Rectangle BackgroundColor="#003580"
+                                       HeightRequest="10"
+                                       Margin="0,0,0,0"></Rectangle>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="LightGray"
+                           HeightRequest="60"
+                           Padding="0,0,0,0"
+                           Margin="10,10,0,-10"
+                           CornerRadius="12"
+                           BackgroundColor="#FFFFFF"
+                           Grid.Column="0"
+                           Grid.Row="2">
+                        <StackLayout>
+                            <Grid>
+                                <Button Text="Închirieri auto"
+                                    Margin="0,0,0,-5"
+                                    Padding="30,5,0,0"
+                                    CornerRadius="10"
+                                    BackgroundColor="Transparent"
+                                    TextColor="Black"
+                                    Clicked="RentalCars"
+                                    TextTransform="None"></Button>
+                                <Image Source="car_icon.png"
+                               Scale="1"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                                   Margin="22,15,0,0"></Image>
+                            </Grid>
+                            <Rectangle BackgroundColor="#f5ac5f"
+                                       HeightRequest="7"
+                                       Margin="0,0,0,0"></Rectangle>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="LightGray"
+                           HeightRequest="60"
+                           Padding="0,0,0,0"
+                           Margin="0,10,10,-10"
+                           CornerRadius="12"
+                           BackgroundColor="#FFFFFF"
+                           Grid.Column="1"
+                           Grid.Row="2">
+                        <StackLayout>
+                            <Grid>
+                                <Button Text="Asigurări de călătorie"
+                                    Margin="0,0,0,-14"
+                                    Padding="35,0,20,0"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Center"
+                                    CornerRadius="10"
+                                    BackgroundColor="Transparent"
+                                    TextColor="Black"
+                                    Clicked="AsigurariSanatate"
+                                    TextTransform="None"></Button>
+                                <Image Source="health_icon.png"
+                                       Scale="1"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"
+                                       Margin="18,15,0,0"></Image>
+                            </Grid>
+                            <Rectangle BackgroundColor="#6aa84f"
+                                       HeightRequest="7"
+                                       Margin="0,0,0,0"></Rectangle>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+                <Label Text="Cele mai bune oferte ale zilei"
+                       Margin="20,100,0,20"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       FontFamily="Lobster"
+                       TextColor="Black"></Label>
+                <StackLayout  BindableLayout.ItemsSource="{Binding Oferte}">
+                    <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White"
+                               BorderColor="Black"
+                               CornerRadius="10"
+                               Margin="20,0,20,20"
+                               Padding="0,0,0,0"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               HeightRequest="200"
+                               WidthRequest="500">
+                            <Grid Margin="0,0,0,0">
+                                    <ImageButton Source="{Binding Path= Image}"
+                                             Grid.Column="0"
+                                             Grid.Row="0"
+                                             BackgroundColor="White"
+                                             Clicked="ImageClicked"
+                                             Aspect="AspectFill"></ImageButton>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.24"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="70"
+                                               Margin="0,0,0,0">
+
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.22"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="75"
+                                               Margin="0,0,0,0">
+
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.2"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="80"
+                                               Margin="0,0,0,0">
+
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.18"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="85"
+                                               Margin="0,0,0,0">
+
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.16"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="90"
+                                               Margin="0,0,0,0">
+
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.14"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="95"
+                                               Margin="0,0,0,0">
+
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.12"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="100"
+                                               Margin="0,0,0,0">
+
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.1"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="105"
+                                               Margin="0,0,0,0">
+                                    </Rectangle>
+                                    <Rectangle BackgroundColor="Black"
+                                               Opacity="0.08"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="110"
+                                               Margin="0,0,0,0">
+                                    </Rectangle>
+                                    <Label Grid.Column="0"
+                                               Grid.Row="0"
+                                               FontAttributes="Bold"
+                                               FontSize="20"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Start"
+                                               TextColor="White"
+                                               Margin="20,10,0,0">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0}">
+                                            <Binding Path="Destinatie"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Grid.Column="0"
+                                       Grid.Row="0"
+                                       FontAttributes="Bold"
+                                       FontSize="20"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       TextColor="White"
+                                       Margin="20,65,0,0">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}de la {0} euro">
+                                            <Binding Path="Pret"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Grid.Column="0"
+                                       Grid.Row="0"
+                                       TextColor="White"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End"
+                                       Margin="18,0,0,33">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{} Plecare din : {0}">
+                                            <Binding Path="LocPlecare"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                    <Label HorizontalOptions="Start"
+                                           VerticalOptions="End"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           FontSize="13"
+                                           Margin="21,0,0,10">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}Din {0} -{1} {2} {3}">
+                                                <Binding Path="DataPlecare"></Binding>
+                                                <Binding Path="DataIntoarcere"></Binding>
+                                                <Binding Path="Transport"></Binding>
+                                                <Binding Path="Tip"></Binding>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+                    <BindableLayout.EmptyView>
+                        <StackLayout>
+                            <Image Source="no_internet.png"></Image>
+                            <Label Text="Nu exista conectiune la internet."
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"></Label>
+                            <Label Text="Verificati conectiunea si redeschideti aplicatia."
+                                   FontAttributes="Bold"
+                                   FontSize="15"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"></Label>
+                        </StackLayout>
+                    </BindableLayout.EmptyView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

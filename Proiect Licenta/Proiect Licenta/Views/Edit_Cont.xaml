@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Edit_Cont"
+             Title="Editare date cont">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F2F4F8">
+            <Label Text="Detalii cont"
+                   TextColor="Black"
+                   HorizontalOptions="Start"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   Margin="20,10,0,0"></Label>
+            <Frame Margin="10,10,10,0"
+                   BorderColor="LightGray"
+                   CornerRadius="5">
+                <StackLayout>
+                    <Grid>
+                        <Label Text="Nume"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"
+                       Grid.Column="0"></Label>
+                        <Frame BorderColor="LightGray"
+                       HeightRequest="50"
+                       Padding="0,0,0,-10"
+                       Margin="10,25,10,0"
+                       CornerRadius="5"
+                               HasShadow="False"
+                       Grid.Column="0">
+                            <Entry x:Name="Nume"
+                           TextColor="Black"
+                           Margin="5,0,0,0"
+                           TextChanged="Nume_TextChanged"
+                           Grid.Column="0"></Entry>
+                        </Frame>
+                        <Label Text="Prenume"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"
+                       Grid.Column="1"></Label>
+                        <Frame BorderColor="LightGray"
+                       HeightRequest="50"
+                       Padding="0,0,0,-10"
+                       Margin="10,25,10,0"
+                               HasShadow="False"
+                       CornerRadius="5"
+                       Grid.Column="1">
+                            <Entry x:Name="Prenume"
+                           TextColor="Black"
+                           Margin="5,0,0,0"
+                           TextChanged="Prenume_TextChanged"
+                           Grid.Column="1"></Entry>
+                        </Frame>
+                        <Label Text="Oraș"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"
+                       Grid.Column="0"
+                       Grid.Row="1"></Label>
+                        <Frame BorderColor="LightGray"
+                       HeightRequest="50"
+                       Padding="0,0,0,-10"
+                       Margin="10,25,10,0"
+                       CornerRadius="5"
+                               HasShadow="False"
+                       Grid.Column="0"
+                       Grid.Row="1">
+                            <Entry x:Name="Oras"
+                           TextColor="Black"
+                           Margin="5,0,0,0"
+                           TextChanged="Oras_TextChanged"
+                           Grid.Column="0"
+                           Grid.Row="1"></Entry>
+                        </Frame>
+                        <Label Text="Cod poștal"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"
+                       Grid.Column="1"
+                       Grid.Row="1"></Label>
+                        <Frame BorderColor="LightGray"
+                       HeightRequest="50"
+                       Padding="0,0,0,-10"
+                       Margin="10,25,10,0"
+                       CornerRadius="5"
+                               HasShadow="False"
+                       Grid.Column="1"
+                       Grid.Row="1">
+                            <Entry x:Name="CodPostal"
+                           TextColor="Black"
+                           Margin="5,0,0,0"
+                           TextChanged="CodPostal_TextChanged"
+                           Keyboard="Numeric"
+                           Grid.Column="1"
+                           Grid.Row="1"></Entry>
+                        </Frame>
+                        <Label Text="Strada"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"
+                       Grid.Column="0"
+                       Grid.Row="2"></Label>
+                        <Frame BorderColor="LightGray"
+                       HeightRequest="50"
+                       Padding="0,0,0,-10"
+                       Margin="10,25,10,0"
+                       CornerRadius="5"
+                               HasShadow="False"
+                       Grid.Column="0"
+                       Grid.Row="2">
+                            <Entry x:Name="Strada"
+                           TextColor="Black"
+                           Margin="5,0,0,0"
+                           TextChanged="Strada_TextChanged"
+                           Grid.Column="0"
+                           Grid.Row="2"></Entry>
+                        </Frame>
+                        <Label Text="Nr. stradă"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"
+                       Grid.Column="1"
+                       Grid.Row="2"></Label>
+                        <Frame BorderColor="LightGray"
+                       HeightRequest="50"
+                       Padding="0,0,0,-10"
+                       Margin="10,25,10,0"
+                       CornerRadius="5"
+                               HasShadow="False"
+                       Grid.Column="1"
+                       Grid.Row="2">
+                            <Entry x:Name="NrStrada"
+                           TextColor="Black"
+                           Margin="5,0,0,0"
+                           TextChanged="NrStrada_TextChanged"
+                           Keyboard="Numeric"
+                           Grid.Column="1"
+                           Grid.Row="2"></Entry>
+                        </Frame>
+                    </Grid>
+                    <Label Text="Nr. telefon"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="10,0,0,0"></Label>
+                    <Frame BorderColor="LightGray"
+                   HeightRequest="50"
+                   Padding="0,0,0,-10"
+                   Margin="10,0,10,0"
+                           HasShadow="False"
+                   CornerRadius="5">
+                        <Entry x:Name="NrTelefon"
+                       TextColor="Black"
+                       Margin="5,0,5,0"
+                       Keyboard="Telephone"
+                   TextChanged="NrTelefon_TextChanged"></Entry>
+                    </Frame>
+                    <Frame BorderColor="LightGray"
+                   HeightRequest="40"
+                   Padding="-19,0,-19,0"
+                   Margin="10,0,10,0"
+                   CornerRadius="5"
+                   BackgroundColor="White">
+                        <Button x:Name="ChangePass"
+                        Text="Schimbați parola"
+                        TextColor="Black"
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Margin="20,0,20,0"
+                        HeightRequest="45"
+                        WidthRequest="345"
+                        CornerRadius="10"
+                        Clicked="ChangePass_Clicked"></Button>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+            
+            <Label x:Name="LabelDateIntroduseGresit"
+                       Text="Datele introduse nu sunt acceptate."
+                       TextColor="#9e4646"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Margin="0,30,0,0"
+                       Grid.Row="7"
+                       IsVisible="False"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

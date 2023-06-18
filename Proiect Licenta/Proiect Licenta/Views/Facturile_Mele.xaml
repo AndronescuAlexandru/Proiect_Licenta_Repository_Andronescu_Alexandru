@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Facturile_Mele"
+             Title="Facturile mele">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView x:Name="CollectionViewFacturi"
+                            ItemsSource="{Binding Facturi}"
+                            BackgroundColor="#F2F4F8"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame BorderColor="LightGray"
+                                   BackgroundColor="White"
+                                   Margin="10,10,10,10"
+                                   CornerRadius="5"
+                                   HasShadow="True">
+                                <StackLayout>
+                                    <Grid>
+                                        <Label TextColor="Black"
+                                               FontSize="12"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Start"
+                                               Grid.Column="0">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Nr. factura {0}">
+                                                    <Binding Path="Id"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="Center"
+                                               HorizontalOptions="CenterAndExpand"
+                                               Margin="0,0,0,0"
+                                               Grid.Column="1">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Factura">
+                                                    <Binding Path="Id"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Image Source="factura_logo_small.png"
+                                               Grid.Column="2"
+                                               Scale="1.2"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="Start"
+                                               Margin="0,-5,0,0"></Image>
+                                    </Grid>
+                                    <Grid RowSpacing="-5"
+                                          Margin="0,-60,0,0">
+                                        <Label Text="Detalii factura"
+                                           TextColor="Black"
+                                           FontSize="17"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Start"
+                                           Grid.Row="1"></Label>
+                                        <Label Text="Nume companie: SC eSky Travel Search SRL"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="2"></Label>
+                                        <Label Text="Adresa: The Mark Building, Cladirea Turn, Calea Griviței 84-98"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                               Padding="0,0,0,5"
+                                           Grid.Row="3"></Label>
+                                        <Label Text="Numar telefon contact: 0373 769 740"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="4"></Label>
+                                        <Label Text="Adresa e-mail : esky@gmail.com"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="5"></Label>
+                                        <Label Text="Detalii client"
+                                           TextColor="Black"
+                                           FontSize="17"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Start"
+                                           Grid.Row="6"></Label>
+                                        <Label TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="7">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Nume si prenume: {0} {1}">
+                                                    <Binding Path="Nume"></Binding>
+                                                    <Binding Path="Prenume"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="8">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Adresa email : {0}">
+                                                    <Binding Path="Email"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="9">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Numar telefon : {0}">
+                                                    <Binding Path="NrTelefon"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="10">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Adresa : Strada {0}, Nr. {1}, {2}, {3}">
+                                                    <Binding Path="Strada"></Binding>
+                                                    <Binding Path="NrStrada"></Binding>
+                                                    <Binding Path="Oras"></Binding>
+                                                    <Binding Path="Tara"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                           FontSize="14"
+                                           Grid.Row="11">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Cod postal : {0}">
+                                                    <Binding Path="CodPostal"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </Grid>
+                                    <Frame BorderColor="Black"
+                                               HeightRequest="30"
+                                               WidthRequest="40"
+                                               Padding="0,5,0,0"
+                                               BackgroundColor="#248cd9">
+                                        <Label Text="Bilet"
+                                           TextColor="White"
+                                           FontSize="17"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"
+                                           Grid.Row="0"></Label>
+                                    </Frame>
+                                    <Grid Margin="0,-7,0,0" ColumnSpacing="-5" RowSpacing="-11">
+                                        <Frame Grid.Column="0"
+                                               BorderColor="Black"
+                                               Padding="0,5,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label Text="Nr. bilet"
+                                                   TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12"></Label>
+                                        </Frame>
+                                        <Frame Grid.Column="1"
+                                               BorderColor="Black"
+                                               Padding="0,0,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label Text="Tipul transportului"
+                                                   TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12"></Label>
+                                        </Frame>
+                                        <Frame Grid.Column="2"
+                                               BorderColor="Black"
+                                               Padding="0,5,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label Text="Tip bilet"
+                                                   TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12"></Label>
+                                        </Frame>
+                                        <Frame Grid.Column="3"
+                                               BorderColor="Black"
+                                               Padding="0,5,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label Text="Pret"
+                                                   TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12"></Label>
+                                        </Frame>
+                                        <Frame Grid.Column="0"
+                                               Grid.Row="1"
+                                               BorderColor="Black"
+                                               Padding="0,5,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="IdBilet"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </Frame>
+                                        <Frame Grid.Column="1"
+                                               Grid.Row="1"
+                                               BorderColor="Black"
+                                               Padding="0,5,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="TipTransport"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </Frame>
+                                        <Frame Grid.Column="2"
+                                               Grid.Row="1"
+                                               BorderColor="Black"
+                                               Padding="0,5,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="TipBilet"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </Frame>
+                                        <Frame Grid.Column="3"
+                                               Grid.Row="1"
+                                               BorderColor="Black"
+                                               Padding="0,5,0,0"
+                                               Margin="0,0,0,10">
+                                            <Label TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="12">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} €">
+                                                        <Binding Path="SumaDePlata"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </Frame>
+                                    </Grid>
+                                    <Label TextColor="Black"
+                                           FontSize="22"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Start">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}Total : {0} €">
+                                                <Binding Path="SumaDePlata"></Binding>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </StackLayout>
+                            </Frame>
+                            <Label x:Name="LabelEmailFactura"
+                                   Text="Factura a fost trimisă către adresa de e-mail"
+                                   TextColor="Black"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   Padding="0,0,0,20"
+                                   IsVisible="{Binding IsMadeWithoutAccount}"></Label>
+                            <Frame x:Name="ButonSaveAsPDF"
+                                   BorderColor="Black"
+                                   BackgroundColor="#248cd9"
+                                   Padding="0,0,0,0"
+                                   Margin="0,0,0,20"
+                                   HorizontalOptions="Center"
+                                   HeightRequest="50"
+                                   WidthRequest="350"
+                                   CornerRadius="15"
+                                   IsEnabled="{Binding IsMadeWithoutAccount}"
+                                   IsVisible="{Binding IsMadeWithoutAccount}">
+                                <Button Text="Descarcă factura în format PDF"
+                                        TextColor="Black"
+                                        TextTransform="None"
+                                        BackgroundColor="Transparent"
+                                        HeightRequest="45"
+                                        WidthRequest="340"
+                                        Clicked="SavePDF"></Button>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="empty_high.png"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Scale="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Margin="0,0,0,0"></Image>
+                        <Label Text="Din pacate nu se afla nimic :("
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,-60,0,0"></Label>
+                    </Grid>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

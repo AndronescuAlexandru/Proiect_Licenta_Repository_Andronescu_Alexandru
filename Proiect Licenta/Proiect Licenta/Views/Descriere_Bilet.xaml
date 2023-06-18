@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             x:Class="Proiect_Licenta.Views.Descriere_Bilet"
+             Title="Detalii Bilet">
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout BindableLayout.ItemsSource="{Binding Bilet}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="Detalii bilet"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,0,0"></Label>
+                                <Frame BorderColor="Black"
+                                       BackgroundColor="#F2F4F8"
+                                       Margin="10,10,10,10"
+                                       CornerRadius="25"
+                                       HasShadow="True">
+                                    <StackLayout>
+                                        <Frame BorderColor="Black"
+                                       BackgroundColor="{Binding Color}"
+                                       VerticalOptions="StartAndExpand"
+                                       CornerRadius="0"
+                                       Margin="-20,-35,-20,0"
+                                       Padding="0,25,0,0"
+                                       HeightRequest="40">
+                                            <Label Text="eSky Travel"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           FontSize="15"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Start"
+                                           Padding="0,0,0,0"></Label>
+                                        </Frame>
+                                        <Image Source="world_continets.png"
+                                               Opacity="0.18"
+                                               Margin="0,60,0,0"
+                                               VerticalOptions="EndAndExpand"></Image>
+                                        <Grid RowSpacing="10" Padding="0,-230,0,20">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"></ColumnDefinition>
+                                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="1"
+                                                   Grid.Row="3"
+                                                   Text="Clasa"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="0,-20,0,40"></Label>
+                                            <Label Grid.Column="1"
+                                                   Grid.Row="3"
+                                                   TextColor="Black"
+                                                   Margin="0,0,0,40"
+                                                   HorizontalTextAlignment="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Clasa"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="0"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Start">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="LocPlecare"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="2"
+                                               Grid.Row="0"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="End"
+                                               HorizontalOptions="EndAndExpand"
+                                               Margin="-20,0,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Destinatie"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                                   Grid.Row="2"
+                                                   Text="Data Plecare"
+                                                   TextColor="Black"
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   Margin="0,0,0,0"></Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="2"
+                                               TextColor="Black"
+                                               Margin="0,25,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="DataPlecare"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="1"
+                                               Grid.Row="2"
+                                               Text="Ora plecare"
+                                               TextColor="Black"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="End"
+                                                   Margin="0,0,0,0"></Label>
+                                            <Label Grid.Column="1"
+                                               Grid.Row="2"
+                                               TextColor="Black"
+                                               Margin="2,25,0,0"
+                                               HorizontalTextAlignment="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="OraPlecare"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="2"
+                                                   Grid.Row="3"
+                                                   Text="Bilet"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="0,-20,0,0"></Label>
+                                            <Label Grid.Column="2"
+                                               Grid.Row="3"
+                                               TextColor="Black"
+                                               HorizontalOptions="Center"
+                                               Margin="0,0,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="TipBilet"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                                   Grid.Row="3" 
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   HorizontalTextAlignment="Start"
+                                                   Margin="-1,-20,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Transport"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="3"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Start"
+                                               Margin="5,0,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="NrTransport"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Start"
+                                               Margin="0,0,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Pasager {0}">
+                                                        <Binding Path="Pasager"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Image Source="{Binding Icon2}"
+                                               Grid.Column="1"
+                                               Grid.Row="0"
+                                               HorizontalOptions="Center"
+                                               Margin="0,0,0,0"
+                                               x:Name="ImgIcon"
+                                               Scale="0.8"></Image>
+                                            <Label Grid.Column="2"
+                                                   Grid.Row="2"
+                                                   FontAttributes="Bold"
+                                                   FontSize="18"
+                                                   TextColor="Black"
+                                                   HorizontalTextAlignment="Center"
+                                                   Text="Peron"
+                                                   Margin="0,0,0,0"></Label>
+                                            <Label Grid.Column="2"
+                                                   Grid.Row="2"
+                                                   TextColor="Black"
+                                                   FontSize="14"
+                                                   Margin="0,25,0,0"
+                                                   HorizontalOptions="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Peron"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="2"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Center"
+                                               Text="Scaun"></Label>
+                                            <Label Grid.Row="1"
+                                               Grid.Column="2"
+                                               TextColor="Black"
+                                               FontSize="14"
+                                               Margin="0,30,0,0"
+                                               HorizontalOptions="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Scaun"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Row="1"
+                                               Grid.Column="0"
+                                               TextColor="Black"
+                                               FontSize="14"
+                                               Margin="0,55,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                                        <Binding Path="Titlu"></Binding>
+                                                        <Binding Path="Nume"></Binding>
+                                                        <Binding Path="Prenume"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </Grid>
+                                        <Grid>
+                                            <zxing:ZXingBarcodeImageView Grid.Row="0"
+                                                                     Grid.Column="1"
+                                                                     BarcodeValue="{Binding QRCodeTextValue}"
+                                                                     BarcodeFormat="QR_CODE"
+                                                                     HorizontalOptions="CenterAndExpand"
+                                                                     VerticalOptions="FillAndExpand"
+                                                                     BackgroundColor="Transparent"
+                                                                     Scale="1.2"
+                                                                     Margin="0,-90,-10,0">
+                                                <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                                    <zxingcommon:EncodingOptions Width="400" Height="400"/>
+                                                </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                            </zxing:ZXingBarcodeImageView>
+                                            <Label Grid.Column="2"></Label>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                                
+                                <Frame BorderColor="Black"
+                                       BackgroundColor="#F2F4F8"
+                                       Margin="10,20,10,10"
+                                       CornerRadius="25"
+                                       HasShadow="True"
+                                       IsVisible="{Binding IsIntoarcere}">
+                                    <StackLayout IsVisible="{Binding IsIntoarcere}">
+                                        <Frame BorderColor="Black"
+                                       BackgroundColor="{Binding Color}"
+                                       VerticalOptions="StartAndExpand"
+                                       CornerRadius="0"
+                                       Margin="-20,-35,-20,0"
+                                       Padding="0,25,0,0"
+                                       HeightRequest="40">
+                                            <Label Text="eSky Travel"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           FontSize="15"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Start"
+                                           Padding="0,0,0,0"></Label>
+                                        </Frame>
+                                        <Image Source="world_continets.png"
+                                               Opacity="0.18"
+                                               Margin="0,60,0,0"
+                                               VerticalOptions="EndAndExpand"></Image>
+                                        <Grid RowSpacing="0" Padding="0,-230,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"></ColumnDefinition>
+                                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                                <ColumnDefinition Width="110"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="1"
+                                                   Grid.Row="3"
+                                                   Text="Clasa"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="0,0,0,0"></Label>
+                                            <Label Grid.Column="1"
+                                                   Grid.Row="3"
+                                                   TextColor="Black"
+                                                   Margin="0,25,0,0"
+                                                   HorizontalTextAlignment="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Clasa"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="0"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Start">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Destinatie"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="2"
+                                               Grid.Row="0"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="End"
+                                               HorizontalOptions="EndAndExpand"
+                                               Margin="-20,0,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="LocPlecare"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="2"
+                                               Text="Data Plecare"
+                                               TextColor="Black"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="Start"></Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="2"
+                                               TextColor="Black"
+                                               Margin="0,25,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="DataIntoarcere"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="1"
+                                               Grid.Row="2"
+                                               Text="Ora plecare"
+                                               TextColor="Black"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="End"></Label>
+                                            <Label Grid.Column="1"
+                                               Grid.Row="2"
+                                               TextColor="Black"
+                                               Margin="2,25,0,0"
+                                               HorizontalTextAlignment="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="OraIntoarcere"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="2"
+                                                   Grid.Row="3"
+                                                   Text="Bilet"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="0,0,0,0"></Label>
+                                            <Label Grid.Column="2"
+                                               Grid.Row="3"
+                                               TextColor="Black"
+                                               HorizontalOptions="Center"
+                                               Margin="0,25,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="TipBilet"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                                   Grid.Row="3" 
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   HorizontalTextAlignment="Start"
+                                                   Margin="0,0,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Transport"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="3"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Start"
+                                               Margin="5,25,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="NrTransport2"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="0"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Start"
+                                               Margin="0,0,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Pasager {0}">
+                                                        <Binding Path="Pasager"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Image Source="{Binding Icon2}"
+                                               Grid.Column="1"
+                                               Grid.Row="0"
+                                               HorizontalOptions="Center"
+                                               Margin="0,0,0,0" 
+                                               Scale="0.8"></Image>
+                                            <Label Grid.Column="2"
+                                                   Grid.Row="2"
+                                                   Text="Peron"
+                                                   FontAttributes="Bold"
+                                                   FontSize="18"
+                                                   TextColor="Black"
+                                                   HorizontalTextAlignment="Center"></Label>
+                                            <Label Grid.Column="2"
+                                                   Grid.Row="2"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                           Margin="0,25,0,0"
+                                           HorizontalOptions="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Peron2"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Column="2"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               TextColor="Black"
+                                               HorizontalTextAlignment="Center"
+                                               Text="Scaun"></Label>
+                                            <Label Grid.Row="1"
+                                               Grid.Column="2"
+                                               TextColor="Black"
+                                               FontSize="14"
+                                               Margin="0,30,0,0"
+                                               HorizontalOptions="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Scaun2"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Grid.Row="1"
+                                               Grid.Column="0"
+                                               TextColor="Black"
+                                               FontSize="14"
+                                               Margin="0,25,0,0">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                                        <Binding Path="Titlu"></Binding>
+                                                        <Binding Path="Nume"></Binding>
+                                                        <Binding Path="Prenume"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <zxing:ZXingBarcodeImageView Grid.Row="4"
+                                                                     Grid.Column="1"
+                                                                     BarcodeValue="{Binding QRCodeTextValue}"
+                                                                     BarcodeFormat="QR_CODE"
+                                                                     HorizontalOptions="CenterAndExpand"
+                                                                     VerticalOptions="FillAndExpand"
+                                                                     BackgroundColor="Transparent"
+                                                                     Scale="1.2"
+                                                                     Margin="0,-30,0,20">
+                                                <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                                    <zxingcommon:EncodingOptions Width="400" Height="400"/>
+                                                </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                            </zxing:ZXingBarcodeImageView>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                                </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <!--<zxing:ZXingBarcodeImageView
+                            BarcodeValue="Acest bilet a fost rezervat prin aplicatia lui Andro"
+                            BarcodeFormat="QR_CODE"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                    <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                        <zxingcommon:EncodingOptions Width="100" Height="100" />
+                    </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                </zxing:ZXingBarcodeImageView>  -->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

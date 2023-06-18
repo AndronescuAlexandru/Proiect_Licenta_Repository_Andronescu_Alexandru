@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Termeni_si_Conditii"
+             Title="Termeni si Conditii">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#F2F4F8">
+            <StackLayout>
+                <ImageButton Source="addButton.png"
+                         Clicked="DismissButton_Clicked"
+                         Scale="0.7"
+                         BackgroundColor="Transparent"
+                         VerticalOptions="Start"
+                         HorizontalOptions="End"
+                         Rotation="45"
+                         x:Name="dismissButton"></ImageButton>
+                <Editor IsReadOnly="True">
+                    <Editor.Text>
+                        Termeni și condiții
+Bun venit la Proiect Licenta!
+
+Acești termeni și condiții conturează regulile și reglementările de utilizare a Site-ului Proiect Licenta, situat la Proiect Licenta.
+
+Prin accesarea acestui site presupunem că acceptați acești termeni și condiții. Nu continuați să utilizați Proiect Licenta dacă nu sunteți de acord să acceptați toți termenii și condițiile menționate pe această pagină.
+
+Următoarea terminologie se aplică acestor Termeni și Condiții, Declarație de confidențialitate și Notificare de declinare a răspunderii și tuturor Acordurilor: „Client”, „Tu” și „Dvs.” se referă la tine, persoana care se conectează pe acest site web și respectă termenii și condițiile Companiei. „Compania”, „Noi înșine”, „Noi”, „Noi” și „Noi”, se referă la Compania noastră. „Parte”, „Partide” sau „Noi”, se referă atât la Client, cât și la noi înșine. Toți termenii se referă la oferta, acceptarea și luarea în considerare a plății necesare pentru a desfășura procesul de asistență către Client în modul cel mai adecvat, în scopul expres de a satisface nevoile Clientului în ceea ce privește furnizarea serviciilor declarate ale Companiei, în conformitate cu si sub rezerva legii in vigoare din ro.
+
+Cookie-uri
+Folosim cookie-uri. Accesând Proiect Licenta, ați fost de acord să utilizați cookie-uri în acord cu Politica de confidențialitate a Proiect Licenta.
+
+Majoritatea site-urilor web interactive folosesc cookie-uri pentru a ne permite să recuperăm detaliile utilizatorului pentru fiecare vizită. Cookie-urile sunt folosite de site-ul nostru web pentru a activa funcționalitatea anumitor zone pentru a facilita accesul persoanelor care vizitează site-ul nostru. Unii dintre partenerii noștri afiliați/de publicitate pot folosi, de asemenea, cookie-uri.
+
+Licență
+Dacă nu se specifică altfel, Proiect Licenta și/sau licențiatorii săi dețin drepturile de proprietate intelectuală pentru tot materialul de pe Proiect Licenta. Toate drepturile de proprietate intelectuală sunt rezervate. Puteți accesa acest lucru de la Proiect Licenta pentru uz personal, sub rezerva restricțiilor stabilite în acești termeni și condiții.
+
+Trebuie să nu:
+
+Republicați material din Proiect Licenta
+Vindem, inchiriaza sau sublicenta material de la Proiect Licenta
+Reproduceți, duplicați sau copiați material din Proiect Licenta
+Redistribuiți conținut din Proiect Licenta
+Prezentul acord va începe la data prezentului. Termenii și condițiile noastre au fost create cu ajutorul Generatorului de Termeni și condiții .
+
+Părți ale acestui site web oferă utilizatorilor posibilitatea de a posta și de a face schimb de opinii și informații în anumite zone ale site-ului web. Proiect Licenta nu filtrează, editează, publică sau revizuiește Comentarii înainte de prezența acestora pe site. Comentariile nu reflectă punctele de vedere și opiniile Proiect Licenta, agenții și/sau afiliații săi. Comentariile reflectă punctele de vedere și opiniile persoanei care își postează opiniile și opiniile. În măsura permisă de legile aplicabile, Proiect Licenta nu va fi responsabilă pentru Comentarii sau pentru orice răspundere, daune sau cheltuieli cauzate și/sau suferite ca urmare a oricărei utilizări și/sau postări și/sau apariție a Comentariilor pe acest site web.
+
+Proiect Licenta își rezervă dreptul de a monitoriza toate Comentariile și de a elimina orice Comentarii care pot fi considerate nepotrivite, ofensatoare sau care cauzează încălcarea acestor Termeni și Condiții.
+
+Garantați și declarați că:
+
+Aveți dreptul de a posta Comentariile pe site-ul nostru web și aveți toate licențele și consimțământul necesare pentru a face acest lucru;
+Comentariile nu invadează niciun drept de proprietate intelectuală, inclusiv, fără limitare, drepturile de autor, brevetele sau mărcile comerciale ale oricărei terțe părți;
+Comentariile nu conțin niciun material defăimator, calomnios, ofensator, indecent sau ilegal, care este o invazie a vieții private.
+Comentariile nu vor fi folosite pentru a solicita sau promova afaceri sau obiceiuri sau pentru a prezenta activități comerciale sau activități ilegale.
+Prin prezenta, acordați Proiect Licenta o licență neexclusivă de utilizare, reproducere, editare și autorizare altora să folosească, reproduce și edita oricare dintre Comentariile dumneavoastră în orice formă, formate sau suporturi.
+
+Hyperlink la Conținutul nostru
+Următoarele organizații se pot conecta la site-ul nostru web fără aprobare prealabilă scrisă:
+
+Agentii guvernamentale;
+Motoare de căutare;
+Organizații de știri;
+Distribuitorii de directoare online pot face linkuri către site-ul nostru în același mod în care fac hyperlink către site-urile altor companii listate; și
+Întreprinderi acreditate la nivelul întregului sistem, cu excepția organizațiilor non-profit, a centrelor comerciale de caritate și a grupurilor de strângere de fonduri de caritate care nu pot face linkuri către site-ul nostru Web.
+Aceste organizații pot trimite către pagina noastră de pornire, către publicații sau către alte informații despre site-ul web, atâta timp cât linkul: (a) nu este în niciun fel înșelător; (b) nu implică în mod fals sponsorizarea, aprobarea sau aprobarea părții care face legătura și a produselor și/sau serviciilor sale; și (c) se încadrează în contextul site-ului părții care face legătura.
+
+Putem lua în considerare și aproba alte solicitări de linkuri de la următoarele tipuri de organizații:
+
+surse de informații cunoscute pentru consumatori și/sau afaceri;
+site-urile comunității dot.com;
+asociații sau alte grupuri care reprezintă organizații de caritate;
+distribuitori de directoare online;
+portaluri de internet;
+firme de contabilitate, avocatura si consultanta; și
+instituții de învățământ și asociații comerciale.
+Vom aproba solicitările de linkuri de la aceste organizații dacă decidem că: (a) linkul nu ne-ar face să arătăm nefavorabil pentru noi înșine sau pentru afacerile noastre acreditate; (b) organizația nu are înregistrări negative cu noi; (c) beneficiul pentru noi de vizibilitatea hyperlink-ului compensează absența Proiect Licenta; și (d) legătura se află în contextul informațiilor generale despre resurse.
+
+Aceste organizații pot face legătura către pagina noastră de pornire atâta timp cât linkul: (a) nu este în niciun fel înșelător; (b) nu implică în mod fals sponsorizarea, aprobarea sau aprobarea părții care face legătura și a produselor sau serviciilor sale; și (c) se încadrează în contextul site-ului părții care face legătura.
+
+Dacă sunteți una dintre organizațiile enumerate la paragraful 2 de mai sus și sunteți interesat să faceți un link către site-ul nostru, trebuie să ne informați trimițând un e-mail către Proiect Licenta. Vă rugăm să includeți numele dvs., numele organizației dvs., informațiile de contact, precum și adresa URL a site-ului dvs., o listă a oricăror adrese URL de la care intenționați să creați un link către site-ul nostru și o listă a adreselor URL de pe site-ul nostru către care doriți să le accesați. legătură. Așteptați 2-3 săptămâni pentru un răspuns.
+
+Organizațiile aprobate pot face hyperlink către site-ul nostru web după cum urmează:
+
+Prin utilizarea numelui nostru corporativ; sau
+Prin utilizarea locatorului uniform de resurse la care este legat; sau
+Prin folosirea oricărei alte descrieri a site-ului nostru la care este legată, aceasta are sens în contextul și formatul conținutului de pe site-ul părții care face legătura.
+Nicio utilizare a siglei Proiect Licenta sau a altor lucrări de artă nu va fi permisă pentru conectare în absența unui acord de licență a mărcii comerciale.
+
+iFrame
+Fără aprobarea prealabilă și permisiunea scrisă, nu puteți crea cadre în jurul paginilor noastre Web care să modifice în vreun fel prezentarea vizuală sau aspectul site-ului nostru.
+
+Răspunderea conținutului
+Nu vom fi trași la răspundere pentru niciun conținut care apare pe site-ul dvs. Sunteți de acord să ne protejați și să ne apărați împotriva tuturor revendicărilor care apar pe site-ul dvs. Niciun link-uri nu ar trebui să apară pe niciun site web care poate fi interpretat ca defăimător, obscen sau criminal sau care încalcă, încalcă în alt mod sau susține încălcarea sau altă încălcare a oricăror drepturi ale terților.
+
+Rezervarea drepturilor
+Ne rezervăm dreptul de a solicita să eliminați toate linkurile sau orice link anume către site-ul nostru. Sunteți de acord să eliminați imediat toate linkurile către site-ul nostru, la cerere. De asemenea, ne rezervăm dreptul de a modifica în orice moment acești termeni și condiții și politica de conectare. Prin conectarea continuă la site-ul nostru, sunteți de acord să fiți obligat și să urmați acești termeni și condiții de conectare.
+
+Eliminarea link-urilor de pe site-ul nostru
+Dacă găsiți pe site-ul nostru vreun link care este ofensator din orice motiv, sunteți liber să ne contactați și să ne informați în orice moment. Vom lua în considerare solicitările de eliminare a legăturilor, dar nu suntem obligați sau să vă răspundem direct.
+
+Nu ne asigurăm că informațiile de pe acest site web sunt corecte, nu garantăm caracterul complet sau acuratețea acestora; nici nu promitem să ne asigurăm că site-ul web rămâne disponibil sau că materialul de pe site este ținut la zi.
+
+Disclaimer
+În măsura maximă permisă de legea aplicabilă, excludem toate declarațiile, garanțiile și condițiile referitoare la site-ul nostru web și la utilizarea acestui site. Nimic din această clauză de declinare a răspunderii nu va:
+
+limitați sau excludeți răspunderea noastră sau a dumneavoastră pentru deces sau vătămare corporală;
+limitați sau excludeți răspunderea noastră sau a dumneavoastră pentru fraudă sau declarații false frauduloase;
+limitați oricare dintre responsabilitățile noastre sau ale dumneavoastră în orice mod care nu este permis de legea aplicabilă; sau
+excludeți oricare dintre responsabilitățile noastre sau ale dvs. care nu pot fi excluse conform legislației în vigoare.
+Limitările și interdicțiile de răspundere stabilite în această secțiune și în altă parte în această declinare a răspunderii: (a) sunt supuse paragrafului precedent; și (b) guvernează toate responsabilitățile care decurg din declinarea răspunderii, inclusiv responsabilitățile care decurg din contract, delictu și pentru încălcarea obligației legale.
+
+Atâta timp cât site-ul web și informațiile și serviciile de pe site sunt furnizate gratuit, nu vom fi răspunzători pentru nicio pierdere sau daune de orice natură.
+                    </Editor.Text>
+                </Editor>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

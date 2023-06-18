@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Info_Bagaje">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+            <ImageButton Source="addButton.png"
+                         Clicked="DismissButton_Clicked"
+                         Scale="0.7"
+                         BackgroundColor="Transparent"
+                         VerticalOptions="Start"
+                         HorizontalOptions="End"
+                         Rotation="45"></ImageButton>
+            <Label Text="Categorii de bagaje"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand" 
+                   Margin="0,0,0,20"/>
+            <Label Text="Bagaj de mână"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="20,0,0,0"></Label>
+            <Image Source="ghiozdan_icon.png"
+                   HorizontalOptions="Start"
+                   Margin="40,0,0,0"></Image>
+            <Label TextColor="Black"
+                   FontSize="14"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,0,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="&#x2022; " FontAttributes="Bold"
+                              FontSize="22" TextColor="Red"></Span>
+                        <Span Text="Bagajele de mână transportat în cabină trebuie să se încadreze în urmatoarele dimensiuni maxime: 40x30x20 (lungime x lațime x înaltime) și greutate maximă de 8 kg."></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label TextColor="Black"
+                   FontSize="14"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,0,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                    <Span Text="&#x2022; " FontAttributes="Bold"
+                              FontSize="22" TextColor="Red"></Span>
+                    <Span Text="Bagajele de mână trebuie să poată încăpea în spațiul destinat acestora de la bordul aeronavei."></Span>
+                </FormattedString>
+                </Label.FormattedText>
+            </Label>
+                <Label TextColor="Black"
+                   FontSize="14"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="&#x2022; " FontAttributes="Bold"
+                              FontSize="22" TextColor="Red"></Span>
+                            <Span Text="Se consideră bagaje de mână o geantă, troller de mici dimensiuni, rucsac,laptop, geantă pentru camera foto/video sau orice alt obiect care se încadrează în dimensiunile specificate mai sus. "></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Bagaj de cală"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="20,0,0,0"></Label>
+            <Image Source="bagaj1_icon.png"
+                   HorizontalOptions="Start"
+                   Margin="40,0,0,0"></Image>
+            <Label TextColor="Black"
+                   FontSize="14"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,0,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="&#x2022; " FontAttributes="Bold"
+                              FontSize="22" TextColor="Red"></Span>
+                            <Span Text="Bagajele de cală sunt înregistrate de controlul de securitate și transportate separat în cala aeronavei. pentru un bagaj, iar pentru doua bagaje trebuie respectată aceeași dimensiune cu o greutate maximă de 20 kg pentru fiecare bagaj."></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+                <Label TextColor="Black"
+                   FontSize="14"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="&#x2022; " FontAttributes="Bold"
+                              FontSize="22" TextColor="Red"></Span>
+                            <Span Text="Dimensiunea maximă admisă a bagajelor de cală trebuie să aibă suma dimensiunilor (lungime + lățime + înalțime) de 158 cm și greutatea maxima de 30 kg"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       Margin="20,0,10,20">
+                    <Label.Text>Rețineți că fiecare companie aeriană își stabilește propriile reguli în ceea ce privește transportul bagajelor. Înainte de a merge la aeroport  asigurați-vă că bagajul dvs. se încadrează în dimensiunile și greutatea permise.</Label.Text>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

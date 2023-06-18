@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Pag_Cautare"
+             xmlns:local="clr-namespace:Proiect_Licenta">
+    
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="#F2F4F8" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand">
+            <StackLayout Padding="25,20,0,0" HorizontalOptions="CenterAndExpand" BackgroundColor="#F2F4F8">
+                <Frame BorderColor="Gray"
+                       Margin="0,0,0,0"
+                       Padding="0,0,0,-7"
+                       CornerRadius="7"
+                       HorizontalOptions="CenterAndExpand"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       HeightRequest="60"
+                       WidthRequest="350">
+                <StackLayout>
+                    <Label Text="Plecare din"
+                           Margin="10,0,0,0"></Label>
+                    <Button x:Name="buton_locatie_plecare"
+                            Text="Selectati plecarea"
+                            TextColor="Black"
+                            TextTransform="None"
+                            FontSize="16"
+                            FontAttributes="None"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="Center" 
+                            HeightRequest="36"
+                            WidthRequest="360"
+                            CornerRadius="0"
+                            Clicked="ButtonClickedPlecare"
+                            Margin="10,-10,10,0"
+                            Padding="0,0,30,0"
+                            ImageSource="location_icon_small.png">
+                    </Button>
+                </StackLayout>
+            </Frame>
+            <Frame BorderColor="Gray"
+                   Margin="0,0,0,0"
+                   Padding="0,0,0,-7"
+                   CornerRadius="7"
+                   BackgroundColor="White"
+                   HasShadow="True"
+                   HeightRequest="60"
+                   WidthRequest="350">
+                <StackLayout>
+                    <Label Text="Destinatia"
+                           Margin="10,0,0,0"></Label>
+                    <Button x:Name="buton_locatie_destinatie"
+                            Text="Selectati destinatia"
+                            TextColor="Black"
+                            TextTransform="None"
+                            FontSize="16"
+                            FontAttributes="None"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Transparent"
+                            HeightRequest="36"
+                            WidthRequest="360"
+                            CornerRadius="0"
+                            Clicked="ButtonClickedDestinatie"
+                            Margin="10,-10,10,0"
+                            Padding="0,0,30,0"
+                            ImageSource="location_icon_small.png">
+                    </Button>
+                </StackLayout>
+            </Frame>
+            <Frame 
+                BorderColor="Gray"
+                Margin="0,0,0,0"
+                Padding="0,0,0,-8"
+                CornerRadius="7"
+                BackgroundColor="White"
+                HasShadow="True"
+                HeightRequest="60">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="DataColumnDefinition"
+                                          Width="250"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Data plecare"
+                           Margin="10,0,0,-10"
+                           Grid.Column="0"></Label>
+                    <Image Source="calendar_icon.png"
+                           Grid.Column="0"
+                           Scale="0.7"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"
+                           Margin="4,10,0,0"></Image>
+                    <DatePicker x:Name="picker_data_plecare"
+                                Format="dd/MMMM/yyyy"
+                                HorizontalOptions="End"
+                                Grid.Column="0"
+                                Margin="10,15,5,0"
+                                FontSize="18"
+                                DateSelected="OnDatePlecareChanged"/>
+                    <Label Text="Data retur"
+                           x:Name="TitluDataIntoarcere"
+                           Margin="5,0,0,-10"
+                           IsVisible="False"
+                           Grid.Column="1"></Label>
+                    <DatePicker x:Name="picker_data_intoarcere"
+                                Format="dd/MMMM/yyyy"
+                                HorizontalOptions="Start"
+                                IsEnabled="False"
+                                IsVisible="False"
+                                FontSize="15"
+                                Margin="5,15,0,0"
+                                Grid.Column="1"/>
+                </Grid>
+            </Frame>
+            <!-- <Frame 
+                BorderColor="Black"
+                TranslationX="0"
+                Margin="200,-62,15,0"
+                Padding="0,0,0,0"
+                CornerRadius="10"
+                x:Name="FramePicker_DataIntoarcere"
+                IsVisible="False"
+                IsEnabled="False"
+                BackgroundColor="#bebebe">
+                <StackLayout>
+                    <Label Text="Data retur"
+                           x:Name="TitluDataIntoarcere"
+                           Margin="10,0,0,-10"
+                           IsVisible="False"></Label>
+                    <DatePicker x:Name="picker_data_intoarcere"
+                                Format="D"
+                                HorizontalOptions="Center"
+                                IsEnabled="False"
+                                IsVisible="False"
+                                FontSize="15"/>
+                </StackLayout>
+            </Frame>-->
+            <Frame 
+                BorderColor="Gray"
+                Margin="0,0,0,0"
+                Padding="0,0,0,-8"
+                CornerRadius="7"
+                BackgroundColor="White"
+                HasShadow="True"
+                IsVisible="False"
+                IsEnabled="False"
+                HeightRequest="60">
+                <StackLayout>
+                    <Label Text="Tip transport"
+                           Margin="10,0,0,-10"
+                           x:Name="TransportTest"
+                           IsVisible="False"
+                           IsEnabled="False"></Label>
+                    <Picker x:Name="picker_transport"
+                            Title="Tipul Transportului"
+                            TitleColor="Black"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="False"
+                            IsEnabled="False">
+                        <Picker.Items>
+                            <x:String>Tren</x:String>
+                            <x:String>Avion</x:String>
+                            <x:String>Autocar</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+            </Frame>
+            <Frame x:Name="FrameClasa"
+                   BorderColor="Gray"
+                   TranslationX="0"
+                   Margin="0,0,0,0"
+                   Padding="0,0,0,-7"
+                   CornerRadius="7"
+                   BackgroundColor="White"
+                   HasShadow="True"
+                   HeightRequest="60">
+                <Grid>
+                    <Label x:Name="LabelClasa"
+                                 Text="Clasa"
+                                 Margin="10,0,0,-10"></Label>
+                    <Image Source="person_seating_icon.png"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="4,10,0,0"
+                                 Scale="0.7"></Image>
+                    <Picker x:Name="picker_clasa"
+                                  Title="Clasa" 
+                                  TitleColor="Black"
+                                  FontSize="16"
+                                  HorizontalTextAlignment="Center"
+                                  HorizontalOptions="FillAndExpand">
+                    </Picker>
+                </Grid>
+            </Frame>
+            <Frame 
+                BorderColor="Gray"
+                Margin="0,0,0,0"
+                Padding="0,0,0,-7"
+                CornerRadius="7"
+                BackgroundColor="White"
+                HeightRequest="60">
+                <Grid>
+                    <Label Text="Tip bilet"
+                           Margin="10,0,0,-10"></Label>
+                    <Image Source="ticket.png"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           Scale="0.8"
+                           Margin="14,10,0,0"></Image>
+                    <Picker x:Name="picker_bilet"
+                            Title="Tip Bilet"
+                            TitleColor="Black"
+                            TranslationX="0"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Dus</x:String>
+                                <x:String>Dus-Intors</x:String>
+                                </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+            </Frame>
+            <Frame 
+                BorderColor="Gray"
+                Margin="0,0,0,0"
+                Padding="0,0,0,-7"
+                CornerRadius="7"
+                BackgroundColor="White"
+                HeightRequest="60">
+                <Grid>
+                    <Label Text="Pasageri"
+                           Margin="10,0,0,-10"></Label>
+                    <Image Source="person_icon.png"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           Margin="5,10,0,0"
+                           Scale="0.7"></Image>
+                   <Button Text="Pasageri"
+                           TextColor="Black"
+                           TextTransform="None"
+                           FontAttributes="None"
+                           FontSize="16"
+                           BackgroundColor="Transparent"
+                           Clicked="Button_Clicked"
+                            ></Button>
+                    <!--<Picker x:Name="picker_tip_pasager"
+                            Title="Pasageri"
+                            TitleColor="Black"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Adult</x:String>
+                                <x:String>Adolescent</x:String>
+                                <x:String>Copil</x:String>
+                                <x:String>Infant</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>-->
+                </Grid>
+            </Frame>
+                <Button x:Name="buton_cautare"
+                    Text="Cautati"
+                    TextTransform="None"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="50,60,50,0"
+                    Padding="10,0,35,0"
+                    Clicked="Cautare"
+                    IsEnabled="True"
+                    IsVisible="True"
+                    ImageSource="search_icon_small.png"
+                    CornerRadius="10"
+                    BackgroundColor="#248cd9">
+                </Button>
+            </StackLayout>
+            <ContentView x:Name="popupListView" BackgroundColor="#C0808080" Padding="10, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid HeightRequest="350" WidthRequest="300" BackgroundColor="White" RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Pasageri"
+                               TextColor="Black"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Padding="20,10,0,0"></Label>
+                        <Label Text="{Binding Source={x:Reference Stepper_Adult}, Path=Value}"
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               Grid.Column="1"
+                               Grid.Row="1"></Label>
+                        <local:CustomStepper x:Name="Stepper_Adult"
+                                             Grid.Column="1"
+                                             Grid.Row="1"
+                                             Scale="0.8"
+                                             MaxValue="10"
+                                             MinValue="0"
+                                             HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="StartAndExpand"
+                                             Margin="10,-2,0,0"></local:CustomStepper>
+                        <Label Text="Adulți"
+                               TextColor="Black"
+                               FontSize="15"
+                               Padding="20,0,0,0"
+                               Grid.Row="1"></Label>
+                        <Label Text="{Binding Source={x:Reference Stepper_Student}, Path=Value}"
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               Grid.Column="1"
+                               Grid.Row="2"></Label>
+                        <local:CustomStepper x:Name="Stepper_Student"
+                                             Grid.Column="1"
+                                             Grid.Row="2"
+                                             Scale="0.8"
+                                             HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="StartAndExpand"
+                                             Margin="10,-2,0,0"></local:CustomStepper>
+                        <Label Text="Studenți"
+                               TextColor="Black"
+                               FontSize="15"
+                               Padding="20,0,0,0"
+                               Grid.Row="2"></Label>
+                        <Label Text="{Binding Source={x:Reference Stepper_Adolescent}, Path=Value}"
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               Grid.Column="1"
+                               Grid.Row="3"></Label>
+                        <local:CustomStepper x:Name="Stepper_Adolescent"
+                                             Grid.Column="1"
+                                             Grid.Row="3"
+                                             Scale="0.8"
+                                             HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="StartAndExpand"
+                                             Margin="10,-2,0,0"></local:CustomStepper>
+                        <Label Text="Adolescenți"
+                               TextColor="Black"
+                               FontSize="15"
+                               Padding="20,0,0,0"
+                               Grid.Row="3"></Label>
+                        <Label Text="{Binding Source={x:Reference Stepper_Copil}, Path=Value}"
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               Grid.Column="1"
+                               Grid.Row="4"></Label>
+                        <local:CustomStepper x:Name="Stepper_Copil"
+                                             Grid.Column="1"
+                                             Grid.Row="4"
+                                             Scale="0.8"
+                                             HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="StartAndExpand"
+                                             Margin="10,-2,0,0"></local:CustomStepper>
+                        <Label Text="Copii"
+                               TextColor="Black"
+                               FontSize="15"
+                               Padding="20,0,0,0"
+                               Grid.Row="4"></Label>
+                        <Label Text="{Binding Source={x:Reference Stepper_Infant}, Path=Value}"
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               Grid.Column="1"
+                               Grid.Row="5"></Label>
+                        <local:CustomStepper x:Name="Stepper_Infant"
+                                             Grid.Column="1"
+                                             Grid.Row="5"
+                                             Scale="0.8"
+                                             HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="StartAndExpand"
+                                             Margin="10,-2,0,0"></local:CustomStepper>
+                        <Label Text="Infanți"
+                               TextColor="Black"
+                               FontSize="15"
+                               Padding="20,0,0,0"
+                               Grid.Row="5"></Label>
+                        <Button Text="Anulare"
+                                TextColor="Black"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HeightRequest="40"
+                                WidthRequest="100"
+                                Grid.Row="6"
+                                Margin="10,0,0,0"
+                                Clicked="PasageriAnulareStepper"></Button>
+                        <Button Text="Selectați"
+                                TextColor="Black"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HeightRequest="40"
+                                WidthRequest="100"
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                Clicked="PasageriSelectareStepper"></Button>
+                    </Grid>
+                    <Label x:Name="LabelElementeIncomplete"
+                               Text="Trebuie sa adaugati cel putin un pasager."
+                               TextColor="#9e4646"
+                               FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" 
+                               IsVisible="False"></Label>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

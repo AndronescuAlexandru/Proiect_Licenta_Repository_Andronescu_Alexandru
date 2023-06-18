@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             x:Class="Proiect_Licenta.Views.Rezervari"
+             BarBackgroundColor="White"
+             SelectedTabColor="#248cd9"
+             UnselectedTabColor="Black"
+             Title="Rezervările Mele">
+    <Shell.NavBarIsVisible>True</Shell.NavBarIsVisible>
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage Title="Rezervări Curente">
+        <StackLayout>
+            <CollectionView x:Name="ListaRezervariCurente"
+                        ItemsSource="{Binding RezervareC}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#F2F4F8"
+                        IsVisible="True"
+                        IsEnabled="True">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0,15,0,0">
+                            <Frame BorderColor="Black"
+                               BackgroundColor="#eeeeee"
+                               Margin="20,0,20,10"
+                               CornerRadius="15">
+                                <StackLayout>
+                                    <Frame BorderColor="Black"
+                                       BackgroundColor="{Binding Color}"
+                                       VerticalOptions="StartAndExpand"
+                                       CornerRadius="0"
+                                       Margin="-20,-35,-20,0"
+                                       Padding="0,25,0,0"
+                                       HeightRequest="20">
+                                        <Label Text="eSky Travel"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           FontSize="15"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Start"
+                                           Padding="0,-5,0,0"></Label>
+                                    </Frame>
+                                    <Image Source="world_continets.png"
+                                       Opacity="0.21"
+                                       Margin="0,0,0,0"></Image>
+                                    <Grid Padding="0,-120,0,0" Margin="0,-30,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="120"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="0"
+                                           Text="Nume si prenume"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="0"
+                                           FontSize="14"
+                                           TextColor="Black"
+                                           Margin="0,20,0,-5">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="Nume"></Binding>
+                                                    <Binding Path="Prenume"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="0"
+                                           Text="Scaun"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="0"
+                                           FontSize="14"
+                                           TextColor="Black"
+                                           Margin="0,20,0,-5">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="Scaun"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="1"
+                                           Text="Plecare din"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="1"
+                                           Margin="0,20,0,0"
+                                           TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="LocPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="1"
+                                           Text="Destinatie"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="1"
+                                           Margin="0,20,0,0"
+                                           TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="Destinatie"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="2"
+                                           Text="Data plecare"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,0,0"></Label>
+                                        <Label Grid.Row="2"
+                                           Grid.Column="0"
+                                           Margin="0,20,0,0"
+                                           TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="DataPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="2"
+                                           Text="Data intoarcere"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,0,0"
+                                           IsVisible="{Binding IsIntoarcere}"></Label>
+                                        <Label Grid.Row="2"
+                                           Grid.Column="2"
+                                           Margin="-5,20,0,0" 
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Start"
+                                           IsVisible="{Binding IsIntoarcere}">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="DataIntoarcere"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </Grid>
+                                    <Grid>
+                                        <Button Text="Detalii"
+                                            TextTransform="None"
+                                            WidthRequest="50"
+                                            HeightRequest="30"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="End"
+                                            TextColor="Black"
+                                            Padding="0,0,0,10"
+                                            BackgroundColor="Transparent"
+                                            FontAttributes="Bold"
+                                            Margin="0,0,0,-15"
+                                            Clicked="Detalii"
+                                            Grid.Column="0"></Button>
+                                        <Label Text="{Binding Transport}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextTransform="Uppercase"
+                                           HorizontalTextAlignment="Start"
+                                           VerticalTextAlignment="End"
+                                           Padding="-30,0,0,0"
+                                           Margin="0,-10,0,-10"
+                                           Grid.Column="2"></Label>
+                                        <Frame Grid.Column="2"
+                                           Grid.Row="0"
+                                           BorderColor="Black"
+                                           CornerRadius="10"
+                                           Margin="-50,0,-25,-30"
+                                           BackgroundColor="Transparent"></Frame>
+                                        <Image Source="{Binding Icon}"
+                                           Grid.Column="2" 
+                                           Grid.Row="0"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start"
+                                           Margin="0,0,0,-20"></Image>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="empty_high.png"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Scale="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Margin="0,0,0,0"></Image>
+                        <Label Text="Din pacate nu se afla nimic :("
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,-60,0,0"></Label>
+                        <!-- <Label Text="Logati-va pentru a putea gestiona biletele rezervate."                        
+                           Grid.Column="1"
+                           Grid.Row="3"
+                           IsVisible="False"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="10,-250,10,100"
+                           x:Name="NoAccountMsg"/> -->
+                    </Grid>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Arhivă">
+        <StackLayout>
+            <CollectionView x:Name="ListaRezervariTotale"
+                        ItemsSource="{Binding RezervareT}"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#F2F4F8"
+                        IsVisible="True"
+                        IsEnabled="True">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0,15,0,0">
+                            <Frame BorderColor="Black"
+                               BackgroundColor="#eeeeee"
+                               Margin="20,0,20,10"
+                               CornerRadius="15">
+                                <StackLayout>
+                                    <Frame BorderColor="Black"
+                                       BackgroundColor="{Binding Color}"
+                                       VerticalOptions="StartAndExpand"
+                                       CornerRadius="0"
+                                       Margin="-20,-35,-20,0"
+                                       Padding="0,25,0,0"
+                                       HeightRequest="20">
+                                        <Label Text="eSky Travel"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           FontSize="15"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Start"
+                                           Padding="0,-5,0,0"></Label>
+                                    </Frame>
+                                    <Image Source="world_continets.png"
+                                       Opacity="0.21"
+                                       Margin="0,0,0,0"></Image>
+                                    <Grid Padding="0,-120,0,0" Margin="0,-30,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="120"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="0"
+                                           Text="Nume si prenume"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="0"
+                                           FontSize="14"
+                                           TextColor="Black"
+                                           Margin="0,20,0,-5">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="Nume"></Binding>
+                                                    <Binding Path="Prenume"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="0"
+                                           Text="Scaun"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="0"
+                                           FontSize="14"
+                                           TextColor="Black"
+                                           Margin="0,20,0,-5">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="Scaun"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="1"
+                                           Text="Plecare din"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="1"
+                                           Margin="0,20,0,0"
+                                           TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="LocPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="1"
+                                           Text="Destinatie"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="1"
+                                           Margin="0,20,0,0"
+                                           TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="Destinatie"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="0"
+                                           Grid.Row="2"
+                                           Text="Data plecare"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,0,0"></Label>
+                                        <Label Grid.Row="2"
+                                           Grid.Column="0"
+                                           Margin="0,20,0,0"
+                                           TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="DataPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label Grid.Column="2"
+                                           Grid.Row="2"
+                                           Text="Data intoarcere"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,0,0"
+                                           IsVisible="{Binding IsIntoarcere}"></Label>
+                                        <Label Grid.Row="2"
+                                           Grid.Column="2"
+                                           Margin="-5,20,0,0" 
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Start"
+                                           IsVisible="{Binding IsIntoarcere}">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="DataIntoarcere"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </Grid>
+                                    <Grid>
+                                        <Button Text="Detalii"
+                                            TextTransform="None"
+                                            WidthRequest="50"
+                                            HeightRequest="30"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="End"
+                                            TextColor="Black"
+                                            Padding="0,0,0,10"
+                                            BackgroundColor="Transparent"
+                                            FontAttributes="Bold"
+                                            Margin="0,0,0,-15"
+                                            Clicked="Detalii"
+                                            Grid.Column="0"></Button>
+                                        <Label Text="{Binding Transport}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextTransform="Uppercase"
+                                           HorizontalTextAlignment="Start"
+                                           VerticalTextAlignment="End"
+                                           Padding="-30,0,0,0"
+                                           Margin="0,-10,0,-10"
+                                           Grid.Column="2"></Label>
+                                        <Frame Grid.Column="2"
+                                           Grid.Row="0"
+                                           BorderColor="Black"
+                                           CornerRadius="10"
+                                           Margin="-50,0,-25,-30"
+                                           BackgroundColor="Transparent"></Frame>
+                                        <Image Source="{Binding Icon}"
+                                           Grid.Column="2" 
+                                           Grid.Row="0"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start"
+                                           Margin="0,0,0,-20"></Image>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="empty_high.png"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Scale="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Margin="0,0,0,0"></Image>
+                        <Label Text="Din pacate nu se afla nimic :("
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,-60,0,0"></Label>
+                        <!-- <Label Text="Logati-va pentru a putea gestiona biletele rezervate."                        
+                           Grid.Column="1"
+                           Grid.Row="3"
+                           IsVisible="False"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="10,-250,10,100"
+                           x:Name="NoAccountMsg"/> -->
+                    </Grid>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

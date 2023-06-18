@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Search_Bar_Locatie"
+             Title="Plecare Din">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F2F4F8">
+            <SearchBar x:Name="Locatie_Plecare"
+                       Placeholder="Introduceți numele orașului"
+                       TextChanged="SearchButtonPressedPlecare"
+                       VerticalOptions="StartAndExpand"
+                       TextColor="Black"
+                       BackgroundColor="#F2F4F8">
+            </SearchBar>
+            <Label x:Name="TestLabel"></Label>
+            <!-- <ListView x:Name="SearchList"
+                      BackgroundColor="White"
+            /> -->
+            <CollectionView x:Name="SearchList"
+                            ItemsSource="{Binding locatii}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame BorderColor="Gray"
+                                   BackgroundColor="White"
+                                   HeightRequest="50"
+                                   WidthRequest="380"
+                                   CornerRadius="5"
+                                   HasShadow="True"
+                                   HorizontalOptions="Center"
+                                   Padding="0,0,0,0"
+                                   Margin="0,0,0,5">
+                                <Grid>
+                                    <Image Source="icon_aeroport.png"
+                                           Grid.Column="0"
+                                           Grid.Row="0"
+                                           HorizontalOptions="Start"
+                                           Margin="0,0,0,0"
+                                           Scale="0.5"></Image>
+                                    <Button x:Name="ButtonSearchResult"
+                                            Text="{Binding StringFormat='{0}'}"
+                                            TextColor="Black"
+                                            TextTransform="None"
+                                            BackgroundColor="Transparent"
+                                            Clicked="SearchResultsClicked"
+                                            Margin="0,0,0,0"
+                                            Grid.Column="0"
+                                            Grid.Row="0">
+                                    </Button>
+                                </Grid>
+                            </Frame>
+                            <!--<Button x:Name="ButtonSearchResult"
+                                    Text="{Binding StringFormat='{0}'}"
+                                    TextColor="Black"
+                                    TextTransform="None"
+                                    BackgroundColor="#f8f8f8"
+                                    Clicked="SearchResultsClicked">
+                            </Button>
+                            <Line X1="0" X2="10000"
+                                          Y1="1" Y2="1"
+                                          Stroke="Black"></Line> -->
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="nothing_found.png"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Scale="1"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Margin="0,0,0,0"></Image>
+                        <Label Text="Nu s-a gasit locatia dvs."
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,-60,0,0"></Label>
+                        <Label Text="Va rugam sa verificati locatia scrisa."
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               Margin="0,-20,0,0"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Start"></Label>
+                    </Grid>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

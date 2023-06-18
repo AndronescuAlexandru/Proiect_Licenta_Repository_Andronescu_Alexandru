@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Contact"
+             Title="Contact">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F2F4F8" Padding="0,10,0,0">
+            <Grid>
+                <Label Text="Nume"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="10,0,0,0"></Label>
+                <Frame
+                    BorderColor="LightGray"
+                   Padding="0,0,0,-10"
+                   Margin="20,25,0,0"
+                    HeightRequest="55"
+                   CornerRadius="5"
+                    Grid.Row="0">
+                    <Entry x:Name="EntryNumeClient"
+                       HorizontalOptions="Center"
+                       WidthRequest="150"
+                       HorizontalTextAlignment="Center"></Entry>
+                </Frame>
+                <Label Text="Preume"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="10,0,0,0"
+                       Grid.Row="0"
+                       Grid.Column="1"></Label>
+                <Frame
+                    BorderColor="LightGray"
+                    Padding="0,0,0,-10"
+                    Margin="0,25,20,0"
+                    HeightRequest="55"
+                    CornerRadius="5"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <Entry x:Name="EntryPrenumeClient"
+                       HorizontalOptions="Center"
+                       WidthRequest="150"
+                       HorizontalTextAlignment="Center"></Entry>
+                </Frame>
+            </Grid>
+            <Label Text="Adresa de e-mail"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="10,0,0,0"></Label>
+            <Frame BorderColor="LightGray"
+                   HeightRequest="55"
+                   Padding="0,0,0,-10"
+                   Margin="20,0,20,0"
+                   CornerRadius="5">
+                <Entry x:Name="EntryEmail"
+                       Keyboard="Email"
+                       HorizontalOptions="Center"
+                       WidthRequest="340"
+                       HorizontalTextAlignment="Center"></Entry>
+            </Frame>
+            <Label Text="Mesaj"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="10,0,0,0"></Label>
+            <Frame BorderColor="LightGray"
+                   HeightRequest="55"
+                   Padding="0,0,0,-10"
+                   Margin="20,0,20,0"
+                   CornerRadius="5"
+                   x:Name="EditorBorder">
+                <Editor x:Name="EntryMessageEmail"
+                        Placeholder="Scrieti o intrebare"
+                        HorizontalOptions="Center"
+                        AutoSize="TextChanges"
+                        SizeChanged="EntryMessageEmail_SizeChanged"
+                        WidthRequest="340"></Editor>
+            </Frame>
+            <Button Text="Trimite"
+                    TextColor="White"
+                    TextTransform="None"
+                    BackgroundColor="#248cd9"
+                    HeightRequest="50"
+                    WidthRequest="250"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Clicked="Button_Trimite"
+                    CornerRadius="10"
+                    Margin="0,20,0,0"
+                    x:Name="ButonTrimitereMesaj"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

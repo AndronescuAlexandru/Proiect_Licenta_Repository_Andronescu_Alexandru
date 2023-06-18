@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Pagina_Login">
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0">
+            <Label Text="Logati-va pentru a va gestiona biletele rezervate!"
+                   TextColor="Black"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   Margin="30,20,30,0"></Label>
+            <Grid>
+                <Entry x:Name="EntryAdresaEmail"
+                       Placeholder="Adresa de e-mail"
+                       Keyboard="Email"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="2">
+                </Entry>
+                <Entry x:Name="EntryParola"
+                       Placeholder="Parola"
+                       IsPassword="True"
+                       Margin="30,0,30,0"
+                       Grid.Row="3"></Entry>
+                <Button VerticalOptions="Center"
+                        Text="Login" 
+                        BackgroundColor="#248cd9"
+                        Margin="60,0,60,0"
+                        Grid.Row="5"
+                        TextTransform="None"
+                        Clicked="Login"/>
+                <Button Text="Am uitat parola"
+                        TextColor="#248cd9"
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        HeightRequest="30"
+                        Padding="0,0,0,0"
+                        Clicked="Button_AmUitatParola"
+                        Grid.Row="6"></Button>
+                <Label Text="Nu aveti un cont?"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       Grid.Row="7"
+                       Margin="70,-20,0,0"></Label>
+                <Button Text="Creati un cont nou."
+                        TextColor="#248cd9"
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        HeightRequest="30"
+                        Padding="0,0,0,1"
+                        Margin="0,-20,70,0"
+                        Grid.Row="7"
+                        Clicked="Creare"></Button>
+                <Label x:Name="LabelEmailOrPassGresit"
+                       Text="Din pacate ati introdus parola sau adresa de email gresite"
+                       TextColor="#9e4646"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Margin="0,30,0,0"
+                       Grid.Row="7"
+                       IsVisible="False"></Label>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Pagina_Creare_Cont">
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0">
+            <Label x:Name="HeaderPagina"
+                   Text="Creati-va un cont pentru a va gestiona biletele rezervate!"
+                   TextColor="Black"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   Margin="30,20,30,0"></Label>
+            <Grid>
+                <Entry x:Name="NumeCont"
+                       Placeholder="Nume"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="1"
+                       TextChanged="NumeCont_Completed"></Entry>
+                <Entry x:Name="PrenumeCont"
+                       Placeholder="Prenume"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       TextChanged="PrenumeCont_Completed"></Entry>
+                <Entry x:Name="TaraCont"
+                       Placeholder="Tara"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="2"
+                       TextChanged="TaraCont_Completed"></Entry>
+                <Entry x:Name="OrasCont"
+                       Placeholder="Oras"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       TextChanged="OrasCont_Completed"></Entry>
+                <Entry x:Name="StradaCont"
+                       Placeholder="Strada"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="3"
+                       TextChanged="StradaCont_Completed"></Entry>
+                <Entry x:Name="Nr_StradaCont"
+                       Placeholder="Nr_Strada"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       TextChanged="Nr_StradaCont_Completed"></Entry>
+                <Entry x:Name="Cod_PostalCont"
+                       Placeholder="Cod_Postal"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="4"
+                       TextChanged="Cod_PostalCont_Completed"></Entry>
+                <Entry x:Name="Nr_TelefonCont"
+                       Placeholder="Nr_Telefon"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="4"
+                       Grid.Column="1"
+                       TextChanged="Nr_TelefonCont_Completed"></Entry>
+            </Grid>
+
+            <Grid>
+                <Entry x:Name="AdresaEmailCont"
+                       Placeholder="Adresa de e-mail"
+                       Keyboard="Email"
+                       Margin="30,0,30,0"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       TextChanged="AdresaEmailCont_Completed">
+                </Entry>
+                <Entry x:Name="ParolaCont"
+                       Placeholder="Parola"
+                       IsPassword="True"
+                       Margin="30,0,30,0"
+                       Grid.Row="1"
+                       TextChanged="ParolaCont_Completed"></Entry>
+                <Entry x:Name="EntryCodEmail"
+                       Placeholder="Introduceti codul pentru validarea contului"
+                       Margin="30,0,30,0"
+                       Grid.Row="2"
+                       Keyboard="Numeric"
+                       IsEnabled="False"
+                       IsVisible="False"></Entry>
+                <Button x:Name="ButonCreareCont"
+                        VerticalOptions="Center"
+                        Text="Creare cont" 
+                        BackgroundColor="#248cd9"
+                        Margin="60,0,60,0"
+                        Grid.Row="3"
+                        TextTransform="None"
+                        Clicked="CreareCont"/>
+                <Button x:Name="ButonCodEmail"
+                        VerticalOptions="Center"
+                        Text="Trimiteti codul" 
+                        BackgroundColor="#248cd9"
+                        Margin="60,0,60,0"
+                        Grid.Row="4"
+                        TextTransform="None"
+                        Clicked="AdaugareCont"
+                        IsEnabled="False"
+                        IsVisible="False"/>
+                <Label x:Name="LabelConectareCont"
+                       Text="Aveti deja un cont?"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       Grid.Row="5"
+                       Margin="70,0,0,0"></Label>
+                <Label x:Name="LabelCodGresit"
+                       Text="Din pacate ati introdus un cod gresit!"
+                       TextColor="#9e4646"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Grid.Row="6"
+                       IsVisible="False"></Label>
+                <Button x:Name="ButonConectareCont"
+                        Text="Conectare"
+                        TextColor="#248cd9"
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        HeightRequest="30"
+                        Padding="0,0,0,1"
+                        Margin="0,0,70,0"
+                        Grid.Row="5"
+                        Clicked="Conectare"></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

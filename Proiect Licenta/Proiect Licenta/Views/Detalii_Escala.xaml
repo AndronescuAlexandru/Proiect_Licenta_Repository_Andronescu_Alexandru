@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Detalii_Escala"
+             Title="Detaliile zborului">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout  BindableLayout.ItemsSource="{Binding Bilet}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout BackgroundColor="#F2F4F8"
+                                 Padding="0,0,0,30">
+                        <Frame BorderColor="LightGray"
+                               BackgroundColor="White"
+                               Margin="10,5,10,0"
+                               Padding="20,20,20,25"
+                               CornerRadius="5">
+                            <Grid Padding="0,-10,0,-30">
+                                <Label Text="Plecare din"
+                                       TextColor="Black"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       Grid.Column="0"
+                                       Margin="0,0,0,0"></Label>
+                                <Label TextColor="Black"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       Grid.Column="0"
+                                       Margin="0,40,0,0">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0}">
+                                            <Binding Path="LocPlecare"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Rectangle HeightRequest="10"
+                                           WidthRequest="10"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="End"
+                                           Margin="-10,0,0,10"
+                                           Grid.Column="1"
+                                           BackgroundColor="#248cd9"></Rectangle>
+                                <Line X1="10"
+                                      X2="95"
+                                      Y1="50"
+                                      Y2="50"
+                                      Stroke="#248cd9"
+                                      StrokeThickness="3"
+                                      StrokeLineJoin="Round"
+                                      Grid.Column="1"></Line>
+                                <Rectangle HeightRequest="10"
+                                           WidthRequest="10"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="End"
+                                           Margin="0,0,-10,10"
+                                           Grid.Column="1"
+                                           BackgroundColor="#248cd9"></Rectangle>
+                                <Label Text="Sosire la"
+                                       TextColor="Black"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       Grid.Column="2"
+                                       HorizontalOptions="Start"
+                                       Margin="10,0,0,0"></Label>
+                                <Label TextColor="Black"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="End"
+                                       Grid.Column="2"
+                                       Margin="0,40,0,0">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0}">
+                                            <Binding Path="Destinatie"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Text="Timp călătorie:"
+                                       Grid.Column="0"
+                                       Grid.Row="1"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start"
+                                       FontSize="13"
+                                       Margin="-10,0,0,0">
+                                </Label>
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start"
+                                       FontSize="13"
+                                       TextColor="Black">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0} min">
+                                            <Binding Path="DurataDrum"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Text="Durata escală:"
+                                       Grid.Column="0"
+                                       Grid.Row="1"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start"
+                                       FontSize="13"
+                                       Margin="-10,20,0,0">
+                                </Label>
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start"
+                                       FontSize="13"
+                                       Margin="0,20,0,0"
+                                       TextColor="Black">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0} min">
+                                            <Binding Path="DurataEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Text="1 Escală"
+                                       TextColor="Black"
+                                       Grid.Column="2"
+                                       Grid.Row="1"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start"
+                                       FontSize="13">
+                                </Label>
+                            </Grid>
+                        </Frame>
+                        <Label Text="Primul zbor"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               Margin="10,10,0,10"></Label>
+                        <Frame BorderColor="LightGray"
+                               BackgroundColor="White"
+                               HeightRequest="150"
+                               Margin="10,0,10,0"
+                               CornerRadius="5">
+                            <StackLayout>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       Margin="20,-10,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0}">
+                                            <Binding Path="LocPlecare"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       Margin="20,10,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Numărul avionului: {0}">
+                                            <Binding Path="NrTransport"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Clasă: {0}">
+                                            <Binding Path="Clasa"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Plecare din data de: {0}">
+                                            <Binding Path="DataPlecare"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}La ora: {0}">
+                                            <Binding Path="OraPlecare"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Timp calatorie: {0} min">
+                                            <Binding Path="DurataDrumPanaLaEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Rectangle HeightRequest="10"
+                                           WidthRequest="10"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Start"
+                                           Margin="0,-123,0,0"
+                                           BackgroundColor="#248cd9"></Rectangle>
+                                <Line X1="5"
+                                      X2="5"
+                                      Y1="0"
+                                      Y2="120"
+                                      Stroke="#248cd9"
+                                      StrokeThickness="3"
+                                      Margin="0,0,0,0"></Line>
+                                <Rectangle HeightRequest="10"
+                                           WidthRequest="10"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="EndAndExpand"
+                                           Margin="0,0,0,0"
+                                           BackgroundColor="#248cd9"></Rectangle>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Start"
+                                       Grid.Column="2"
+                                       Margin="20,-20,0,0">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0}">
+                                            <Binding Path="PlecareEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                        <Label TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               Margin="10,10,0,10">
+                            <Label.Text>
+                                <MultiBinding StringFormat ="{}Al doilea zbor. Durata escală: {0} min">
+                                    <Binding Path="DurataEscala"></Binding>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Frame BorderColor="LightGray"
+                               BackgroundColor="White"
+                               HeightRequest="150"
+                               Margin="10,0,10,0"
+                               CornerRadius="5">
+                            <StackLayout>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       Margin="20,-10,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0}">
+                                            <Binding Path="PlecareEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       Margin="20,10,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Numărul avionului: {0}">
+                                            <Binding Path="NrTransportEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Clasă: {0}">
+                                            <Binding Path="Clasa"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Plecare din data de: {0}">
+                                            <Binding Path="DataPlecareEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}La ora: {0}">
+                                            <Binding Path="OraPlecareEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label TextColor="Black"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       Margin="20,0,0,-5">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}Timp calatorie: {0} min">
+                                            <Binding Path="DurataDrumEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Rectangle HeightRequest="10"
+                               WidthRequest="10"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Start"
+                               Margin="0,-123,0,0"
+                               BackgroundColor="#248cd9"></Rectangle>
+                                <Line X1="5"
+                          X2="5"
+                          Y1="0"
+                          Y2="120"
+                          Stroke="#248cd9"
+                          StrokeThickness="3"
+                          Margin="0,0,0,0"></Line>
+                                <Rectangle HeightRequest="10"
+                               WidthRequest="10"
+                               HorizontalOptions="Start"
+                               VerticalOptions="EndAndExpand"
+                               Margin="0,0,0,0"
+                               BackgroundColor="#248cd9"></Rectangle>
+                                <Label TextColor="Black"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start"
+                       Grid.Column="2"
+                       Margin="20,-20,0,0">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat ="{}{0}">
+                                            <Binding Path="DestinatieEscala"></Binding>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

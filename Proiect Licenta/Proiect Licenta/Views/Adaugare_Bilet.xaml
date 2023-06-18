@@ -1,0 +1,1955 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Licenta.Views.Adaugare_Bilet"
+             Title="Rezervare bilet">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame x:Name="FrameHeaderMsg"
+                   BackgroundColor="White"
+                   Margin="0,10,0,-5">
+                <StackLayout>
+                    <Label Text="Pentru completarea automată a câmpurilor de facturare și a datelor de contact vă rugăm să vă conectați la un cont."
+                           TextColor="Black"
+                           FontSize="15"
+                           HorizontalTextAlignment="Center"></Label>
+                    <Grid Margin="0,15,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Text="Conectare"
+                                TextColor="White"
+                                TextTransform="None"
+                                BackgroundColor="#248cd9"
+                                HorizontalOptions="Center"
+                                WidthRequest="120"
+                                CornerRadius="5"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Clicked="HeaderMsgConectare_Clicked"></Button>
+                        <Button Text="Închide"
+                                TextColor="White"
+                                TextTransform="None"
+                                BackgroundColor="#248cd9"
+                                HorizontalOptions="Center"
+                                WidthRequest="120"
+                                CornerRadius="5"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Clicked="HeaderMsgInchidere_Clicked"></Button>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            <ScrollView>
+                <StackLayout BackgroundColor="#F2F4F8"
+                     BindableLayout.ItemsSource="{Binding Bilet}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="Detalii bilet"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,0,0"></Label>
+                                <Frame BackgroundColor="White"
+                                   BorderColor="LightGray"
+                                   Margin="10,10,10,10"
+                                   CornerRadius="5"
+                                   HasShadow="True">
+                                    <StackLayout>
+                                        <Grid Padding="0,0,0,0">
+                                            <Label Text="Detalii bilet"
+                                                   TextColor="Black"
+                                                   FontSize="16"></Label>
+                                            <ImageButton Source="drop_down_icon.png"
+                                                         HorizontalOptions="End"        
+                                                         WidthRequest="40"
+                                                         HeightRequest="25"
+                                                         Grid.Column="1"
+                                                         BackgroundColor="Transparent"
+                                                         Clicked="DropDownDetaliiBilet"></ImageButton>
+                                        </Grid>
+                                        <StackLayout IsVisible="{Binding DetaliiBilet}">
+                                            <Grid RowSpacing="-5" Margin="0,0,0,-5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Label Text="Plecare"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"></Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       TextColor="Black"
+                                                       FontSize="16"
+                                                       FontAttributes="Bold">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="LocPlecare"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="1"
+                                                       TextColor="Black"
+                                                       FontSize="16"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Center">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="Destinatie"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       Margin="0,20,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0} ora {1}">
+                                                            <Binding Path="DataPlecare"></Binding>
+                                                            <Binding Path="OraPlecare"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Rectangle HeightRequest="10"
+                                                           WidthRequest="10"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center"
+                                                           BackgroundColor="#248cd9"
+                                                           Margin="30,0,0,-2"
+                                                           Grid.Column="0"
+                                                           Grid.Row="2"></Rectangle>
+                                                <Line X1="50"
+                                                      X2="5000"
+                                                      Y1="0"
+                                                      Y2="0"
+                                                      Stroke="#248cd9"
+                                                      StrokeThickness="3"
+                                                      StrokeLineJoin="Round"
+                                                      VerticalOptions="Center"
+                                                      HorizontalOptions="Center"
+                                                      Margin="0,0,-70,0"
+                                                      Grid.Column="0"
+                                                      Grid.Row="2"></Line>
+                                                <Rectangle HeightRequest="10"
+                                                           WidthRequest="10"
+                                                           HorizontalOptions="Center"
+                                                           VerticalOptions="Center"
+                                                           BackgroundColor="#248cd9"
+                                                           Margin="30,0,0,-2"
+                                                           Grid.Column="1"
+                                                           Grid.Row="2"></Rectangle>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="3"
+                                                       TextColor="Black"
+                                                       Margin="-1,10,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0} cu nr. {1}">
+                                                            <Binding Path="Transport"></Binding>
+                                                            <Binding Path="NrTransport"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="3"
+                                                       Margin="0,10,0,0"
+                                                       IsVisible="{Binding IsTren}"
+                                                       TextColor="Black">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="TipTren"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="4"
+                                                       TextColor="Black">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Bilet {0}">
+                                                            <Binding Path="TipBilet"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="5"
+                                                       TextColor="Black"
+                                                       Margin="0,0,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Clasa {0}">
+                                                            <Binding Path="Clasa"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="4"
+                                                       TextColor="Black"
+                                                       Text="Companie aeriană"
+                                                       IsVisible="{Binding IsAvion}">
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="4"
+                                                       TextColor="Black"
+                                                       HorizontalTextAlignment="Center"
+                                                       Margin="0,20,0,0"
+                                                       IsVisible="{Binding IsAvion}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="CompanieZbor"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Image Source="{Binding IconCompanieZbor}"
+                                                       IsVisible="{Binding IsAvion}"
+                                                       Scale="0.8"
+                                                       Grid.Column="1"
+                                                       Grid.Row="3"></Image>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="6"
+                                                       TextColor="Black"
+                                                       Margin="0,0,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Loc {0}">
+                                                            <Binding Path="Scaun"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="7"
+                                                       TextColor="Black"
+                                                       IsVisible="{Binding IsAvion}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Terminal {0}">
+                                                            <Binding Path="Peron"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="7"
+                                                       TextColor="Black"
+                                                       IsVisible="{Binding IsTren}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Peron {0}">
+                                                            <Binding Path="Peron"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                            </Grid>
+
+                                            <Line X1="0" X2="1000"
+                                                      Y1="1" Y2="1"
+                                                      Stroke="#bcbcbc"
+                                                      IsVisible="{Binding IsIntoarcere}"></Line>
+
+                                            <Grid RowSpacing="-5" IsVisible="{Binding IsIntoarcere}"
+                                                  Margin="0,5,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="210"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Label Text="Intoarcere"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"></Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       TextColor="Black"
+                                                       FontSize="16"
+                                                       FontAttributes="Bold">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="Destinatie"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="1"
+                                                       TextColor="Black"
+                                                       FontSize="16"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Center">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="LocPlecare"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       Margin="0,20,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0} ora {1}">
+                                                            <Binding Path="DataIntoarcere"></Binding>
+                                                            <Binding Path="OraIntoarcere"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Rectangle HeightRequest="10"
+                                                           WidthRequest="10"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center"
+                                                           BackgroundColor="#248cd9"
+                                                           Margin="30,0,0,-2"
+                                                           Grid.Column="0"
+                                                           Grid.Row="2"></Rectangle>
+                                                <Line X1="50"
+                                                      X2="5000"
+                                                      Y1="0"
+                                                      Y2="0"
+                                                      Stroke="#248cd9"
+                                                      StrokeThickness="3"
+                                                      StrokeLineJoin="Round"
+                                                      VerticalOptions="Center"
+                                                      HorizontalOptions="Center"
+                                                      Margin="0,0,-70,0"
+                                                      Grid.Column="0"
+                                                      Grid.Row="2"></Line>
+                                                <Rectangle HeightRequest="10"
+                                                           WidthRequest="10"
+                                                           HorizontalOptions="Center"
+                                                           VerticalOptions="Center"
+                                                           BackgroundColor="#248cd9"
+                                                           Margin="30,0,0,-2"
+                                                           Grid.Column="1"
+                                                           Grid.Row="2"></Rectangle>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="3"
+                                                       TextColor="Black"
+                                                       Margin="-1,10,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0} cu nr. {1}">
+                                                            <Binding Path="Transport"></Binding>
+                                                            <Binding Path="NrTransport2"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="3"
+                                                       Margin="0,10,0,0"
+                                                       IsVisible="{Binding IsTren}"
+                                                       TextColor="Black">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="TipTren"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="4"
+                                                       TextColor="Black">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Bilet {0}">
+                                                            <Binding Path="TipBilet"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="5"
+                                                       TextColor="Black"
+                                                       Margin="0,0,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Clasa {0}">
+                                                            <Binding Path="Clasa"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="4"
+                                                       TextColor="Black"
+                                                       Text="Companie aeriană"
+                                                       IsVisible="{Binding IsAvion}">
+                                                </Label>
+                                                <Label Grid.Column="1"
+                                                       Grid.Row="4"
+                                                       TextColor="Black"
+                                                       HorizontalTextAlignment="Center"
+                                                       Margin="0,20,0,0"
+                                                       IsVisible="{Binding IsAvion}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="CompanieZbor"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Image Source="{Binding IconCompanieZbor}"
+                                                       IsVisible="{Binding IsAvion}"
+                                                       Scale="0.8"
+                                                       Grid.Column="1"
+                                                       Grid.Row="3"></Image>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="6"
+                                                       TextColor="Black"
+                                                       Margin="0,0,0,0">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Loc {0}">
+                                                            <Binding Path="Scaun"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="7"
+                                                       TextColor="Black"
+                                                       IsVisible="{Binding IsAvion}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Terminal {0}">
+                                                            <Binding Path="Peron"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="7"
+                                                       TextColor="Black"
+                                                       IsVisible="{Binding IsTren}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}Peron {0}">
+                                                            <Binding Path="Peron"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                            </Grid>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                                    <Label Text="Pasageri"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,0,0"></Label>
+                                    <Frame  BorderColor="LightGray"
+                                    BackgroundColor="White"
+                                    Margin="10,10,10,0"
+                                    CornerRadius="5">
+                                        <StackLayout>
+                                            <Label TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   Margin="0,0,0,15">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}">
+                                                        <Binding Path="Pasager"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label x:Name="NumeP"
+                                                   Margin="0,10,0,-14"
+                                                   TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Nume "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,15,0,0"
+                                                   CornerRadius="5"
+                                                   HasShadow="False">
+                                                <Entry x:Name="Nume"
+                                                       TextColor="Black"
+                                                       TextChanged="Nume_TextChanged"
+                                                       VerticalTextAlignment="Start"
+                                                       BackgroundColor="Transparent"
+                                                       Margin="5,0,5,0"></Entry>
+                                            </Frame>
+                                            <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Prenume "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                                   HasShadow="False">
+                                                <Entry x:Name="Prenume"
+                                               TextColor="Black"
+                                               TextChanged="Prenume_TextChanged"
+                                               Margin="5,0,5,0"></Entry>
+                                            </Frame>
+                                            <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Titlu "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                                   HasShadow="False">
+                                                <Picker x:Name="PickerTitlul"
+                                                TextColor="Black"
+                                                SelectedIndexChanged="PickerTitlul_SelectedIndexChanged"
+                                                Margin="5,0,5,0">
+                                                    <Picker.ItemsSource>
+                                                        <x:Array Type="{x:Type x:String}">
+                                                            <x:String>Dl.</x:String>
+                                                            <x:String>Dna.</x:String>
+                                                        </x:Array>
+                                                    </Picker.ItemsSource>
+                                                </Picker>
+                                            </Frame>
+                                            <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Data nasterii "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                                   HasShadow="False">
+                                                <DatePicker Margin="5,0,5,0"
+                                                    MaximumDate="01/01/2023"/>
+                                            </Frame>
+                                            <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Tipul documentului "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                                   HasShadow="False">
+                                                <Picker Margin="5,0,5,0"
+                                                        SelectedIndexChanged="PickerDocumente_SelectedIndexChanged">
+                                                    <Picker.ItemsSource>
+                                                        <x:Array Type="{x:Type x:String}">
+                                                            <x:String>Pașaport</x:String>
+                                                            <x:String>Carte de identitate</x:String>
+                                                        </x:Array>
+                                                    </Picker.ItemsSource>
+                                                </Picker>
+                                            </Frame>
+                                            <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Seria și numărul documentului "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                                   HasShadow="False">
+                                                <Entry VerticalTextAlignment="Start"
+                                                       Margin="5,0,5,0"
+                                                       TextChanged="EntryDetaliiDocumente"></Entry>
+                                            </Frame>
+                                            <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Naționalitatea "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,15,0,0"
+                                                   CornerRadius="5"
+                                                   HasShadow="False">
+                                                <Entry VerticalTextAlignment="Start"
+                                                       Margin="5,0,5,0"
+                                                       TextChanged="EntryNationalitate"></Entry>
+                                            </Frame>
+                                            <Grid IsVisible="{Binding IsAvion}">
+                                                <Label 
+                                       TextColor="Black"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       Margin="0,0,0,15">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Bagaj de mână"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Button Text="mai multe informații"
+                                                TextColor="#1058bf"
+                                                TextTransform="None"
+                                                BackgroundColor="Transparent"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Start"
+                                                HeightRequest="35"
+                                                Padding="5,0,5,0"
+                                                Clicked="Info_Bagaje_Clicked"></Button>
+                                            </Grid>
+                                            <Frame HasShadow="False"
+                                           BorderColor="LightGray"
+                                           CornerRadius="5"
+                                           IsVisible="{Binding IsAvion}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="ghiozdan_icon"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start"
+                                                   Scale="0.3"
+                                                   Grid.Column="0"
+                                                   Margin="-40,-40,0,0"></Image>
+                                                    <Label Margin="35,0,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Bagaj de mână &#10;" TextColor="Black" FontSize="15"></Span>
+                                                                <Span Text="&#10;40x30x20 cm, 8 kg" TextColor="Gray" FontSize="13"></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label Text="inclus în preț"
+                                               TextColor="ForestGreen"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="End"
+                                               Grid.Column="1"></Label>
+                                                </Grid>
+                                            </Frame>
+
+                                            <Grid Padding="0,10,0,0"
+                                          IsVisible="{Binding IsAvion}">
+                                                <Label TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="16"
+                                               Margin="0,0,0,15">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Bagaj de cală "></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Button Text="mai multe informații"
+                                                TextColor="#1058bf"
+                                                TextTransform="None"
+                                                BackgroundColor="Transparent"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Start"
+                                                HeightRequest="35"
+                                                Padding="5,0,5,0"
+                                                Clicked="Info_Bagaje_Clicked"></Button>
+                                            </Grid>
+                                            <Frame HasShadow="False"
+                                           BorderColor="LightGray"
+                                           CornerRadius="5"
+                                           VerticalOptions="Center"
+                                           HeightRequest="20"
+                                           IsVisible="{Binding IsAvion}">
+                                                <Grid Padding="0,0,0,0">
+                                                    <Image Source="no_bagaj_icon"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start"
+                                                   Scale="1.4"
+                                                   Margin="0,0,0,0"></Image>
+                                                    <RadioButton Content="Niciun bagaj de cală"
+                                                         GroupName="Bagaje"
+                                                         IsEnabled="{Binding IsAvion}"
+                                                         IsVisible="{Binding IsAvion}"
+                                                         CheckedChanged="RadioButton_BagajCalaDefault"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Start"
+                                                         IsChecked="True"
+                                                         Margin="0,0,0,0">
+                                                    </RadioButton>
+                                                </Grid>
+                                            </Frame>
+                                            <Frame HasShadow="False"
+                                           BorderColor="LightGray"
+                                           CornerRadius="5"
+                                           VerticalOptions="Center"
+                                           HeightRequest="50"
+                                           IsVisible="{Binding IsAvion}">
+                                                <Grid Padding="0,0,0,0">
+                                                    <Image Source="bagaj2_icon"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start"
+                                                   Scale="1.5"
+                                                   Margin="0,0,0,0"></Image>
+                                                    <RadioButton Content="Bagaj de cală"
+                                                         GroupName="Bagaje"
+                                                         IsEnabled="{Binding IsAvion}"
+                                                         IsVisible="{Binding IsAvion}"
+                                                         CheckedChanged="RadioButton_BagajCala0"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Start"
+                                                         Margin="-50,0,0,0">
+                                                    </RadioButton>
+                                                    <Label Text="L+l+Î = max. 158 cm, 20 kg"
+                                                   FontSize="13"
+                                                   VerticalTextAlignment="End"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="-20,0,0,0"
+                                                   Grid.Column="0"
+                                                   Grid.Row="1"></Label>
+                                                    <Label Text="35 euro"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   HorizontalTextAlignment="End"
+                                                   VerticalTextAlignment="Center"
+                                                   Grid.Row="1"
+                                                   IsEnabled="{Binding IsAvion}"
+                                                   IsVisible="{Binding IsAvion}"></Label>
+                                                </Grid>
+                                            </Frame>
+                                            <Frame HasShadow="False"
+                                           BorderColor="LightGray"
+                                           CornerRadius="5"
+                                           VerticalOptions="Center"
+                                           HeightRequest="50"
+                                           IsVisible="{Binding IsAvion}">
+                                                <Grid Padding="0,0,0,0">
+                                                    <Image Source="bagaj2_icon"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start"
+                                                   Scale="1.5"
+                                                   Margin="0,0,0,0"></Image>
+                                                    <RadioButton Content="Bagaj de cală"
+                                                         GroupName="Bagaje"
+                                                         IsEnabled="{Binding IsAvion}"
+                                                         IsVisible="{Binding IsAvion}"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Start"
+                                                         Margin="-50,0,0,0"
+                                                         CheckedChanged="RadioButton_BagajCala1">
+                                                    </RadioButton>
+                                                    <Label Text="L+l+Î = max. 158 cm, 30 kg"
+                                                   FontSize="13"
+                                                   VerticalTextAlignment="End"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="-20,0,0,0"
+                                                   Grid.Row="1"></Label>
+                                                    <Label Text="50 euro"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   HorizontalTextAlignment="End"
+                                                   VerticalTextAlignment="End"
+                                                   Grid.Row="1"
+                                                   IsEnabled="{Binding IsAvion}"
+                                                   IsVisible="{Binding IsAvion}"></Label>
+                                                </Grid>
+                                            </Frame>
+                                            <Frame HasShadow="False"
+                                           BorderColor="LightGray"
+                                           CornerRadius="5"
+                                           VerticalOptions="Center"
+                                           HeightRequest="50"
+                                           IsVisible="{Binding IsAvion}">
+                                                <Grid Padding="0,0,0,0">
+                                                    <Image Source="bagaj1_icon"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start"
+                                                   Scale="1.5"
+                                                   Margin="0,0,0,0"></Image>
+                                                    <RadioButton Content="2 x Bagaj de cală"
+                                                         GroupName="Bagaje"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Start"
+                                                         Margin="-25,0,0,0"
+                                                         IsEnabled="{Binding IsAvion}"
+                                                         IsVisible="{Binding IsAvion}"
+                                                         CheckedChanged="RadioButton_BagajCala2">
+                                                    </RadioButton>
+                                                    <Label Text="L+l+Î = max. 158 cm, 20 kg"
+                                                   FontSize="13"
+                                                   VerticalTextAlignment="End"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="-20,0,0,0"
+                                                   Grid.Row="1"></Label>
+                                                    <Label Text="100 euro"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   HorizontalTextAlignment="End"
+                                                   VerticalTextAlignment="End"
+                                                   Grid.Row="1"
+                                                   IsEnabled="{Binding IsAvion}"
+                                                   IsVisible="{Binding IsAvion}"></Label>
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame BorderColor="LightGray"
+                                   BackgroundColor="White"
+                                   Margin="10,10,10,0"
+                                   CornerRadius="5"
+                                   IsVisible="{Binding IsAvion}">
+                                        <StackLayout>
+                                            <Grid Padding="0,0,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                                    <ColumnDefinition Width="150"></ColumnDefinition>
+                                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="check_in_icon"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Start"
+                                               Scale="0.5"
+                                               Margin="0,-15,0,0"
+                                               Grid.Column="0"></Image>
+                                                <Label Text="Check-in online"
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="16"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Start"
+                                               Margin="-10,0,0,0"
+                                               Grid.Column="1"></Label>
+                                                <Switch HorizontalOptions="End"
+                                                VerticalOptions="Start"
+                                                Toggled="Check_In_Checked"
+                                                Margin="0,0,0,0"
+                                                Grid.Column="2"></Switch>
+                                            </Grid>
+                                            <Label TextColor="Black"
+                                           FontSize="13">
+                                                <Label.Text>Cu acest serviciu nu va fi nevoie să efectuați dumneavoastră check-in-ul la aeroport. Datele necesare vor fi preluate automat și, după ce compania aeriană va face disponibil serviciul de check-in, vom efectua check-in-ul pentru dumneavoastră și pentru pasagerii care vă însoțesc. După ce check-in-ul a fost efectuat cu succes veți primi confirmarea la adresa dvs. de e-mail.</Label.Text>
+                                            </Label>
+                                            <Label TextColor="Black"
+                                           FontSize="13"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,0,10">
+                                                <Label.Text>Dacă nu achiziționați acest serviciu va trebui să efectuați check-in-ul pe cont propriu la aeroport.</Label.Text>
+                                            </Label>
+                                            <Rectangle BackgroundColor="LightGray"></Rectangle>
+                                            <Grid Padding="0,5,0,0">
+                                                <Label TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="7 € &#10;" FontAttributes="Bold" FontSize="15"></Span>
+                                                            <Span Text="de persoană" FontSize="13"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <Label Text="Metodă de plată"
+                               TextColor="Black"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="10,10,0,0"></Label>
+
+                                    <Frame  x:Name="PlataCard"
+                                        BorderColor="LightGray"
+                                        BackgroundColor="White"
+                                        Margin="10,10,10,0"
+                                        CornerRadius="5">
+                                        <StackLayout>
+                                            <Grid Margin="0,0,0,20">
+                                                <RadioButton Content="Card de credit"
+                                                         IsChecked="True"
+                                                         GroupName="Plata"
+                                                         CheckedChanged="CreditCardChecked"
+                                                         Grid.Column="0"></RadioButton>
+                                                <RadioButton Content="Transfer bancar"
+                                                         GroupName="Plata"
+                                                         CheckedChanged="TransferBancarChecked"
+                                                         Grid.Column="1"></RadioButton>
+                                            </Grid>
+                                            <StackLayout IsVisible="{Binding PlataTransfer}">
+                                                <Label TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="16"
+                                               Margin="0,0,0,15">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Din contul "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,0,0,10"
+                                                   CornerRadius="5"
+                                                       HasShadow="False">
+                                                    <Entry MaxLength="19"
+                                                           Margin="5,0,0,0"
+                                                           TextChanged="EntryContPlataTransfer"></Entry>
+                                                </Frame>
+                                                <Label Text="În contul"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   Margin="0,0,0,15">
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,0,0,10"
+                                                   CornerRadius="5"
+                                                       HasShadow="False">
+                                                    <Entry Margin="5,0,0,0"
+                                                       WidthRequest="100"
+                                                       TextColor="Gray"
+                                                       Text="RO22BCRB2A12345678910000"
+                                                       IsReadOnly="True"></Entry>
+                                                </Frame>
+                                                <Label Text="Numele beneficiarului"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   Margin="0,0,0,15">
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,0,0,10"
+                                                   CornerRadius="5"
+                                                       HasShadow="False">
+                                                    <Entry Margin="5,0,0,0"
+                                                       WidthRequest="100"
+                                                       TextColor="Gray"
+                                                       Text="SC. eSky Travel Search SRL."
+                                                       IsReadOnly="True"></Entry>
+                                                </Frame>
+                                                <Grid>
+                                                    <Label Text="Suma de plată"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   Margin="0,0,0,0">
+                                                    </Label>
+                                                    <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,0,0,10"
+                                                   CornerRadius="5"
+                                                       Grid.Row="1"
+                                                           HasShadow="False">
+                                                        <Label FontSize="18"
+                                                           HorizontalOptions="Center"
+                                                           Margin="0,5,0,0">
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}{0}">
+                                                                    <Binding Path="Pret"></Binding>
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                    </Frame>
+                                                    <Label Text="Monedă"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   Margin="0,0,0,0"
+                                                       Grid.Column="1">
+                                                    </Label>
+                                                    <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,0,0,10"
+                                                   CornerRadius="5"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"
+                                                           HasShadow="False">
+                                                        <Label Text="Euro"
+                                                           FontSize="18"
+                                                           HorizontalTextAlignment="Center"
+                                                           Margin="0,5,0,0"></Label>
+                                                    </Frame>
+                                                </Grid>
+                                                <Label Text="Detalii plată"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   Margin="0,0,0,15">
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                   HeightRequest="50"
+                                                   Padding="0,5,0,-10"
+                                                   Margin="0,0,0,10"
+                                                   CornerRadius="5"
+                                                       HasShadow="False">
+                                                    <Entry Margin="5,0,0,0"
+                                                       WidthRequest="100"></Entry>
+                                                </Frame>
+                                            </StackLayout>
+                                            
+                                            <StackLayout IsVisible="{Binding PlataCard}">
+                                                <Label TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="16"
+                                               Margin="0,0,0,15">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Alegeti tipul cardului "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BackgroundColor="Transparent"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="200"
+                                           HasShadow="False"
+                                           Margin="0,0,0,0"
+                                           Padding="0,0,0,-40"
+                                           CornerRadius="5">
+                                                    <Grid Padding="0,0,0,0">
+                                                        <Image Source="visa.png"
+                                                   Scale="0.5"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Start"
+                                                   Margin="10,-30,0,0"
+                                                   Grid.Column="0"
+                                                   Grid.Row="0"></Image>
+                                                        <RadioButton GroupName="Card"
+                                                                     VerticalOptions="Start"
+                                                                     HorizontalOptions="Start"
+                                                                     WidthRequest="100"
+                                                                     Margin="0,0,0,0"
+                                                                     Grid.Column="0"
+                                                                     Grid.Row="0"
+                                                                     CheckedChanged="TipCard_CheckedChanged"></RadioButton>
+                                                        <Image Source="mastercard.png"
+                                                   Scale="0.5"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Start"
+                                                   Margin="0,-55,0,0"
+                                                   Grid.Column="1"
+                                                   Grid.Row="0"></Image>
+                                                        <RadioButton WidthRequest="140"
+                                                                     GroupName="Card"
+                                                                     VerticalOptions="Start"
+                                                                     HorizontalOptions="Start"
+                                                                     Grid.Column="1"
+                                                                     Grid.Row="0"
+                                                                     CheckedChanged="TipCard_CheckedChanged"></RadioButton>
+                                                        <Image Source="maestro.png"
+                                                   Scale="0.45"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Start"
+                                                   Margin="-10,-50,0,0"
+                                                   Grid.Column="0"
+                                                   Grid.Row="1"></Image>
+                                                        <RadioButton WidthRequest="120"
+                                                                     GroupName="Card"
+                                                                     VerticalOptions="Start"
+                                                                     HorizontalOptions="Start"
+                                                                     Grid.Column="0"
+                                                                     Grid.Row="1"
+                                                                     CheckedChanged="TipCard_CheckedChanged"></RadioButton>
+                                                        <Image Source="american_express.png"
+                                                   Scale="0.4"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="Start"
+                                                   Margin="-10,-50,0,0"
+                                                   Grid.Column="1"
+                                                   Grid.Row="1"></Image>
+                                                        <RadioButton WidthRequest="120"
+                                                                     GroupName="Card"
+                                                                     VerticalOptions="Start"
+                                                                     HorizontalOptions="Start"
+                                                                     Grid.Column="1"
+                                                                     Grid.Row="1"
+                                                                     CheckedChanged="TipCard_CheckedChanged"></RadioButton>
+                                                    </Grid>
+                                                </Frame>
+                                                <Label Text="Detalii card"
+                                       TextColor="Black"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       Margin="0,15,0,15"></Label>
+                                                <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Numarul cardului "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                                       HasShadow="False">
+                                                    <Entry Keyboard="Numeric"
+                                                           MaxLength="19"
+                                                           Margin="5,0,0,0"
+                                                           TextChanged="PlataCard"></Entry>
+                                                </Frame>
+                                                <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Data de expirare "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                                           HasShadow="False">
+                                                        <Picker HorizontalOptions="Center"
+                                                                Margin="5,0,5,0"
+                                                                Title="Luna"
+                                                                SelectedIndexChanged="PlataCard">
+                                                            <Picker.ItemsSource>
+                                                                <x:Array Type="{x:Type x:String}">
+                                                                    <x:String>1</x:String>
+                                                                    <x:String>2</x:String>
+                                                                    <x:String>3</x:String>
+                                                                    <x:String>4</x:String>
+                                                                    <x:String>5</x:String>
+                                                                    <x:String>6</x:String>
+                                                                    <x:String>7</x:String>
+                                                                    <x:String>8</x:String>
+                                                                    <x:String>9</x:String>
+                                                                    <x:String>10</x:String>
+                                                                    <x:String>11</x:String>
+                                                                    <x:String>12</x:String>
+                                                                </x:Array>
+                                                            </Picker.ItemsSource>
+                                                        </Picker>
+                                                    </Frame>
+                                                    <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,0"
+                                               CornerRadius="5"
+                                               Grid.Column="1"
+                                                           HasShadow="False">
+                                                        <Picker HorizontalOptions="Center"
+                                                                Title="Anul"                                      
+                                                                Margin="5,0,5,0"
+                                                                WidthRequest="80"
+                                                                Grid.Column="1"
+                                                                SelectedIndexChanged="PlataCard">
+                                                            <Picker.ItemsSource>
+                                                                <x:Array Type="{x:Type x:String}">
+                                                                    <x:String>2023</x:String>
+                                                                    <x:String>2024</x:String>
+                                                                    <x:String>2025</x:String>
+                                                                    <x:String>2026</x:String>
+                                                                    <x:String>2027</x:String>
+                                                                    <x:String>2028</x:String>
+                                                                    <x:String>2029</x:String>
+                                                                    <x:String>2030</x:String>
+                                                                    <x:String>2031</x:String>
+                                                                    <x:String>2032</x:String>
+                                                                    <x:String>2033</x:String>
+                                                                </x:Array>
+                                                            </Picker.ItemsSource>
+                                                        </Picker>
+                                                    </Frame>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label 
+                                               Margin="0,10,0,-14"
+                                               TextColor="Black">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="CVC/CVV "></Span>
+                                                                <Span Text="*" TextColor="Red"></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,35,0,0"
+                                               HorizontalOptions="Start"
+                                               WidthRequest="60"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                           HasShadow="False">
+                                                        <Entry MaxLength="3"   
+                                                               Keyboard="Numeric"
+                                                               IsPassword="True"
+                                                               HorizontalOptions="Center"
+                                                               WidthRequest="50"
+                                                               Margin="5,0,5,0"
+                                                               TextChanged="PlataCard"></Entry>
+                                                    </Frame>
+                                                    <ImageButton Source="info_icon.png"
+                                                     BackgroundColor="Transparent"
+                                                     WidthRequest="20"
+                                                     HorizontalOptions="Start"
+                                                     VerticalOptions="Start"
+                                                     Margin="0,10,0,0"
+                                                     Grid.Column="1"
+                                                     Clicked="CVV_Info_Button"></ImageButton>
+                                                </Grid>
+
+                                                <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Numele si prenumele titularului "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,20,0,20"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry Margin="5,0,5,0"
+                                                           TextChanged="PlataCard"></Entry>
+                                                </Frame>
+                                            </StackLayout>
+
+                                            <Frame BackgroundColor="LightGreen">
+                                                <Grid Padding="0,0,0,0" RowSpacing="-20">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="lock_icon.png"
+                                                           Scale="0.5"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Start"
+                                                           Grid.Column="0"></Image>
+                                                    <Label Text="Securitatea tranzacției"
+                                                   TextColor="Black"
+                                                   FontAttributes="Bold"
+                                                   FontSize="15"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start"
+                                                   Grid.Column="1"></Label>
+                                                    <Label Text="Aplicația asigură cele mai înalte standarde de securitate pentru plățile prin card de credit și transfer bancar."
+                                                   TextColor="Black"
+                                                   Grid.Row="1"
+                                                   Grid.Column="1"></Label>
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Label Text="Detalii facturare"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,0,0"></Label>
+                                    <Frame  BorderColor="LightGray"
+                                    BackgroundColor="White"
+                                    Margin="10,10,10,0"
+                                    CornerRadius="5">
+                                        <StackLayout>
+                                            <Label Text="Detin deja un cont in aplicatie"
+                                           Margin="40,0,0,-13"></Label>
+                                            <Switch HorizontalOptions="Start"
+                                          Margin="0,-16,0,0"
+                                          Toggled="ContSwitch_IsChanged"></Switch>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="155"></ColumnDefinition>
+                                                    <ColumnDefinition Width="150"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <RadioButton Content="Persoană fizică"
+                                                         IsChecked="True"
+                                                         CheckedChanged="PersoanaFizica_CheckedChanged"
+                                                         HorizontalOptions="Start"></RadioButton>
+                                                <RadioButton Content="Persoană juridică"
+                                                         CheckedChanged="PersoanaJuridica_CheckedChanged"
+                                                         Grid.Column="1"
+                                                         HorizontalOptions="End"
+                                                         WidthRequest="120"></RadioButton>
+                                            </Grid>
+
+                                            <StackLayout IsVisible="{Binding PFizica}">
+                                                <Label 
+                                           Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Nume "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                           TextChanged="NumeF_TextChanged"
+                                           x:Name="NumeF"
+                                           Margin="5,0,5,0"></Entry>
+                                                </Frame>
+                                                <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Prenume "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               TextChanged="PreumeF_TextChanged"
+                                               x:Name="PreumeF"
+                                               Margin="5,0,5,0"></Entry>
+                                                </Frame>
+                                                <Label Text="Tara"
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Tara "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                           TextChanged="TaraF_TextChanged"
+                                            x:Name="TaraF"
+                                           Margin="5,0,5,0"></Entry>
+                                                </Frame>
+                                                <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Cod postal "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry Keyboard="Numeric"
+                                       TextColor="Black"
+                                       TextChanged="CodPostalF_TextChanged"
+                                        x:Name="CodPostalF"
+                                           Margin="5,0,5,0"></Entry>
+                                                </Frame>
+                                                <Label
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Oras "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               TextChanged="OrasF_TextChanged"
+                                               x:Name="OrasF"
+                                               Margin="5,0,5,0"></Entry>
+                                                </Frame>
+                                                <Label Text="Strada"
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Strada "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               TextChanged="StradaF_TextChanged"
+                                               x:Name="StradaF"
+                                               Margin="5,0,5,0"></Entry>
+                                                </Frame>
+                                                <Label Text="Nr."
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Nr. "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry Keyboard="Numeric"
+                                               TextChanged="NrStradaF_TextChanged"
+                                               x:Name="NrStradaF"
+                                               Margin="5,0,5,0"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,0,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="CNP plătitor "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                       HeightRequest="50"
+                                                       Padding="0,5,0,-10"
+                                                       Margin="0,15,0,10"
+                                                       CornerRadius="5"
+                                                       Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                                           Keyboard="Numeric"
+                                                           x:Name="CNP"
+                                                           Margin="5,0,5,0"
+                                                           TextChanged="CNP_TextChanged"></Entry>
+                                                </Frame>
+                                            </StackLayout>
+
+                                            <StackLayout IsVisible="{Binding PJuridica}">
+                                                <Label Margin="0,10,0,-14"
+                                                       TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Numele companiei "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                       HeightRequest="50"
+                                                       Padding="0,5,0,-10"
+                                                       Margin="0,15,0,10"
+                                                       CornerRadius="5"
+                                                       Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                                           Margin="5,0,5,0"
+                                                           TextChanged="NumeF_TextChanged"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Tară "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                       HeightRequest="50"
+                                                       Padding="0,5,0,-10"
+                                                       Margin="0,15,0,10"
+                                                       CornerRadius="5"
+                                                       Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                                           Margin="5,0,5,0"
+                                                           TextChanged="TaraF_TextChanged"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Cod poștal "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,10"
+                                           CornerRadius="5"
+                                           Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               Keyboard="Numeric"
+                                               Margin="5,0,5,0"
+                                                           TextChanged="CodPostalF_TextChanged"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Oraș "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,10"
+                                           CornerRadius="5"
+                                           Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               Margin="5,0,5,0"
+                                                           TextChanged="OrasF_TextChanged"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Stradă "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,10"
+                                           CornerRadius="5"
+                                           Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               Margin="5,0,5,0"
+                                                           TextChanged="StradaF_TextChanged"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Număr "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,10"
+                                           CornerRadius="5"
+                                           Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               Keyboard="Numeric"
+                                               Margin="5,0,5,0"
+                                                           TextChanged="NrStradaF_TextChanged"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="CIF "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,10"
+                                           CornerRadius="5"
+                                           Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                               Keyboard="Numeric"
+                                               Margin="5,0,5,0"
+                                                           TextChanged="CIF_TextChanged"></Entry>
+                                                </Frame>
+                                                <Label Margin="0,10,0,-14"
+                                           TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Registrul Comerțului "></Span>
+                                                            <Span Text="*" TextColor="Red"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame BorderColor="LightGray"
+                                                       HeightRequest="50"
+                                                       Padding="0,5,0,-10"
+                                                       Margin="0,15,0,10"
+                                                       CornerRadius="5"
+                                                       Grid.Column="0"
+                                                       HasShadow="False">
+                                                    <Entry TextColor="Black"
+                                                           Keyboard="Numeric"
+                                                           Margin="5,0,5,0"
+                                                           TextChanged="RegistrulComertului_TextChanged"></Entry>
+                                                </Frame>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </Frame>
+                                    <Label Text="Date de contact"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="10,10,0,0"></Label>
+                                    <Frame BorderColor="LightGray"
+                                   BackgroundColor="White"
+                                   Margin="10,10,10,0"
+                                   CornerRadius="5">
+                                        <StackLayout>
+                                            <Label Text="Nr. de telefon"
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Nr. de telefon "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                               HeightRequest="50"
+                                               Padding="0,5,0,-10"
+                                               Margin="0,15,0,10"
+                                               CornerRadius="5"
+                                               Grid.Column="0"
+                                                   HasShadow="False">
+                                                <Entry Keyboard="Numeric"
+                                               TextColor="Black"
+                                               TextChanged="NrTelefonF_TextChanged"
+                                               x:Name="NrTelefonF"
+                                               Margin="5,0,5,0"></Entry>
+                                            </Frame>
+                                            <Label 
+                                       Margin="0,0,0,-14"
+                                       TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Adresa de email "></Span>
+                                                        <Span Text="*" TextColor="Red"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame BorderColor="LightGray"
+                                           HeightRequest="50"
+                                           Padding="0,5,0,-10"
+                                           Margin="0,15,0,0"
+                                           CornerRadius="5"
+                                           Grid.Column="0"
+                                                   HasShadow="False">
+                                                <Entry TextColor="Black"
+                                               TextChanged="AdresaEmailF_TextChanged"
+                                               Keyboard="Email"
+                                               x:Name="AdresaEmailF"
+                                               Margin="5,0,5,0"></Entry>
+                                            </Frame>
+                                            <Label Text="Întroducerea datelor de contact ne permite să vă oferim informații despre rezervarea dvs. După finalizarea procesului veți primi factura electronic la adresa de e-mail."
+                                               Margin="0,10,0,0"></Label>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame  BorderColor="LightGray"
+                                            BackgroundColor="White"
+                                            Margin="10,10,10,0"
+                                            CornerRadius="5">
+                                        <StackLayout>
+                                            <Grid>
+                                                <Label TextColor="Black"
+                                                       FontSize="20"
+                                                       FontAttributes="Bold"
+                                                       x:Name="TestLabel">
+                                                    <Label.Text>
+                                                    <MultiBinding StringFormat="{}Total : {0} €">
+                                                            <Binding Path="Pret"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                            <Label Text="Toate taxele incluse."
+                                                   FontSize="12"
+                                                   VerticalOptions="Start"
+                                                   Grid.Column="0"
+                                                   Grid.Row="1"></Label>
+                                            <ImageButton Source="drop_down_icon.png"
+                                                         HorizontalOptions="End"        
+                                                         WidthRequest="40"
+                                                         HeightRequest="20"
+                                                         Grid.Column="1"
+                                                         BackgroundColor="Transparent"
+                                                         Clicked="DropDownPret"></ImageButton>
+                                            </Grid>
+                                            <Line X1="0" X2="1000"
+                                                  Y1="1" Y2="1"
+                                                  Stroke="#bcbcbc"
+                                                  IsVisible="{Binding DetaliiPret}"></Line>
+                                        <Frame BackgroundColor="Transparent"
+                                                   Padding="0,20,0,0"
+                                                   IsVisible="{Binding DetaliiPret}">
+                                            <StackLayout>
+                                                <Grid>
+                                                    <Label Text="Taxa de serviciu:"
+                                                           TextColor="Black"
+                                                           FontSize="13"
+                                                           Grid.Column="0"
+                                                           Grid.Row="0">
+                                                    </Label>
+                                                    <Label TextColor="Black"
+                                                           FontSize="13"
+                                                           Grid.Column="1"
+                                                           Grid.Row="0"
+                                                           HorizontalTextAlignment="End">
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}{0} €">
+                                                                <Binding Path="TaxaDeServiciu"></Binding>
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                    <Label Text="Taxa de aeroport:"
+                                                           FontSize="13"
+                                                           TextColor="Black"
+                                                           Grid.Column="0"
+                                                           Grid.Row="1">
+                                                    </Label>
+                                                    <Label TextColor="Black"
+                                                           FontSize="13"
+                                                           Grid.Column="1"
+                                                           Grid.Row="1"
+                                                           HorizontalTextAlignment="End">
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}{0} €">
+                                                                <Binding Path="TaxaDeAeroport"></Binding>
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </Grid>
+                                                <Line X1="0" X2="1000"
+                                                      Y1="1" Y2="1"
+                                                      Stroke="#bcbcbc"
+                                                      IsVisible="{Binding DetaliiServiciiCheckin}"></Line>
+                                                <Line X1="0" X2="1000"
+                                                      Y1="1" Y2="1"
+                                                      Stroke="#bcbcbc"
+                                                      IsVisible="{Binding DetaliiServiciiBagaje}"></Line>
+                                                <Grid>
+                                                    <Label Text="Servicii suplimentare:"
+                                                           TextColor="Black"
+                                                           FontSize="14"
+                                                           Grid.Column="0"
+                                                           Grid.Row="0"
+                                                           IsVisible="{Binding DetaliiServiciiCheckin}"></Label>
+                                                    <Label Text="Servicii suplimentare"
+                                                           TextColor="Black"
+                                                           FontSize="14"
+                                                           Grid.Column="0"
+                                                           Grid.Row="0"
+                                                           IsVisible="{Binding DetaliiServiciiBagaje}"></Label>
+                                                    <Label Text="Serviciu Check In"
+                                                           TextColor="Black"
+                                                           FontSize="13"
+                                                           IsVisible="{Binding DetaliiServiciiCheckin}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="1">
+                                                    </Label>
+                                                    <Label Text="7 €"
+                                                           TextColor="Black"
+                                                           FontSize="13"
+                                                           HorizontalTextAlignment="End"
+                                                           IsVisible="{Binding DetaliiServiciiCheckin}"
+                                                           Grid.Column="1"
+                                                           Grid.Row="1">
+                                                    </Label>
+                                                    <Label Text="Bagaje cală"
+                                                           TextColor="Black"
+                                                           FontSize="13"
+                                                           IsVisible="{Binding DetaliiServiciiBagaje}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="2">
+                                                    </Label>
+                                                    <Label TextColor="Black"
+                                                           FontSize="13"
+                                                           IsVisible="{Binding DetaliiServiciiBagaje}"
+                                                           HorizontalTextAlignment="End"
+                                                           Grid.Column="1"
+                                                           Grid.Row="2">
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}{0} €">
+                                                                <Binding Path="PretServiciiSuplimentare"></Binding>
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Frame>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame  BorderColor="LightGray"
+                                    BackgroundColor="White"
+                                    Margin="10,10,10,20"
+                                    CornerRadius="5">
+                                        <StackLayout>
+                                            <Label Text ="Declar că am luat la cunoștință și accept: "
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           FontAttributes="Bold"></Label>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+
+                                                <CheckBox Grid.Row="0"
+                                                  CheckedChanged="CheckBox_CheckedChanged_1"></CheckBox>
+                                            <Label Margin="0,5,0,0"
+                                               TextColor="Black"
+                                               Grid.Column="1"
+                                               Grid.Row="0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="* " TextColor="Red"></Span>
+                                                        <Span Text="Condițiile de rezervare" TextColor="#245cd9"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Button BorderColor="Transparent"
+                                                    BackgroundColor="Transparent"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Start"
+                                                    WidthRequest="250"
+                                                    HeightRequest="30"
+                                                    Grid.Column="1"
+                                                    Grid.Row="0"
+                                                    Clicked="Conditii_Rezervare_Clicked"></Button>
+                                            <CheckBox Grid.Row="1"
+                                                  CheckedChanged="CheckBox_CheckedChanged_2"></CheckBox>
+                                            <Label Margin="0,5,0,0"
+                                               TextColor="Black"
+                                               Grid.Column="1"
+                                               Grid.Row="1">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="* " TextColor="Red"></Span>
+                                                        <Span Text="Termenii și Condițiile aplicației" TextColor="#245cd9"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Button BorderColor="Transparent"
+                                                    BackgroundColor="Transparent"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Start"
+                                                    WidthRequest="250"
+                                                    HeightRequest="30"
+                                                    Grid.Column="1"
+                                                    Grid.Row="1"
+                                                    Clicked="Termeni_Conditii_Clicked"></Button>
+                                        </Grid>
+                                            <Frame BorderColor="LightGray"
+                                           BackgroundColor="#248cd9"
+                                           Padding="0,0,0,0"
+                                           Margin="0,10,0,20"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="50"
+                                           WidthRequest="350"
+                                           CornerRadius="7">
+                                                <Button x:Name="ButonRezervare"
+                                                Text="Rezervați"
+                                                TextTransform="None"
+                                                VerticalOptions="Center"
+                                                Margin="0,0,0,0"
+                                                Clicked="RezervareBilet"
+                                                ImageSource="new_ticket_small.png"
+                                                BackgroundColor="Transparent"></Button>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:zxingcommon="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             x:Class="Proiect_Licenta.Views.Profil"
+             Shell.NavBarIsVisible="True"
+             Title="Contul meu">
+    <Shell.BackgroundColor>
+        <Color>White</Color>
+    </Shell.BackgroundColor>
+    <Shell.ForegroundColor>
+        <Color>Black</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F2F4F8">
+            <Image x:Name="UserNotFoundImg"
+                   Source="user_not_found.png"
+                   IsVisible="True"></Image>
+            <Label x:Name="AccountMsg1"
+                   Text="Nu sunteti conectat la niciun cont"
+                   TextColor="Black"
+                   HorizontalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="0,0,0,0"
+                   IsEnabled="True"
+                   IsVisible="True"></Label>
+            <Label x:Name="AccountMsg4"
+                   Text="Sunteti conectat la urmatorul cont :"
+                   TextColor="Black"
+                   HorizontalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="0,0,0,0"
+                   IsVisible="False"></Label>
+            <Label x:Name="AccountMsg2"
+                   Text="Logati-va sau creati un cont nou"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   IsEnabled="True"
+                   IsVisible="True"></Label>
+            <Label x:Name="AccountMsg3"
+                   Text="Contul meu"
+                   TextColor="Black"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="20,30,0,-30"
+                   IsVisible="False"></Label>
+            <Grid Margin="0,50,0,0">
+                <Frame BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Padding="0,0,0,0"
+                       HorizontalOptions="Center"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       CornerRadius="10"> 
+                        <Button x:Name="ButtonConectare"
+                                ImageSource="login.png"
+                                Text="Conectare"
+                                TextColor="Black"
+                                TextTransform="None"
+                                BackgroundColor="Transparent"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"     
+                                HeightRequest="45"
+                                WidthRequest="340"
+                                CornerRadius="15"
+                                IsEnabled="True"
+                                IsVisible="True"
+                                Grid.Row="0"
+                                Clicked="ButtonConectare_Clicked">
+                        </Button>
+                </Frame>
+                <Frame x:Name="FrameButtonCreareCont"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Padding="0,0,0,0"
+                       HorizontalOptions="Center"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       CornerRadius="10"
+                       Grid.Row="1">
+                    <Button x:Name="ButtonCreareCont"
+                            ImageSource="create_account_icon.png"
+                            Text="Creati un cont"
+                            TextColor="Black"
+                            TextTransform="None"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            HeightRequest="45"
+                            WidthRequest="340"
+                            CornerRadius="15"
+                            IsEnabled="True"
+                            IsVisible="True"
+                            Grid.Row="1"
+                            Clicked="ButtonCreareCont_Clicked"></Button>
+                </Frame>
+
+                <Button x:Name="ButonFacturileMele"
+                            ImageSource="factura_icon.png"
+                            Text="Facturile Mele"
+                            TextColor="Black"
+                            TextTransform="None"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"     
+                            HeightRequest="45"
+                            WidthRequest="340"
+                            Margin="10,0,10,0"
+                            CornerRadius="15"
+                            Clicked="ButonFacturileMele_Clicked"
+                            Grid.Row="0"></Button>
+                <Frame x:Name="ButtonSetariCont"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Padding="0,0,0,0"
+                       HorizontalOptions="Center"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       CornerRadius="10"
+                       IsEnabled="False"
+                       IsVisible="False"
+                       Grid.Row="1">
+                    <Button
+                        ImageSource="settings.png"
+                        Text="Setări"
+                        TextColor="Black"
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"     
+                        HeightRequest="45"
+                        WidthRequest="340"
+                        Margin="10,0,10,0"
+                        CornerRadius="15"
+                        Clicked="ButtonSetariCont_Clicked"></Button>
+                </Frame>
+                <Frame x:Name="Info"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Padding="0,0,0,0"
+                       HorizontalOptions="Center"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       CornerRadius="10"
+                       Grid.Row="2">
+                    <Button
+                        ImageSource="info_icon_small.png"
+                        Text="Informații"
+                        TextColor="Black"
+                        TextTransform="None"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"     
+                        HeightRequest="45"
+                        WidthRequest="340"
+                        Margin="10,0,10,0"
+                        CornerRadius="15"
+                        Clicked="Info_Clicked"></Button>
+                </Frame>
+                <Frame x:Name="LogoutButton"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Padding="0,0,0,0"
+                       HorizontalOptions="Center"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       CornerRadius="10"
+                       IsEnabled="False"
+                       IsVisible="False"
+                       Grid.Row="3">
+                    <Button
+                        ImageSource="logout.png"
+                        Text="Delogare"
+                        TextColor="Black"
+                        BackgroundColor="Transparent"
+                        TextTransform="None"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"     
+                        HeightRequest="45"
+                        WidthRequest="340"
+                        Margin="10,0,10,0"
+                        CornerRadius="15"
+                        Clicked="LogoutButton_Clicked"></Button>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

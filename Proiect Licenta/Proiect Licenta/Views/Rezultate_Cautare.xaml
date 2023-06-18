@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Proiect_Licenta.Views.Rezultate_Cautare"
+             x:Name="self"
+             Title="{Binding Path=Title, Source={x:Reference self}}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back_white.png"/>
+    </Shell.BackButtonBehavior>
+    <Shell.NavBarIsVisible>False</Shell.NavBarIsVisible>
+    <Shell.ForegroundColor>
+        <Color>White</Color>
+    </Shell.ForegroundColor>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F2F4F8">
+            <Frame BorderColor="#cfcfcf"
+                   CornerRadius="10"
+                   Margin="0,-17,0,-5"
+                   Padding="20,40,0,18">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="HeaderImageSource"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="StartAndExpand"
+                           Grid.Column="0"
+                           Margin="0,0,0,-10"
+                           ScaleX="2"
+                           ScaleY="2"></Image>
+                    <ImageButton Source="back_white.png"
+                                 Clicked="BackButton"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Start"
+                                 Grid.Column="0"
+                                 BackgroundColor="Transparent"
+                                 ScaleX="0.5"
+                                 ScaleY="0.7"
+                                 Margin="-10,-15,0,0"></ImageButton>
+                    <Label x:Name="NumeTitle"
+                           TextColor="White"
+                           HorizontalOptions="StartAndExpand"
+                           FontSize="Title"
+                           Margin="50,-5,0,0"></Label>
+                    <Frame BackgroundColor="White"
+                           HorizontalOptions="Center"
+                           BorderColor="#cfcfcf"
+                           Margin="-10,0,35,-10"
+                           Padding="0,0,10,10"
+                           CornerRadius="10"
+                           Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"></ColumnDefinition>
+                                <ColumnDefinition Width="130"></ColumnDefinition>
+                                <ColumnDefinition Width="130"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0"
+                                    x:Name="LabelColLocPlecare"
+                                    HorizontalOptions="StartAndExpand"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"
+                                    TextTransform="None"
+                                    WidthRequest="130"
+                                    BackgroundColor="Transparent"
+                                    Padding="-10,0,0,0"
+                                    Clicked="LocPlecare_TextChanged">
+                            </Button>
+                            <Button Grid.Column="1"
+                                    x:Name="LabelColDestinatie"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"
+                                    TextTransform="None"
+                                    Padding="-20,0,0,0"
+                                    WidthRequest="130"
+                                    BackgroundColor="Transparent"
+                                    Clicked="Destinatie_TextChanged">
+                            </Button>
+                            <DatePicker Grid.Column="2"
+                                        x:Name="LabelColDataPlecare"
+                                        TextColor="Black"
+                                        Margin="0,0,0,0"
+                                        DateSelected="DataPlecare_TextChanged">
+                            </DatePicker>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Frame>
+           <!-- <StackLayout BackgroundColor="White"
+                         BindableLayout.ItemsSource="{Binding BiletsT}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame BorderColor="Black"
+                               BackgroundColor="#eeeeee"
+                               Margin="20,20,20,0"
+                               CornerRadius="10">
+                                <StackLayout>
+                                    <Frame BackgroundColor="Transparent"
+                                           BorderColor="Black"
+                                           Margin="-20,-20,-20,0"
+                                           Padding="20,10,0,0"
+                                           CornerRadius="0">
+                                        <Grid>
+                                            <Label FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   Grid.Column="0"
+                                                   TextColor="Black">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} €">
+                                                        <Binding Path="Pret"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <ImageButton BackgroundColor="Transparent"
+                                                         Margin="0,-10,0,0"
+                                                         WidthRequest="70"
+                                                         HeightRequest="60"
+                                                         HorizontalOptions="End"
+                                                         CornerRadius="10"
+                                                         Clicked="AdaugareBilet"
+                                                         BorderColor="Black"
+                                                         Source="addButton2.png"
+                                                         Grid.Column="1"
+                                                         Scale="0.8"></ImageButton>
+                                        </Grid>
+                                    </Frame>
+                                    <Grid>
+                                        <Label FontAttributes="Bold"
+                                               FontSize="14"
+                                               Grid.Column="0"
+                                               TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="LocPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Image Source="smallRightArrow.png"
+                                               Grid.Column="1"
+                                               Scale="0.7"
+                                               HorizontalOptions="Start"></Image>
+                                        <Label FontAttributes="Bold"
+                                               FontSize="14"
+                                               Grid.Column="2"
+                                               HorizontalOptions="Start"
+                                               TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="Destinatie"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </Grid>
+                                    <Label TextColor="Black">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}Data Plecare : {0}">
+                                                <Binding Path="DataPlecare"></Binding>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                    <Label TextColor="Black"
+                                           IsVisible="{Binding IsIntoarcere}">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}Data Intoarcere : {0}">
+                                                <Binding Path="DataIntoarcere"></Binding>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                    <Label TextColor="Black"
+                                           Margin="0,0,0,0">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}Ora plecare : {0}">
+                                                <Binding Path="OraPlecare"></Binding>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                    <Label TextColor="Black"
+                                           Margin="0,0,0,0"
+                                           IsVisible="{Binding IsIntoarcere}">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}Ora intoarcere : {0}">
+                                                <Binding Path="OraIntoarcere"></Binding>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+                <BindableLayout.EmptyView>
+                    <StackLayout>
+                        <Image Source="nothing_found.png"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Scale="1"
+                               HorizontalOptions="Center"
+                               VerticalOptions="EndAndExpand"
+                               Margin="0,0,0,0"
+                               x:Name ="NothingFoundImg"></Image>
+                            <Label Text="Din pacate nu s-au putut gasi bilete"
+                               VerticalOptions="StartAndExpand" 
+                               HorizontalOptions="Center"
+                               IsVisible="True"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               x:Name="NoBiletLabel"/>
+                    </StackLayout>
+                </BindableLayout.EmptyView>
+            </StackLayout> -->
+            <CollectionView x:Name="ListaBilete"
+                  ItemsSource="{Binding BiletsT}"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center"
+                  BackgroundColor="#F2F4F8"
+                  IsVisible="True"
+                  IsEnabled="True">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <StackLayout>
+                            <Frame BorderColor="#bcbcbc"
+                                   HasShadow="True"
+                                   BackgroundColor="#f8f8f8"
+                                   Margin="20,20,20,0"
+                                   Padding="0,0,0,20"
+                                   CornerRadius="10">
+                                <StackLayout>
+                                    <Frame BackgroundColor="White"
+                                           Margin="2,2,2,-5"
+                                           Padding="20,10,0,0"
+                                           CornerRadius="5">
+                                        <Grid>
+                                            <Label FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   Grid.Column="0"
+                                                   TextColor="Black">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} €">
+                                                        <Binding Path="Pret"></Binding>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <ImageButton BackgroundColor="Transparent"
+                                                         Margin="0,-10,0,0"
+                                                         WidthRequest="70"
+                                                         HeightRequest="60"
+                                                         HorizontalOptions="End"
+                                                         CornerRadius="10"
+                                                         Clicked="AdaugareBilet"
+                                                         BorderColor="Black"
+                                                         Source="addButton.png"
+                                                         Grid.Column="1"
+                                                         Scale="0.65"></ImageButton>
+                                        </Grid>
+                                    </Frame>
+                                    <Line X1="0" X2="1000"
+                                          Y1="1" Y2="1"
+                                          Stroke="#bcbcbc"></Line>
+                                    
+                                    <Grid HorizontalOptions="CenterAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"></ColumnDefinition>
+                                            <ColumnDefinition Width="50"></ColumnDefinition>
+                                            <ColumnDefinition Width="150"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label FontAttributes="Bold"
+                                               FontSize="14"
+                                               Grid.Column="0"
+                                               TextColor="Black"
+                                               Margin="25,0,0,0">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="LocPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Image Source="smallRightArrow.png"
+                                               Grid.Column="1"
+                                               Scale="0.7"
+                                               HorizontalOptions="Center"
+                                               ></Image>
+                                        <Label TextColor="Black"
+                                               Margin="0,25,0,-20"
+                                               HorizontalOptions="Center"
+                                               Grid.Column="1"
+                                               Grid.Row="0">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} min">
+                                                    <Binding Path="DurataDrum"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label FontAttributes="Bold"
+                                               FontSize="14"
+                                               Grid.Column="2"
+                                               HorizontalOptions="Center"
+                                               TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="Destinatie"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                               Margin="20,15,0,0"
+                                               Grid.Column="0"
+                                               Grid.Row="1">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="DataPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Image Source="{Binding IconCompanieZbor}"
+                                               IsVisible="{Binding IsAvion}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               Margin="0,0,0,0"
+                                               Scale="0.8"
+                                               Grid.Column="2"
+                                               Grid.Row="1"></Image>
+                                        <Label TextColor="Black"
+                                               Margin="20,0,0,0"
+                                               Grid.Column="0"
+                                               Grid.Row="2">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Ora : {0}">
+                                                    <Binding Path="OraPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                               Margin="20,-15,0,0"
+                                               Grid.Column="0"
+                                               Grid.Row="3">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Distanta : {0} km">
+                                                    <Binding Path="Distance"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                               Margin="20,10,0,10"
+                                               VerticalOptions="End"
+                                               Grid.Column="0"
+                                               Grid.Row="3"
+                                               IsVisible="{Binding IsTren}">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="TipTren"></Binding>
+                                                    <Binding Path="NrTransport"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </Grid>
+
+                                    <Line X1="10" X2="340"
+                                          Y1="5" Y2="5"
+                                          Stroke="Black"
+                                          IsVisible="{Binding IsIntoarcere}"></Line>
+
+                                    <Grid IsVisible="{Binding IsIntoarcere}" HorizontalOptions="CenterAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"></ColumnDefinition>
+                                            <ColumnDefinition Width="50"></ColumnDefinition>
+                                            <ColumnDefinition Width="150"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label FontAttributes="Bold"
+                                               FontSize="14"
+                                               Grid.Column="0"
+                                               TextColor="Black"
+                                               Margin="25,0,0,0">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="Destinatie"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Image Source="smallRightArrow.png"
+                                               Grid.Column="1"
+                                               Scale="0.7"
+                                               HorizontalOptions="Center"></Image>
+                                        <Label TextColor="Black"
+                                               Margin="0,30,0,-20"
+                                               HorizontalOptions="Center"
+                                               Grid.Column="1"
+                                               Grid.Row="0">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} min">
+                                                    <Binding Path="DurataDrum"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label FontAttributes="Bold"
+                                               FontSize="14"
+                                               Grid.Column="2"
+                                               HorizontalOptions="Center"
+                                               TextColor="Black">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="LocPlecare"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                               Margin="20,15,0,0"
+                                               Grid.Column="0"
+                                               Grid.Row="1">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="DataIntoarcere"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Image Source="{Binding IconCompanieZbor}"
+                                           IsVisible="{Binding IsAvion}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Margin="0,0,0,0"
+                                           Scale="0.8"
+                                           Grid.Column="2"
+                                           Grid.Row="1"></Image>
+                                        <Label TextColor="Black"
+                                           Margin="20,0,0,0"
+                                           Grid.Column="0"
+                                           Grid.Row="2">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Ora : {0}">
+                                                    <Binding Path="OraIntoarcere"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                           Margin="20,-10,0,10"
+                                           Grid.Column="0"
+                                           Grid.Row="3">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}Distanta : {0} km">
+                                                    <Binding Path="Distance"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                        <Label TextColor="Black"
+                                               Margin="20,20,0,10"
+                                               Grid.Column="0"
+                                               Grid.Row="3"
+                                               IsVisible="{Binding IsTren}">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="TipTren"></Binding>
+                                                    <Binding Path="NrTransport2"></Binding>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </Grid>
+
+                                    <Button Text="Detalii"
+                                            TextColor="#1058bf"
+                                            TextTransform="None"
+                                            BackgroundColor="Transparent"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start"
+                                            CornerRadius="50"
+                                            HeightRequest="20"
+                                            WidthRequest="50"
+                                            Margin="20,0,0,10"
+                                            Padding="5,0,5,0"
+                                            IsVisible="{Binding IsEscala}"
+                                            Clicked="RedirectEscala"></Button>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <StackLayout>
+                        <Image Source="nothing_found.png"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Scale="1"
+                               HorizontalOptions="Center"
+                               VerticalOptions="EndAndExpand"
+                               Margin="0,0,0,0"
+                               x:Name ="NothingFoundImg"></Image>
+                        <Label Text="Din pacate nu s-au putut gasi bilete"
+                               VerticalOptions="StartAndExpand" 
+                               HorizontalOptions="Center"
+                               IsVisible="True"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               x:Name="NoBiletLabel"/>
+                    </StackLayout>
+            </CollectionView.EmptyView>
+
+        </CollectionView>
+        
+       <!--             <StackLayout>
+                        <Frame BorderColor="Black">
+                <Label x:Name="Test_Label1"
+                Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="Test_Label2"
+                Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="Test_Label3"
+                Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="Test_Label4"
+                Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="Test_Label5"
+                Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="Test_Label6"
+                Text=""
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                    </Frame>
+                    </StackLayout>
+        -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
