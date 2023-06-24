@@ -208,21 +208,6 @@ namespace Proiect_Licenta.Views
             OnAppearing();
             GetUsers();
 
-            Users.Add(new Models.User{
-                Nume = "Andronescu",
-                Prenume = "Alexandru",
-                Oras = "Bucuresti",
-                Strada = "Baiculesti",
-                NrStrada = 25,
-                CodPostal = "013195",
-                IsEmptyUser = false,
-                IsNowConnected = false,
-                Tara = "Romania",
-                Email = "dev@test.com",
-                Password = "test1234",
-                Id = 1
-            });
-
         }
 
         private void LogoutButton_Clicked(object sender, EventArgs e)
@@ -267,14 +252,6 @@ namespace Proiect_Licenta.Views
         {
             if (Models.ConnectedUser.IsEmptyUser == false)
                 await Navigation.PushAsync(new Facturile_Mele());
-            else
-                await Navigation.PushAsync(new Pagina_Login(Users));
-        }
-
-        private async void ButonRezervarileMele_Clicked(object sender, EventArgs e)
-        {
-            if (Models.ConnectedUser.IsEmptyUser == false)
-                await Navigation.PushAsync(new Rezervari());
             else
                 await Navigation.PushAsync(new Pagina_Login(Users));
         }

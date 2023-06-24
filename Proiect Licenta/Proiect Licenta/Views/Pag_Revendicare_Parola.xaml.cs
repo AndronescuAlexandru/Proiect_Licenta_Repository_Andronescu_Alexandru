@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Net;
 using System.Diagnostics;
 using System.Net.Mail;
@@ -16,6 +17,9 @@ namespace Proiect_Licenta.Views
     {
         List<Models.User> users = new List<Models.User>();
         short CodEmail;
+        bool ChangePass = false;
+
+        SqlConnection sql;
         public static void SendEmail(string Message, string EmailAdress)
         {
             try
@@ -42,6 +46,10 @@ namespace Proiect_Licenta.Views
         public Pag_Revendicare_Parola(List<Models.User> Users, string Header, string PassResetButton)
         {
             InitializeComponent();
+
+            if(Header == "Schimbare Parola")
+                ChangePass = true;
+
             foreach (Models.User U in Users)
             {
                 users.Add(new Models.User
@@ -54,6 +62,7 @@ namespace Proiect_Licenta.Views
                     IsNowConnected = U.IsNowConnected,
                 });
             }
+
             Shell.SetBackButtonBehavior(this, new BackButtonBehavior
             {
                 Command = new Command(() =>
@@ -96,12 +105,6 @@ namespace Proiect_Licenta.Views
                     ButonCodEmail.IsEnabled = true;
                     ButonCodEmail.BackgroundColor = Color.FromHex("#248cd9");
                 }
-                else
-                {
-                    LabelCodGresit.Text = "Nu există un cont cu adresa de e-mail introdusă.";
-                    LabelCodGresit.IsVisible = true;
-                    Timer(5);
-                }
             }
         }
 
@@ -114,8 +117,6 @@ namespace Proiect_Licenta.Views
                 EntryCodEmail.IsEnabled = false;
                 ButonCodEmail.IsVisible = false;
                 ButonCodEmail.IsEnabled = false;
-                ParolaVecheCont.IsEnabled = true;
-                ParolaVecheCont.IsVisible = true;
                 ParolaNouaCont.IsEnabled = true;
                 ParolaNouaCont.IsVisible = true;
                 ConfirmareParolaCont.IsEnabled = true;
@@ -123,6 +124,13 @@ namespace Proiect_Licenta.Views
                 ResetareParola.IsEnabled = true;
                 ResetareParola.IsVisible = true;
                 ResetareParola.BackgroundColor = Color.FromHex("#248cd9");
+
+                if(ChangePass == true)
+                {
+                    ParolaVecheCont.IsVisible = true;
+                    ParolaVecheCont.IsEnabled = true;
+                }
+
                 foreach (Models.User U in users)
                 {
                     if(AdresaEmailCont.Text == U.Email)
@@ -143,23 +151,98 @@ namespace Proiect_Licenta.Views
                 LabelCodGresit.IsVisible = true;
                 Timer(5);
             }
-        } 
+        }
+        
+        private void ConnectToDB()
+        {
+            try
+            {
+                string srv_db_name = "DB_Proiect_Licenta";
+                string srv_ip = "192.168.1.2";
+                string srv_username = "Alex";
+                string srv_password = "Alex1234";
+
+                string sql_connection = $"Data Source={srv_ip};Initial Catalog={srv_db_name};User Id={srv_username};Password={srv_password}";
+
+                sql = new SqlConnection(sql_connection);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            sql.Open();
+        }
+
+        private void UpdatePassword()
+        {
+            foreach (Models.User U in users)
+            {
+                if (AdresaEmailCont.Text == U.Email)
+                {
+                    U.Password = ParolaNouaCont.Text;
+                    Models.ConnectedUser.Password = ParolaNouaCont.Text;
+                    Models.ConnectedUser.IsPassChanged = true;
+                }
+            }
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("UPDATE dbo.Users " + "SET Password=@ParolaNouaCont " + "WHERE Email=@AdresaEmailCont", sql))
+                {
+                    cmd.Parameters.Add(new SqlParameter("ParolaNouaCont", ParolaNouaCont.Text.ToString()));
+                    cmd.Parameters.Add(new SqlParameter("AdresaEmailCont", AdresaEmailCont.Text.ToString()));
+
+                    cmd.ExecuteNonQuery();
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            sql.Close();
+        }
+
         private void ResetareParola_Clicked(object sender, EventArgs e)
         {
             Stopwatch timer = new Stopwatch();
-            if(ParolaVecheCont.Text == Models.ConnectedUser.Password && ParolaNouaCont.Text == ConfirmareParolaCont.Text)
+            if(ChangePass == true)
             {
-                Models.ConnectedUser.Password = ParolaNouaCont.Text;
-                Models.ConnectedUser.IsPassChanged = true;
-                LabelCodGresit.IsVisible = false;
-                Navigation.PopToRootAsync();
+                if (ParolaVecheCont.Text == Models.ConnectedUser.Password && ParolaNouaCont.Text == ConfirmareParolaCont.Text)
+                {
+                    LabelCodGresit.IsVisible = false;
+
+                    ConnectToDB();
+                    UpdatePassword();
+                    
+                    Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    LabelCodGresit.Text = "Unul din câmpurile de mai sus nu este completat corect.";
+                    LabelCodGresit.IsVisible = true;
+                    Timer(5);
+                }
             }
             else
             {
-                LabelCodGresit.Text = "Unul din câmpurile de mai sus nu este completat corect.";
-                LabelCodGresit.IsVisible = true;
-                Timer(5);
+                if (ParolaNouaCont.Text == ConfirmareParolaCont.Text)
+                {                  
+                    ConnectToDB();
+                    UpdatePassword();
+
+                    Navigation.PopToRootAsync();
+
+                }
+                else
+                {
+                    LabelCodGresit.Text = "Unul din câmpurile de mai sus nu este completat corect.";
+                    LabelCodGresit.IsVisible = true;
+                    Timer(5);
+                }
             }
+            
         }
     }
 }

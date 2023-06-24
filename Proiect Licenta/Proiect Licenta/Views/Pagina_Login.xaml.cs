@@ -130,6 +130,7 @@ namespace Proiect_Licenta.Views
 					Models.ConnectedUser.Nume = U.Nume;
 					Models.ConnectedUser.Id = U.Id;
 					Models.ConnectedUser.CodPostal = U.CodPostal;
+					Models.ConnectedUser.Oras = U.Oras;
 					Models.ConnectedUser.Strada = U.Strada;
 					Models.ConnectedUser.IsEmptyUser = false;
 					Models.ConnectedUser.IsNowConnected = true;
@@ -138,6 +139,7 @@ namespace Proiect_Licenta.Views
 					Models.ConnectedUser.Tara = U.Tara;
 					Models.ConnectedUser.Username = U.Username;					
 					Models.ConnectedUser.IsFromLogin = true;
+
 					await Navigation.PopAsync();
 				}
 				else
