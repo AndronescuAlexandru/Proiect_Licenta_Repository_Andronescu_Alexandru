@@ -23,7 +23,7 @@ namespace Proiect_Licenta.Views
         public uint Id2 { get; set; }
         public string DataPlecare { get; set; }
         public string DataIntoarcere { get; set; }
-        public DateTime DataPlecareEscala { get; set; } 
+        public string DataPlecareEscala { get; set; } 
         public bool Activ { get; set; }
         public string TipBilet { get; set; }
         public string Clasa { get; set; }

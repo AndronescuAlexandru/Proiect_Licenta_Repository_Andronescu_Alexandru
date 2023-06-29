@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,11 +15,40 @@ namespace Proiect_Licenta.Views
 
 	public partial class Rezultate_Cautare : ContentPage
 	{
-		ViewModels.BiletViewModel BiletsT = new ViewModels.BiletViewModel();
+		List<Bilet> BiletsT = new List<Bilet>();
 		List<Bilet> Bilets = new List<Bilet>();
+
+		SqlConnection sql;
+
 		byte[] hours = new byte[5];
 		byte[] mins = new byte[5];
 		sbyte[] converter = new sbyte[5];
+
+		string[] locatii =
+		{
+			"București","Timişoara","Cluj-Napoca",  "Braşov",   "Iaşi", "Constanţa",    "Craiova",  "Galaţi",   "Ploieşti", "Oradea",   "Brăila",   "Arad", "Piteşti",
+			"Sibiu",    "Bacău",    "Târgu-Mureş",  "Baia Mare",    "Buzău",    "Botoşani", "Satu Mare",    "Râmnicu Vâlcea",   "Drobeta-Turnu Severin",
+			"Tulcea",   "Suceava",  "Piatra Neamţ", "Reşiţa",   "Târgu Jiu",    "Târgovişte",   "Focşani",  "Bistriţa", "Slatina",  "Călăraşi", "Alba Iulia",
+			"Giurgiu",  "Deva", "Hunedoara",    "Zalău",    "Sfântu-Gheorghe",  "Bârlad",   "Vaslui",   "Roman",    "Turda",    "Mediaş",   "Slobozia", "Alexandria",
+			"Voluntari",    "Miercurea-Ciuc",   "Lugoj",    "Medgidia", "Oneşti",   "Sighetu Marmaţiei",    "Petroşani",    "Mangalia", "Tecuci",
+			"Odorheiu Secuiesc",    "Râmnicu Sărat",    "Paşcani",  "Dej",  "Reghin",   "Năvodari", "Câmpina",  "Mioveni",  "Câmpulung",    "Caracal",  "Săcele",
+			"Făgăraş",  "Feteşti",  "Sighişoara",   "Borşa",    "Roşiori de Vede",  "Curtea de Argeş",  "Sebeş",    "Turnu Măgurele",   "Caransebeş",   "Dorohoi",
+			"Câmpia Turzii",    "Târgu Neamţ",  "Târgu Secuiesc",   "Câmpulung Moldovenesc",    "Buşteni",  "Predeal",  "Azuga",    "Sinaia",   "Timisu de Jos",
+			"Timisu de Sus",    "Poiana Tapului",   "Adjud",    "Bragadiru Teleorman",  "Târgu Ocna",   "Eforie Nord",  "Eforie Sud","Bragadiru Teleorman","Iași"
+
+		};
+		string[] aeroporturi = { "Arad", "Bacău", "Baia Mare", "București", "Brașov", "Cluj-Napoca", "Constanța", "Craiova", "Iași", "Galați-Brăila",
+			"Oradea", "Satu Mare", "Sibiu", "Suceava", "Târgu Mureș", "Timișoara", "Tulcea" };
+		string[] gari = {"Arad","Gara Aradul Nou","Bacău","Baia Mare","Brașov","Sinaia","Busteni","Azuga","Predeal","Braila","Brăila","Gara Basarab București",
+			"Gara Băneasa București","Gara București Nord","Gara Obor București","Gara Progresul București","Buzău","Gara Buzău Nord","Gara Buzău Sud",
+			"Cluj-Napoca","Constanța","Craiova","Focșani","Galați","Iași", "Iași Internațional (Nicolina)","Oradea","Piatra Neamţ","Pitești","Pitești Nord",
+			"Ploiești Nord","Ploiești Sud","Ploiești Est","Ploiești Vest","Rădăuți","Râmnicu Vâlcea","Roman","Satu Mare","Sibiu","Slobozia","Gara Suceava (Burdujeni)",
+			"Gara Suceava Nord (Ițcani)","Gara Suceava Vest (Șcheia)","Târgu Mureș","Teiuș","Timișoara Nord","Timișoara Vest","Vatra Dornei","Gara Alba Iulia","Gara Alexandria",
+		"Gara Alexandria Nord","Gara Băile Herculane","Bistrita Nord","Botoșani","Gara Caracal","Gara Caransebeș","Gara Caransebeș Triaj","Gara Călărași Sud",
+		"Câmpia Turzii","Câmpulung","Câmpulung Moldovenesc","Curtea de Argeș","Deva","Drobeta-Turnu Severin","Mangalia","Eforie Nord","Eforie Sud","Fetești","Făgăraș",
+		"Giurgiu","Giurgiu Nord","Hunedoara","Miercurea Ciuc","Targoviste","Timisu de Jos","Timisu de Sus","Poiana Tapului","Gara Călăraşi Sud","Gara Călăraşi Nord",
+		"Tulcea","Bârlad","Târgu Ocna","Zalău"};
+
 		readonly string[] Locatii = {
 				   "București", "Bacau","Oradea","Brașov","Timișoara","Brăila","Galați","Cluj-Napoca","Constanta","Craiova",
 			"Iasi","Ploiesti","Arad","Aiud","Blaj","Sebeș","Câmpulung-Muscel","Curtea de Argeș","Onești","Moinești",
@@ -31,9 +61,6 @@ namespace Proiect_Licenta.Views
 			"Câmpina","Satu Mare","Carei","Zalău","Sibiu","Mediaș","Suceava","Fălticeni","Rădăuți","Câmpulung Moldovenesc",
 			"Vatra Dornei","Alexandria","Roșiori de Vede","Turnu Măgurele","Lugoj","Tulcea","Vaslui","Bârlad","Huși",
 			"Focșani","Adjud","Râmnicu Vâlcea","Drăgășani"}; // Lista locatiilor posibile care va fi folosita de functia Generare Bilet
-		
-		readonly string[] aeroporturi = { "Arad", "Bacău", "Baia Mare", "București", "Brașov", "Cluj-Napoca", "Constanța", "Craiova", "Iași", "Galați-Brăila", // Lista aeroporturi
-			"Oradea", "Satu Mare", "Sibiu", "Suceava", "Târgu Mureș", "Timișoara", "Tulcea" };
 		
 		readonly string[] TransportB = { "Tren", "Avion", "Autocar" }; // Lista tipurilor de transport care va fi folosita de functia Generare Bilet
 		
@@ -57,6 +84,26 @@ namespace Proiect_Licenta.Views
 		 * Dintoarcere preia data de intoarcere daca este aleasa de utilizator si n este numarul dorit de bilete pentru a fi generate,
 		 * functia preia listele de mai sus(Locatii,TransportB,ClasaAvion,ClasaTren,TipBilet,PasagerB) si genereaza n bilete*/
 
+		public void ConnectToDB()
+		{
+			try
+			{
+				string srv_db_name = "DB_Proiect_Licenta";
+				string srv_ip = "192.168.1.2";
+				string srv_username = "Alex";
+				string srv_password = "Alex1234";
+
+				string sql_connection = $"Data Source={srv_ip};Initial Catalog={srv_db_name};User Id={srv_username};Password={srv_password}";
+
+				sql = new SqlConnection(sql_connection);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+
+			sql.Open();
+		}
 
 		string GenerareTimp(string TipTransport, string Tip_Tren, double Distance, string sep)
 		{
@@ -185,20 +232,125 @@ namespace Proiect_Licenta.Views
 			return "tarom_icon";
 		}
 
+		void PreluareBilete()
+        {
+			Random numarR = new Random();
+
+			string icon = "avion_icon2.png", iconsecond = "avion_filled_black.png", color = "#d24c4c";
+			string companie = CompaniiAvion[numarR.Next(0, 9)];
+			string iconCompanie = AirlineIcon(companie);
+
+			string queryString = "Select * from dbo.Bilete";
+			SqlCommand cmd = new SqlCommand(queryString, sql);
+			SqlDataReader reader = cmd.ExecuteReader();
+
+			while (reader.Read())
+			{
+				switch (reader["Tip_Transport"].ToString())
+				{
+					case "Avion":
+						{
+
+							companie = CompaniiAvion[numarR.Next(0, 9)];
+							iconCompanie = AirlineIcon(companie);
+
+							icon = "avion_icon2.png";
+							iconsecond = "avion_filled_black.png";
+							color = "#d24c4c";
+
+
+							break;
+						}
+					case "Tren":
+						{
+							icon = "tren_icon.png";
+							iconsecond = "tren_lateral.png";
+							color = "#61aed9";// culoare alternativa : #4383b2
+
+
+							break;
+						}
+					case "Autocar":
+						{
+							icon = "autocar_icon.png";
+							iconsecond = "autocar_lateral.png";
+							color = "#5e3dc6";
+
+
+							break;
+						}
+				}
+				try
+				{
+					Bilets.Add(new Bilet                        //in urma alegerii datelor se creeaza un bilet nou
+					{
+						Id = Convert.ToUInt32(reader["ID"]),
+						Id2 = Convert.ToUInt32(reader["ID_Retur"]),
+						LocPlecare = reader["Loc_Plecare"].ToString(),
+						Destinatie = reader["Destinatie"].ToString(),
+						DataPlecare = reader["Data_Plecare"].ToString(),
+						DataIntoarcere = reader["Data_Retur"].ToString(),
+						DataPlecareEscala = reader["Data_Plecare_Escala"].ToString(),
+						Activ = Convert.ToBoolean(reader["Activ"]),
+						TipBilet = reader["Tip_Bilet"].ToString(),
+						Clasa = reader["Clasa"].ToString(),
+						Transport = reader["Tip_Transport"].ToString(),
+						Pasager = reader["Tip_Pasager"].ToString(),
+						Pret = Convert.ToInt32(reader["Pret"]),
+						IsAvion = Convert.ToBoolean(reader["Is_Avion"]),
+						IsTren = Convert.ToBoolean(reader["Is_Tren"]),
+						IsEscala = Convert.ToBoolean(reader["Has_Escala"]),
+						Icon = icon,
+						Icon2 = iconsecond,
+						IconCompanieZbor = iconCompanie,
+						Scaun = reader["Scaun"].ToString(),
+						Scaun2 = reader["Scaun_Retur"].ToString(),
+						IsIntoarcere = Convert.ToBoolean(reader["Is_Intoarcere"]),
+						OraPlecare = reader["Ore_Plecare"].ToString(),
+						OraIntoarcere = reader["Ore_Intoarcere"].ToString(),
+						Color = color,
+						NrTransport = reader["Nr_Transport"].ToString(),
+						NrTransport2 = reader["Nr_Transport_Retur"].ToString(),
+						Peron = Convert.ToByte(reader["Peron"]),
+						Peron2 = Convert.ToByte(reader["Peron_Retur"]),
+						Distance = reader["Distanta"].ToString(),
+						DurataDrum = reader["Durata_Drum"].ToString(),
+						DurataDrumEscala = reader["Durata_Drum_Escala"].ToString(),
+						DurataDrumPanaLaEscala = reader["Durata_Drum_Pana_La_Escala"].ToString(),
+						DurataEscala = reader["Durata_Escala"].ToString(),
+						PlecareEscala = reader["Plecare_Escala"].ToString(),
+						DestinatieEscala = reader["Destinatie_Escala"].ToString(),
+						OraPlecareEscala = reader["Ora_Plecare_Escala"].ToString(),
+						NrTransportEscala = reader["Nr_Transport_Escala"].ToString(),
+						CompanieZbor = reader["Tip_Tren_Companie_Zbor"].ToString(),
+						TipTren = reader["Tip_Tren_Companie_Zbor"].ToString(),
+					});
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
+
+			}
+			reader.Close();
+			sql.Close();
+		}
+
 		void GenerareBilet(DateTime Dplecare, DateTime Dintoarcere, int n)
         {
 			Random numarR = new Random(); //variabila care memorieaza numere la intamplare
 			byte line = 0, line2 = 0, error = 200; 
 			
 			int pret;
-			uint ID;
+			int ID, ID_Retur = 0;
 			
 			bool avion = false, intoarcere = false, tren = false;
 			
 			string Transport, ClasaB = " ", icon = "missing.png", iconsecond = "missing.png",scaun, tip, color = " ",nrTransport = " ", nrTransport2 = " ";
 			string scaun2 = " ", durataDrum = " ",durataDrumPanaLaEscala = " ",LocPlecareEscala = " ", durataDrumTotal = " ", DurataEscala = " ", timePlecareEscala = " ";
-			string companie = " ", iconCompanie = " ", tipTren = null;
+			string tip_tren_companie = " ", iconCompanie = " ";
 
+			string plecare = " ", destinatie = " "; //cod temporar
 
 			double distantaEscala = 0;
 			bool IsEscala = false;
@@ -210,19 +362,29 @@ namespace Proiect_Licenta.Views
 			Distance distance1 = Distance.BetweenPositions(Position1, Position2);
 
 
-			durataDrum = GenerareTimp(Mesager.Transport, tipTren, Convert.ToDouble(distance1.Kilometers)," ore ");
+			durataDrum = GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distance1.Kilometers)," ore ");
 
-			if (Mesager.Transport == "Avion")
-				if (numarR.Next(2) == 0)
-					IsEscala = false;
-			else IsEscala = true;
+			if (Mesager.IsFromOferta)
+			{
+				tip = Mesager.TipBilet;
+				Transport = Mesager.Transport;
+			}
+			else
+			{
+				tip = TipBilet[numarR.Next(2)];
+				Transport = TransportB[numarR.Next(3)]; // se alege la intamplare tipul de transport al biletului
+			}
+
+			if (Transport == "Avion")
+				if (numarR.Next(2) == 1)
+					IsEscala = true;
 
 			if (CoordonateLocatii.latitude.ContainsKey(Mesager.Plecare) && CoordonateLocatii.latitude.ContainsKey(Mesager.Destinatie) && IsEscala == false)
 			{
 				Position1 = new Position(CoordonateLocatii.latitude[Mesager.Plecare], CoordonateLocatii.longitude[Mesager.Plecare]);
 				Position2 = new Position(CoordonateLocatii.latitude[Mesager.Destinatie], CoordonateLocatii.longitude[Mesager.Destinatie]);
 				distance1 = Distance.BetweenPositions(Position1, Position2);
-				durataDrum = GenerareTimp(Mesager.Transport, tipTren, Convert.ToDouble(distance1.Kilometers), " ore ");
+				durataDrum = GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distance1.Kilometers), " ore ");
 			}
 
 			if(CoordonateLocatii.latitude.ContainsKey(Mesager.Plecare) && CoordonateLocatii.latitude.ContainsKey(Mesager.Destinatie) && IsEscala == true)
@@ -236,15 +398,15 @@ namespace Proiect_Licenta.Views
 				distance1 = Distance.BetweenPositions(Position1, PositionEscala1);
 				Distance DistanceEscala = Distance.BetweenPositions(PositionEscala1, Position2);
 				distantaEscala = DistanceEscala.Kilometers;
-				durataDrumPanaLaEscala = GenerareTimp(Mesager.Transport, tipTren, Convert.ToDouble(distance1.Kilometers),":");
+				durataDrumPanaLaEscala = GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distance1.Kilometers),":");
 				DurataEscala = hours[0] + " ore " + mins[0];
 				converter = TimeStringToByte(durataDrumPanaLaEscala);
-				durataDrumPanaLaEscala = GenerareTimp(Mesager.Transport, tipTren, Convert.ToDouble(distance1.Kilometers), " ore ");
+				durataDrumPanaLaEscala = GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distance1.Kilometers), " ore ");
 
 				//hours[1] = (byte)(Convert.ToByte(timePlecare.Hours) + Convert.ToByte(converter[0]) + Convert.ToByte(hours[0]));
 				//mins[1] = (byte)(Convert.ToByte(timePlecare.Minutes) + mins[0]);
 
-				durataDrum = GenerareTimp(Mesager.Transport, tipTren, Convert.ToDouble(distance1.Kilometers) + distantaEscala + Convert.ToDouble(error), " ore ");			
+				durataDrum = GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distance1.Kilometers) + distantaEscala + Convert.ToDouble(error), " ore ");			
 			}
 
 
@@ -254,6 +416,8 @@ namespace Proiect_Licenta.Views
 				line = (byte)numarR.Next(1, 32);
 				nrTransport = (Char)numarR.Next(65, 90) + numarR.Next(1, 256).ToString();	
 				scaun = numarR.Next(1, 128).ToString() + (Char)numarR.Next(65, 90); // se genereaza un nr de scaun pentru bilet
+				Dplecare = Dplecare.AddDays(numarR.Next(0, 30));
+				Dplecare = Dplecare.AddMonths(numarR.Next(0, 12));
 				Dplecare = Dplecare.AddHours(timePlecare.Hours);
 				Dplecare = Dplecare.AddMinutes(timePlecare.Minutes);
 				pret = 1;
@@ -270,25 +434,19 @@ namespace Proiect_Licenta.Views
 					pret = pret - 20;
 				}
 
-				if (Mesager.IsFromOferta)
-				{
-					tip = Mesager.TipBilet;
-					Transport = Mesager.Transport;
-				}
-				else
-				{
-					tip = TipBilet[numarR.Next(2)];
-					Transport = TransportB[numarR.Next(3)]; // se alege la intamplare tipul de transport al biletului
-				}
-
 				/* Daca data de intoarcere nu este aleasa atunci se seteaza tip ul biletului "Dus" si se seteaza flag-ul "intoarcere" cu valoarea false
 				 * altfel se seteaza tip-ul biletului "Dus-Intors" si flag-ul "intoarcere" primeste valoarea true */
+
+				ID = numarR.Next(1, 999999);                          // se alege numarul corespunzator pentru ID ul biletului
+
 				if (tip == "Dus")
 					intoarcere = false;
 				else
 				{
 					intoarcere = true;
+
 					pret = pret + 10;
+
 					if (Dintoarcere.Day == Dplecare.Day)
 					{
 						Dintoarcere = Dintoarcere.AddHours(numarR.Next(3, 10));
@@ -301,10 +459,12 @@ namespace Proiect_Licenta.Views
 					}
 
 					nrTransport2 = (Char)numarR.Next(65, 90) + numarR.Next(1, 256).ToString();
+
 					scaun2 = numarR.Next(1, 128).ToString() + (Char)numarR.Next(65, 90);
+
 					line2 = (byte)numarR.Next(1, 32);
+					ID_Retur = ID + 1;
 				}
-				ID = i;                          // se alege numarul corespunzator pentru ID ul biletului
 
 				//LocatiePlecare = Locatii[numarR.Next(30)]; // se alege la intamplare o locatie pentru plecare
 				//LocDestinatie = Locatii[numarR.Next(30)]; // se alege la intamplare o locatie pentru destinatie
@@ -316,8 +476,8 @@ namespace Proiect_Licenta.Views
 							int index = numarR.Next(4);
 							ClasaB = ClasaAvion[index];
 
-							companie = CompaniiAvion[numarR.Next(0, 9)];
-							iconCompanie = AirlineIcon(companie);
+							tip_tren_companie = CompaniiAvion[numarR.Next(0, 9)];
+							iconCompanie = AirlineIcon(tip_tren_companie);
 
 							avion = true;
 							tren = false;
@@ -326,7 +486,10 @@ namespace Proiect_Licenta.Views
 							iconsecond = "avion_filled_black.png";
 							color = "#d24c4c";
 
-							if(Mesager.IsFromOferta == true)
+							plecare = aeroporturi[numarR.Next(0, aeroporturi.Length)];
+							destinatie = aeroporturi[numarR.Next(0, aeroporturi.Length)];
+
+							if (Mesager.IsFromOferta == true)
 								while(pret < Mesager.Pret)
 									pret = pret + numarR.Next(0, 25) + (pret + (Convert.ToInt32(distance1.Kilometers) / 10)) * 4 + 5 * (index + 1);
 							else
@@ -338,8 +501,8 @@ namespace Proiect_Licenta.Views
 							int index = numarR.Next(2);
 							ClasaB = ClasaTren[index];
 
-							tipTren = TipTren[numarR.Next(0, 3)];
-							durataDrum = GenerareTimp(Mesager.Transport, tipTren, Convert.ToDouble(distance1.Kilometers), " ore ");
+							tip_tren_companie = TipTren[numarR.Next(0, 3)];
+							durataDrum = GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distance1.Kilometers), " ore ");
 
 							avion = false;
 							tren = true;
@@ -347,6 +510,9 @@ namespace Proiect_Licenta.Views
 							icon = "tren_icon.png";
 							iconsecond = "tren_lateral.png";
 							color = "#61aed9";// culoare alternativa : #4383b2
+
+							plecare = gari[numarR.Next(0, gari.Length)];
+							destinatie = gari[numarR.Next(0, gari.Length)];
 
 							if (Mesager.IsFromOferta == true)
 								while (pret < Mesager.Pret)
@@ -366,6 +532,9 @@ namespace Proiect_Licenta.Views
 							iconsecond = "autocar_lateral.png";
 							color = "#5e3dc6";
 
+							plecare = locatii[numarR.Next(0, locatii.Length)];
+							destinatie = locatii[numarR.Next(0, locatii.Length)];
+
 							if (Mesager.IsFromOferta == true)
 								while (pret < Mesager.Pret)
 									pret = pret + numarR.Next(0,10) + (pret + (Convert.ToInt32(distance1.Kilometers) / 10) ) + 5;
@@ -375,14 +544,74 @@ namespace Proiect_Licenta.Views
                         }
                 }
 
-				Bilets.Add(new Bilet                        //in urma alegerii datelor se creeaza un bilet nou
+				ConnectToDB();
+				PreluareBilete();
+
+				try
+				{
+					foreach (Bilet B in Bilets)
+						while (B.Id == ID)
+							ID = numarR.Next(1, 999999);
+
+					using (SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Bilete VALUES(@ID,@ID_Retur,@Loc_Plecare,@Destinatie,@Data_Plecare,@Data_Retur," +
+                        "@Data_Plecare_Escala,@Plecare_Escala,@Destinatie_Escala,@Has_Escala,@Activ,@Tip_Bilet,@Tip_Transport,@Clasa,@Tip_Pasager,@Pret,@Is_Avion," +
+                        "@Is_Tren,@Is_Intoarcere,@Scaun,@Scaun_Retur,@Tip_Tren_Companie_Zbor,@Ore_Plecare,@Ore_Intoarcere,@Ora_Plecare_Escala,@Peron,@Peron_Retur," +
+                        "@Nr_Transport,@Nr_Transport_Retur,@Nr_Transport_Escala,@Distanta,@Durata_Drum,@Durata_Drum_Escala,@Durata_Drum_Pana_La_Escala,@Durata_Escala,@Cantitate)", sql))
+					{
+						cmd.Parameters.Add(new SqlParameter("ID", ID));
+						cmd.Parameters.Add(new SqlParameter("ID_Retur",ID_Retur));
+						cmd.Parameters.Add(new SqlParameter("Loc_Plecare", plecare));
+						cmd.Parameters.Add(new SqlParameter("Destinatie", destinatie));
+						cmd.Parameters.Add(new SqlParameter("Data_Plecare", Dplecare.Day.ToString() + "/" + Dplecare.Month.ToString() + "/" + Dplecare.Year.ToString()));
+						cmd.Parameters.Add(new SqlParameter("Data_Retur", Dintoarcere.Day.ToString() + "/" + Dintoarcere.Month.ToString() + "/" + Dintoarcere.Year.ToString()));
+						cmd.Parameters.Add(new SqlParameter("Data_Plecare_Escala", DataPlecareEscala.ToString()));
+						cmd.Parameters.Add(new SqlParameter("Plecare_Escala", LocPlecareEscala.ToString()));
+						cmd.Parameters.Add(new SqlParameter("Destinatie_Escala", destinatie));
+						cmd.Parameters.Add(new SqlParameter("Has_Escala", IsEscala));
+						cmd.Parameters.Add(new SqlParameter("Activ", true));
+						cmd.Parameters.Add(new SqlParameter("Tip_Bilet", tip));
+						cmd.Parameters.Add(new SqlParameter("Tip_Transport", Transport));
+						cmd.Parameters.Add(new SqlParameter("Clasa", ClasaB));
+						cmd.Parameters.Add(new SqlParameter("Tip_Pasager", PasagerB[numarR.Next(0, 4)].ToString()));
+						cmd.Parameters.Add(new SqlParameter("Pret", pret));
+						cmd.Parameters.Add(new SqlParameter("Is_Avion", avion));
+						cmd.Parameters.Add(new SqlParameter("Is_Tren", tren));
+						cmd.Parameters.Add(new SqlParameter("Is_Intoarcere", intoarcere));
+						cmd.Parameters.Add(new SqlParameter("Scaun", scaun));
+						cmd.Parameters.Add(new SqlParameter("Scaun_Retur", scaun2));
+						cmd.Parameters.Add(new SqlParameter("Tip_Tren_Companie_Zbor", tip_tren_companie));
+						cmd.Parameters.Add(new SqlParameter("Ore_Plecare", timePlecare.Hours.ToString() + ":" + timePlecare.Minutes.ToString()));
+						cmd.Parameters.Add(new SqlParameter("Ore_Intoarcere", timeIntoarcere.ToString()));
+						cmd.Parameters.Add(new SqlParameter("Ora_Plecare_Escala", DataPlecareEscala.Hour.ToString() + ":" + DataPlecareEscala.Minute.ToString()));
+						cmd.Parameters.Add(new SqlParameter("Peron", line));
+						cmd.Parameters.Add(new SqlParameter("Peron_Retur", line2));
+						cmd.Parameters.Add(new SqlParameter("Nr_Transport", nrTransport));
+						cmd.Parameters.Add(new SqlParameter("Nr_Transport_Retur", nrTransport2));
+						cmd.Parameters.Add(new SqlParameter("Nr_Transport_Escala", (Char)numarR.Next(65, 90) + numarR.Next(1, 256).ToString()));
+						cmd.Parameters.Add(new SqlParameter("Distanta", Convert.ToInt32(distance1.Kilometers)));
+						cmd.Parameters.Add(new SqlParameter("Durata_Drum", durataDrum));
+						cmd.Parameters.Add(new SqlParameter("Durata_Drum_Escala", GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distantaEscala), " ore ")));
+						cmd.Parameters.Add(new SqlParameter("Durata_Drum_Pana_La_Escala", durataDrumPanaLaEscala));
+						cmd.Parameters.Add(new SqlParameter("Durata_Escala", DurataEscala));
+						cmd.Parameters.Add(new SqlParameter("Cantitate", numarR.Next(1,100)));
+
+						cmd.ExecuteNonQuery();
+					};
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
+
+				/*Bilets.Add(new Bilet                        //in urma alegerii datelor se creeaza un bilet nou
 				{
 					Id = ID,
+					Id2 = ID_Retur,
 					LocPlecare = Mesager.Plecare,
 					Destinatie = Mesager.Destinatie,
 					DataPlecare = Dplecare.Day.ToString() + "/" + Dplecare.Month.ToString() + "/" + Dplecare.Year.ToString(),
 					DataIntoarcere = Dintoarcere.Day.ToString() + "/" + Dintoarcere.Month.ToString() + "/" + Dintoarcere.Year.ToString(),
-					DataPlecareEscala = DataPlecareEscala,
+					DataPlecareEscala = DataPlecareEscala.ToString(),
 					Activ = true,
 					TipBilet = tip,
 					Clasa = ClasaB,
@@ -407,17 +636,18 @@ namespace Proiect_Licenta.Views
 					Peron2 = line2,
 					Distance = Convert.ToInt16(distance1.Kilometers).ToString(),
 					DurataDrum = durataDrum,
-					DurataDrumEscala = GenerareTimp(Mesager.Transport, tipTren, Convert.ToDouble(distantaEscala), " ore "),
+					DurataDrumEscala = GenerareTimp(Mesager.Transport, tip_tren_companie, Convert.ToDouble(distantaEscala), " ore "),
 					DurataDrumPanaLaEscala = durataDrumPanaLaEscala,
 					DurataEscala = DurataEscala,
 					PlecareEscala = LocPlecareEscala,
 					DestinatieEscala = Mesager.Destinatie,
 					OraPlecareEscala = DataPlecareEscala.Hour.ToString() + ":" + DataPlecareEscala.Minute.ToString(),
 					NrTransportEscala = (Char)numarR.Next(65, 90) + numarR.Next(1, 256).ToString(),
-					CompanieZbor = companie,
-					TipTren = tipTren,
-					
-				});
+					CompanieZbor = tip_tren_companie,
+					TipTren = tip_tren_companie,
+
+				});*/
+
 				Dplecare = Convert.ToDateTime(Mesager.DataPlecare);
 				Dintoarcere = Convert.ToDateTime(Mesager.DataIntoarcere);
 				DataPlecareEscala = Convert.ToDateTime(Mesager.DataPlecare);
@@ -500,28 +730,131 @@ namespace Proiect_Licenta.Views
 			LabelColLocPlecare.Text = Mesager.Plecare;
 			LabelColDestinatie.Text = Mesager.Destinatie;
 			//LabelColDataPlecare.Date = Convert.ToDateTime(Mesager.DataPlecare);
-			foreach (Bilet B in BiletsT.Bilet)
+			foreach (Bilet B in BiletsT)
 			{
 				B.LocPlecare = Mesager.Plecare;
 			}
 		}
-        public Rezultate_Cautare () //(string RClasa, string RTransport, string RTipBilet, string RPasager, string RDataPlecare, string RDataIntoarcere, string RLocPlecare, string RLocDestinatie)
+
+		public Rezultate_Cautare ()
 		{
 			var InternetConnection = Connectivity.NetworkAccess;
-
 			InitializeComponent ();
 			OnAppearing();
+			ConnectToDB();
 
-			BiletsT.Bilet.RemoveAt(0);
 			BindingContext = BiletsT;
-			ListaBilete.ItemsSource =  BiletsT.Bilet;
+			ListaBilete.ItemsSource =  BiletsT;
 
 			HeaderImageSource.Source = SetHeaderImage();
 
 			if (InternetConnection == NetworkAccess.Internet)
-				GenerareBilet(Convert.ToDateTime(Mesager.DataPlecare),Convert.ToDateTime(Mesager.DataIntoarcere), 100);
-			else
             {
+				PreluareBilete();
+				//GenerareBilet(Convert.ToDateTime(Mesager.DataPlecare), Convert.ToDateTime(Mesager.DataIntoarcere), 800);
+				/*Random numarR = new Random();
+
+				string icon = "avion_icon2.png", iconsecond = "avion_filled_black.png", color = "#d24c4c";
+				string companie = CompaniiAvion[numarR.Next(0, 9)];
+				string iconCompanie = AirlineIcon(companie);
+
+				string queryString = "Select * from dbo.Bilete";
+				SqlCommand cmd = new SqlCommand(queryString, sql);
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					switch (reader["Tip_Transport"].ToString())
+					{
+						case "Avion":
+							{
+								
+								companie = CompaniiAvion[numarR.Next(0, 9)];
+								iconCompanie = AirlineIcon(companie);
+
+								icon = "avion_icon2.png";
+								iconsecond = "avion_filled_black.png";
+								color = "#d24c4c";
+
+								
+								break;
+							}
+						case "Tren":
+							{
+								icon = "tren_icon.png";
+								iconsecond = "tren_lateral.png";
+								color = "#61aed9";// culoare alternativa : #4383b2
+
+								
+								break;
+							}
+						case "Autocar":
+							{
+								icon = "autocar_icon.png";
+								iconsecond = "autocar_lateral.png";
+								color = "#5e3dc6";
+
+								
+								break;
+							}
+					}
+                    try
+                    {
+						Bilets.Add(new Bilet                        //in urma alegerii datelor se creeaza un bilet nou
+						{
+							Id = Convert.ToUInt32(reader["ID"]),
+							Id2 = Convert.ToUInt32(reader["ID_Retur"]),
+							LocPlecare = reader["Loc_Plecare"].ToString(),
+							Destinatie = reader["Destinatie"].ToString(),
+							DataPlecare = reader["Data_Plecare"].ToString(),
+							DataIntoarcere = reader["Data_Retur"].ToString(),
+							DataPlecareEscala = reader["Data_Plecare_Escala"].ToString(),
+							Activ = Convert.ToBoolean(reader["Activ"]),
+							TipBilet = reader["Tip_Bilet"].ToString(),
+							Clasa = reader["Clasa"].ToString(),
+							Transport = reader["Tip_Transport"].ToString(),
+							Pasager = reader["Tip_Pasager"].ToString(),
+							Pret = Convert.ToInt32(reader["Pret"]),
+							IsAvion = Convert.ToBoolean(reader["Is_Avion"]),
+							IsTren = Convert.ToBoolean(reader["Is_Tren"]),
+							IsEscala = Convert.ToBoolean(reader["Has_Escala"]),
+							Icon = icon,
+							Icon2 = iconsecond,
+							IconCompanieZbor = iconCompanie,
+							Scaun = reader["Scaun"].ToString(),
+							Scaun2 = reader["Scaun_Retur"].ToString(),
+							IsIntoarcere = Convert.ToBoolean(reader["Is_Intoarcere"]),
+							OraPlecare = reader["Ore_Plecare"].ToString(),
+							OraIntoarcere = reader["Ore_Intoarcere"].ToString(),
+							Color = color,
+							NrTransport = reader["Nr_Transport"].ToString(),
+							NrTransport2 = reader["Nr_Transport_Retur"].ToString(),
+							Peron = Convert.ToByte(reader["Peron"]),
+							Peron2 = Convert.ToByte(reader["Peron_Retur"]),
+							Distance = reader["Distanta"].ToString(),
+							DurataDrum = reader["Durata_Drum"].ToString(),
+							DurataDrumEscala = reader["Durata_Drum_Escala"].ToString(),
+							DurataDrumPanaLaEscala = reader["Durata_Drum_Pana_La_Escala"].ToString(),
+							DurataEscala = reader["Durata_Escala"].ToString(),
+							PlecareEscala = reader["Plecare_Escala"].ToString(),
+							DestinatieEscala = reader["Destinatie_Escala"].ToString(),
+							OraPlecareEscala = reader["Ora_Plecare_Escala"].ToString(),
+							NrTransportEscala = reader["Nr_Transport_Escala"].ToString(),
+							CompanieZbor = reader["Tip_Tren_Companie_Zbor"].ToString(),
+							TipTren = reader["Tip_Tren_Companie_Zbor"].ToString(),
+						});
+					}
+					catch (Exception ex)
+                    {
+						Console.WriteLine(ex.Message);
+					}
+					
+				}
+				reader.Close();
+				sql.Close();*/
+			}
+			else
+			{
 				NothingFoundImg.Source = "no_internet.png";
 				NoBiletLabel.Text = "Nu exista conectiune la internet.";
 			}
@@ -550,8 +883,8 @@ namespace Proiect_Licenta.Views
 			foreach (Bilet B in Bilets)  //filtru pentru afisarea numai biletelor care corespund alegerilor facute la pagina Pag_Cautare
 			{
 				if ((B.Clasa == Mesager.Clasa && B.Transport == Mesager.Transport) && (B.Pasager == Mesager.Pasager && B.TipBilet == Mesager.TipBilet)
-					&& Mesager.IsIntoarcere == B.IsIntoarcere)//&& (Mesager.Plecare == B.LocPlecare && Mesager.Destinatie == B.Destinatie))
-						BiletsT.Bilet.Add(new Bilet
+					&& Mesager.IsIntoarcere == B.IsIntoarcere) // && (Mesager.Plecare == B.LocPlecare && Mesager.Destinatie == B.Destinatie))
+						BiletsT.Add(new Bilet
 						{
 							Id = B.Id,
 							LocPlecare = Mesager.Plecare,
@@ -601,7 +934,7 @@ namespace Proiect_Licenta.Views
         {
 			var button = (Button)sender;
 			Navigation.PushAsync(new Search_Bar_Locatie());
-            foreach(Bilet B in BiletsT.Bilet)
+            foreach(Bilet B in BiletsT)
 				B.LocPlecare = Mesager.Plecare;
 			button.Text = Mesager.Plecare;
 		}
@@ -610,7 +943,7 @@ namespace Proiect_Licenta.Views
         {
 			var button = (Button)sender;
 			Navigation.PushAsync(new Search_Bar_Destinatie());
-			foreach (Bilet B in BiletsT.Bilet)
+			foreach (Bilet B in BiletsT)
 				B.Destinatie = Mesager.Destinatie;
 			button.Text = Mesager.Destinatie;
 		}
@@ -618,7 +951,7 @@ namespace Proiect_Licenta.Views
         private void DataPlecare_TextChanged(object sender, TextChangedEventArgs e)
         {
 			var entry = (DatePicker)sender;
-			foreach (Bilet B in BiletsT.Bilet)
+			foreach (Bilet B in BiletsT)
 				B.DataPlecare = entry.Date.ToString("dd/MMMM/yyyy");//B.DataPlecare = entry.Date.ToString("dd/MMMM/yyyy");
 			Mesager.DataPlecare = entry.Date.ToString("dd/MMMM/yyyy");
 		}

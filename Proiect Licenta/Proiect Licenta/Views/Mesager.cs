@@ -14,7 +14,7 @@ namespace Proiect_Licenta.Views
         public static uint Id { get; set; }    
         public static string DataPlecare { get; set; }
         public static string DataIntoarcere { get; set; }
-        public static DateTime DataPlecareEscala { get; set; }
+        public static string DataPlecareEscala { get; set; }
         public static bool Activ { get; set; }
         public static string TipBilet { get; set; }
         public static string Clasa { get; set; }

@@ -37,7 +37,7 @@ namespace Proiect_Licenta.ViewModels
 				Destinatie = Views.Mesager.Destinatie,
 				DataPlecare = Views.Mesager.DataPlecare,
 				DataIntoarcere = Views.Mesager.DataIntoarcere,
-				DataPlecareEscala = Views.Mesager.DataPlecareEscala,
+				DataPlecareEscala = Views.Mesager.DataPlecareEscala.ToString(),
 				Activ = true,
 				TipBilet = Views.Mesager.TipBilet,
 				Clasa = Views.Mesager.Clasa,
