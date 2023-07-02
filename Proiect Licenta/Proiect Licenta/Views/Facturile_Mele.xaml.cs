@@ -55,7 +55,7 @@ namespace Proiect_Licenta.Views
             {
                 MailMessage messageEmail = new MailMessage();
                 SmtpClient smtpClient = new SmtpClient();
-                messageEmail.From = new MailAddress("alex_2001_22@yahoo.ro");
+                messageEmail.From = new MailAddress("proiect_licenta_esky_travel@yahoo.com");
                 messageEmail.To.Add(new MailAddress(EmailAdress));
                 messageEmail.Subject = "Detaliile de facturare ale biletului dvs. rezervat";
                 messageEmail.IsBodyHtml = true;
@@ -66,7 +66,7 @@ namespace Proiect_Licenta.Views
                 smtpClient.Host = "smtp.mail.yahoo.com";
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("alex_2001_22@yahoo.ro", "fubeempiwinoyakc");
+                smtpClient.Credentials = new NetworkCredential("proiect_licenta_esky_travel@yahoo.com", "tirjvtdltbcswopt");
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.Send(messageEmail);
             }

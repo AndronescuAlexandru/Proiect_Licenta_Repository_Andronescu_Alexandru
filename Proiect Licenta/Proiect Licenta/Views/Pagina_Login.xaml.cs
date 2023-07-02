@@ -17,6 +17,7 @@ namespace Proiect_Licenta.Views
 	{
 		private List<Models.User> users = new List<Models.User>();
 		SqlConnection sql;
+
 		public Pagina_Login (List<Models.User> Users)
 		{
 			InitializeComponent();		
@@ -34,8 +35,7 @@ namespace Proiect_Licenta.Views
 		}
 		private async void Login(object sender, EventArgs e)
         {
-			//string user_email, user_pass; 
-
+			int c = 0;
 			try
 			{
 				string srv_db_name = "DB_Proiect_Licenta";
@@ -64,10 +64,10 @@ namespace Proiect_Licenta.Views
 					Models.ConnectedUser.ListaBilete.Clear();
 					while (reader.Read())
 					{
-						if(reader["Email"].ToString() == U.Email)
+						if (reader["Email"].ToString() == U.Email)
 							Models.ConnectedUser.ListaBilete.Add(new Bilet
 							{
-								Id = Convert.ToUInt32(reader["ID_Bilet"]),		
+								Id = Convert.ToUInt32(reader["ID_Bilet"]),
 								Clasa = reader["Clasa"].ToString(),
 								LocPlecare = reader["Loc_Plecare"].ToString(),
 								Destinatie = reader["Destinatie"].ToString(),
@@ -137,14 +137,18 @@ namespace Proiect_Licenta.Views
 					Models.ConnectedUser.NrStrada = U.NrStrada;
 					Models.ConnectedUser.NrTelefon = U.NrTelefon;
 					Models.ConnectedUser.Tara = U.Tara;
-					Models.ConnectedUser.Username = U.Username;					
+					Models.ConnectedUser.Username = U.Username;
 					Models.ConnectedUser.IsFromLogin = true;
 
 					await Navigation.PopAsync();
 				}
 				else
-					LabelEmailOrPassGresit.IsVisible = true;		
+					c++;
+					
 			}
+			if(c == users.Count)
+				DisplayAlert("Parolă sau email gresită", "Din păcate ați introdus o parolă sau o adresă de email greșită. Va rugăm să verificați datele introduse.", "Ok");
+			//c = 0;
 		}
 		private async void Creare(object sender, EventArgs e)
         {

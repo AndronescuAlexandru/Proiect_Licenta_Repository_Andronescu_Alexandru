@@ -20,7 +20,7 @@ namespace Proiect_Licenta.Views
             {
                 MailMessage messageEmail = new MailMessage();
                 SmtpClient smtpClient = new SmtpClient();
-                messageEmail.From = new MailAddress("andronescudaniela@yahoo.com");
+                messageEmail.From = new MailAddress("proiect_licenta_esky_travel@yahoo.com");
                 messageEmail.To.Add(new MailAddress("alex_2001_22@yahoo.ro"));
                 messageEmail.Subject = "Mesaj din aplicatie";
                 messageEmail.Body = "Mesaj primit din aplicatia Proiect Licenta de la utilizatorul " + Nume + " " + Prenume + " " + EmailAdress + " : " + Message;
@@ -28,7 +28,7 @@ namespace Proiect_Licenta.Views
                 smtpClient.Host = "smtp.mail.yahoo.com";
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("andronescudaniela@yahoo.com", "nbfzjiprmyfrpasr");
+                smtpClient.Credentials = new NetworkCredential("proiect_licenta_esky_travel@yahoo.com", "tirjvtdltbcswopt");
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.Send(messageEmail);
             }

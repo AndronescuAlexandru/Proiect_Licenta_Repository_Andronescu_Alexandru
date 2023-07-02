@@ -89,7 +89,7 @@ namespace Proiect_Licenta.Views
             {
                 MailMessage messageEmail = new MailMessage();
                 SmtpClient smtpClient = new SmtpClient();
-                messageEmail.From = new MailAddress("alex_2001_22@yahoo.ro");
+                messageEmail.From = new MailAddress("proiect_licenta_esky_travel@yahoo.com");
                 messageEmail.To.Add(new MailAddress(EmailAdress));
                 messageEmail.Subject = "Detaliile biletului rezervat";
                 messageEmail.IsBodyHtml = true;
@@ -98,7 +98,7 @@ namespace Proiect_Licenta.Views
                 smtpClient.Host = "smtp.mail.yahoo.com";
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("alex_2001_22@yahoo.ro", "fubeempiwinoyakc");
+                smtpClient.Credentials = new NetworkCredential("proiect_licenta_esky_travel@yahoo.com", "tirjvtdltbcswopt");
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.Send(messageEmail);
             }
@@ -132,6 +132,13 @@ namespace Proiect_Licenta.Views
             var button = (Button)sender;
             var bilet = (Bilet)button.BindingContext;
             string Message = SetHtmlMessageBody();
+
+            string qr_code_value = "Bilet cu nr. " + NewBilet.Bilet[0].Id + "     Bilet " + NewBilet.Bilet[0].TipBilet + "   "
+                        + NewBilet.Bilet[0].Transport + " cu nr. " + NewBilet.Bilet[0].NrTransport + "   " + " Plecare din " + NewBilet.Bilet[0].LocPlecare
+                        + " Spre " + NewBilet.Bilet[0].Destinatie + "    " + " Ora plecare : " + NewBilet.Bilet[0].OraPlecare
+                        + "       Ora intoarcere " + NewBilet.Bilet[0].OraIntoarcere + " Pasager " + NewBilet.Bilet[0].Pasager + " " + Mesager.Titlu + " "
+                        + Mesager.Nume + " " + Mesager.Prenume + "              Bilet rezervat prin aplicatia lui Andro!";
+
             Random random = new Random();
             Mesager.Pret = (ushort)NewBilet.Bilet[0].Pret; //Mesagerul preia din viewmodel-ul NewBilet valoarea pretului curent 
 
@@ -149,11 +156,6 @@ namespace Proiect_Licenta.Views
                 if (Models.ConnectedUser.IsEmptyUser == false && Models.ConnectedUser.IsNowConnected == true && CheckboxRezervare == true && 
                     CheckboxTermeniConditii == true && (IsCompleted == true || Models.ConnectedUser.Email == "dev@test.com")) //Daca este un user conectat si toate campurile sunt complete atunci se adauga un bilet in lista acestuia
                 {
-                    string QRCodeTextValue = "Bilet cu nr. " + NewBilet.Bilet[0].Id + "     Bilet " + NewBilet.Bilet[0].TipBilet + "   "
-                        + NewBilet.Bilet[0].Transport + " cu nr. " + NewBilet.Bilet[0].NrTransport + "   " + " Plecare din " + NewBilet.Bilet[0].LocPlecare
-                        + " Spre " + NewBilet.Bilet[0].Destinatie + "    " + " Ora plecare : " + NewBilet.Bilet[0].OraPlecare
-                        + "       Ora intoarcere " + NewBilet.Bilet[0].OraIntoarcere + " Pasager " + NewBilet.Bilet[0].Pasager + " " + Mesager.Titlu + " "
-                        + Mesager.Nume + " " + Mesager.Prenume + "              Bilet rezervat prin aplicatia lui Andro!";
 
                     sql.Open();
 
@@ -189,7 +191,7 @@ namespace Proiect_Licenta.Views
                             else
                                 cmd.Parameters.Add(new SqlParameter("Tip_Tren_Companie_Zbor", NewBilet.Bilet[0].CompanieZbor.ToString()));
                             cmd.Parameters.Add(new SqlParameter("ID_Bilet", Convert.ToInt32(NewBilet.Bilet[0].Id)));
-                            cmd.Parameters.Add(new SqlParameter("QR_Code", "Rezervare facuta prin aplicatia lui Andro!"));
+                            cmd.Parameters.Add(new SqlParameter("QR_Code", qr_code_value));
                             cmd.Parameters.Add(new SqlParameter("Activ", true));
                             cmd.Parameters.Add(new SqlParameter("Has_Account", true));
                             cmd.ExecuteNonQuery();
@@ -266,11 +268,7 @@ namespace Proiect_Licenta.Views
                         NrTransport2 = NewBilet.Bilet[0].NrTransport2,
                         Peron = NewBilet.Bilet[0].Peron,
                         Peron2 = NewBilet.Bilet[0].Peron2,
-                        QRCodeTextValue = "Bilet cu nr. " + NewBilet.Bilet[0].Id + "     Bilet " + NewBilet.Bilet[0].TipBilet + "   "
-                        + NewBilet.Bilet[0].Transport + " cu nr. " + NewBilet.Bilet[0].NrTransport + "   " + " Plecare din " + NewBilet.Bilet[0].LocPlecare
-                        + " Spre " + NewBilet.Bilet[0].Destinatie + "    " + " Ora plecare : " + NewBilet.Bilet[0].OraPlecare
-                        + "       Ora intoarcere " + NewBilet.Bilet[0].OraIntoarcere + " Pasager " + NewBilet.Bilet[0].Pasager + " " + Mesager.Titlu + " "
-                        + Mesager.Nume + " " + Mesager.Prenume + "              Bilet rezervat prin aplicatia lui Andro!"
+                        QRCodeTextValue = qr_code_value
                     });
                     Models.ConnectedUser.ListaFacturi.Add(new Models.Factura
                     {
@@ -339,7 +337,7 @@ namespace Proiect_Licenta.Views
                         else
                             cmd.Parameters.Add(new SqlParameter("Tip_Tren_Companie_Zbor", NewBilet.Bilet[0].CompanieZbor.ToString()));
                         cmd.Parameters.Add(new SqlParameter("ID_Bilet", Convert.ToInt32(NewBilet.Bilet[0].Id)));
-                        cmd.Parameters.Add(new SqlParameter("QR_Code", "Rezervare facuta prin aplicatia lui Andro!"));
+                        cmd.Parameters.Add(new SqlParameter("QR_Code", qr_code_value));
                         cmd.Parameters.Add(new SqlParameter("Activ", true));
                         cmd.Parameters.Add(new SqlParameter("Has_Account", false));
 
@@ -416,11 +414,7 @@ namespace Proiect_Licenta.Views
                     NrTransport2 = NewBilet.Bilet[0].NrTransport2,
                     Peron = NewBilet.Bilet[0].Peron,
                     Peron2 = NewBilet.Bilet[0].Peron2,
-                    QRCodeTextValue = "Bilet cu nr. " + NewBilet.Bilet[0].Id + "     Bilet " + NewBilet.Bilet[0].TipBilet + "   "
-                        + NewBilet.Bilet[0].Transport + " cu nr. " + NewBilet.Bilet[0].NrTransport + "   " + " Plecare din " + NewBilet.Bilet[0].LocPlecare
-                        + " Spre " + NewBilet.Bilet[0].Destinatie + "    " + " Ora plecare : " + NewBilet.Bilet[0].OraPlecare
-                        + "       Ora intoarcere " + NewBilet.Bilet[0].OraIntoarcere + " Pasager " + NewBilet.Bilet[0].Pasager + " " + Mesager.Titlu + " "
-                        + Mesager.Nume + " " + Mesager.Prenume + "              Bilet rezervat prin aplicatia lui Andro!"
+                    QRCodeTextValue = qr_code_value
                 });
                 Models.ConnectedUser.ListaFacturi.Add(new Models.Factura
                 {

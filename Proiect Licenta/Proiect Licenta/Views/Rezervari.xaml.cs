@@ -193,10 +193,11 @@ namespace Proiect_Licenta.Views
             }
             return "missing.png";
         }
-        void Detalii(object sender, EventArgs e)
+        async void Detalii(object sender, EventArgs e)
         {
             var button = sender as Button;
             var bilet = button.BindingContext as Bilet;
+
             Mesager.Id = bilet.Id;
             Mesager.Pret = (ushort)bilet.Pret;
             Mesager.oldPret = bilet.Pret;
@@ -213,14 +214,45 @@ namespace Proiect_Licenta.Views
             Mesager.Icon = bilet.Icon;
             Mesager.Icon2 = bilet.Icon2;
             Mesager.Scaun = bilet.Scaun;
-            Mesager.Scaun2 = bilet.Scaun2;
-            Mesager.IsIntoarcere = bilet.IsIntoarcere;
+            if(bilet.TipBilet == "Dus-Intors")
+                Mesager.IsIntoarcere = true;
+            else
+                Mesager.IsIntoarcere = false;
             Mesager.Peron = bilet.Peron;
-            Mesager.Peron2 = bilet.Peron2;
             Mesager.NrTransport = bilet.NrTransport;
             Mesager.NrTransport2 = bilet.NrTransport2;
+            Mesager.Peron2 = bilet.Peron2;
+            Mesager.Scaun2 = bilet.Scaun2;
             Mesager.QRCodeTextValue = bilet.QRCodeTextValue;
-            Navigation.PushAsync(new Descriere_Bilet());
+            Mesager.Nume = bilet.Nume;
+            Mesager.Prenume = bilet.Prenume;
+            Mesager.Tara = bilet.Tara;
+            Mesager.Titlu = bilet.Titlu;
+            Mesager.NrStrada = bilet.NrStrada;
+			Mesager.NrTelefon = bilet.NrTelefon;
+            Mesager.DataNasterii = bilet.DataNasterii;
+            Mesager.BagajCala = bilet.BagajCala;
+            Mesager.Email = bilet.Email;
+            Mesager.Oras = bilet.Oras;
+            Mesager.CodPostal = bilet.CodPostal;
+            Mesager.Strada = bilet.Strada;
+            Mesager.IconCompanieZbor = bilet.IconCompanieZbor;
+            Mesager.OraPlecare = bilet.OraPlecare;
+            Mesager.OraIntoarcere = bilet.OraIntoarcere;
+            Mesager.Color = bilet.Color;
+            Mesager.DurataDrum = bilet?.DurataDrum;
+            Mesager.Distance = bilet.Distance;
+            Mesager.DurataDrumEscala = bilet.DurataDrumEscala;
+            Mesager.DurataDrumPanaLaEscala = bilet.DurataDrumPanaLaEscala;
+            Mesager.DestinatieEscala = bilet.DestinatieEscala;
+            Mesager.DurataEscala = bilet.DurataEscala;
+            Mesager.NrTransportEscala = bilet.NrTransportEscala;
+            Mesager.OraPlecareEscala = bilet.OraPlecareEscala;
+            Mesager.PlecareEscala = bilet.PlecareEscala;
+            Mesager.CompanieZbor = bilet.CompanieZbor;
+            Mesager.TipTren = bilet.TipTren;
+
+            await Navigation.PushAsync(new Descriere_Bilet());
         }
         public Rezervari()
         {

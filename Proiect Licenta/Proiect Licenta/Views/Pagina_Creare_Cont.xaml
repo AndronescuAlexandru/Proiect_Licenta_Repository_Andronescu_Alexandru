@@ -52,6 +52,7 @@
                        TextChanged="StradaCont_Completed"></Entry>
                 <Entry x:Name="Nr_StradaCont"
                        Placeholder="Nr_Strada"
+                       Keyboard="Numeric"
                        Margin="30,0,30,0"
                        VerticalOptions="Center"
                        Grid.Row="3"
@@ -59,6 +60,7 @@
                        TextChanged="Nr_StradaCont_Completed"></Entry>
                 <Entry x:Name="Cod_PostalCont"
                        Placeholder="Cod_Postal"
+                       Keyboard="Numeric"
                        Margin="30,0,30,0"
                        VerticalOptions="Center"
                        Grid.Row="4"
@@ -66,6 +68,7 @@
                 <Entry x:Name="Nr_TelefonCont"
                        Placeholder="Nr_Telefon"
                        Margin="30,0,30,0"
+                       Keyboard="Numeric"
                        VerticalOptions="Center"
                        Grid.Row="4"
                        Grid.Column="1"

@@ -11,8 +11,15 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <StackLayout BindableLayout.ItemsSource="{Binding Bilet}">
+                <!--  <StackLayout BindableLayout.ItemsSource="{Binding Bilet}">
                     <BindableLayout.ItemTemplate>
+                        <DataTemplate> -->
+                <CollectionView x:Name="ListaDescriereBilet"
+                                ItemsSource="{Binding Bilet2}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                BackgroundColor="#F2F4F8">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
                                 <Label Text="Detalii bilet"
@@ -45,7 +52,7 @@
                                                Opacity="0.18"
                                                Margin="0,60,0,0"
                                                VerticalOptions="EndAndExpand"></Image>
-                                        <Grid RowSpacing="10" Padding="0,-230,0,20">
+                                        <Grid RowSpacing ="20" Padding="0,-230,0,20">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="120"></ColumnDefinition>
                                                 <ColumnDefinition Width="100"></ColumnDefinition>
@@ -249,25 +256,18 @@
                                                 </Label.Text>
                                             </Label>
                                         </Grid>
-                                        <Grid>
-                                            <zxing:ZXingBarcodeImageView Grid.Row="0"
-                                                                     Grid.Column="1"
-                                                                     BarcodeValue="{Binding QRCodeTextValue}"
-                                                                     BarcodeFormat="QR_CODE"
-                                                                     HorizontalOptions="CenterAndExpand"
-                                                                     VerticalOptions="FillAndExpand"
-                                                                     BackgroundColor="Transparent"
-                                                                     Scale="1.2"
-                                                                     Margin="0,-90,-10,0">
-                                                <zxing:ZXingBarcodeImageView.BarcodeOptions>
-                                                    <zxingcommon:EncodingOptions Width="400" Height="400"/>
-                                                </zxing:ZXingBarcodeImageView.BarcodeOptions>
-                                            </zxing:ZXingBarcodeImageView>
-                                            <Label Grid.Column="2"></Label>
-                                        </Grid>
+                                        <zxing:ZXingBarcodeImageView 
+                                    BarcodeFormat="QR_CODE"
+                                    HeightRequest="120" WidthRequest="120" Margin="10"
+                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                    BarcodeValue="{Binding QRCodeTextValue, FallbackValue='1'}">
+                                            <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                                <zxingcommon:EncodingOptions Width="200" Height="200"/>
+                                            </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                        </zxing:ZXingBarcodeImageView>
                                     </StackLayout>
                                 </Frame>
-                                
+
                                 <Frame BorderColor="Black"
                                        BackgroundColor="#F2F4F8"
                                        Margin="10,20,10,10"
@@ -294,7 +294,7 @@
                                                Opacity="0.18"
                                                Margin="0,60,0,0"
                                                VerticalOptions="EndAndExpand"></Image>
-                                        <Grid RowSpacing="0" Padding="0,-230,0,10">
+                                        <Grid RowSpacing ="20" Padding="0,-230,0,20">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="120"></ColumnDefinition>
                                                 <ColumnDefinition Width="100"></ColumnDefinition>
@@ -484,7 +484,7 @@
                                                Grid.Column="0"
                                                TextColor="Black"
                                                FontSize="14"
-                                               Margin="0,25,0,0">
+                                               Margin="0,55,0,0">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="{}{0} {1} {2}">
                                                         <Binding Path="Titlu"></Binding>
@@ -493,27 +493,27 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <zxing:ZXingBarcodeImageView Grid.Row="4"
-                                                                     Grid.Column="1"
-                                                                     BarcodeValue="{Binding QRCodeTextValue}"
-                                                                     BarcodeFormat="QR_CODE"
-                                                                     HorizontalOptions="CenterAndExpand"
-                                                                     VerticalOptions="FillAndExpand"
-                                                                     BackgroundColor="Transparent"
-                                                                     Scale="1.2"
-                                                                     Margin="0,-30,0,20">
-                                                <zxing:ZXingBarcodeImageView.BarcodeOptions>
-                                                    <zxingcommon:EncodingOptions Width="400" Height="400"/>
-                                                </zxing:ZXingBarcodeImageView.BarcodeOptions>
-                                            </zxing:ZXingBarcodeImageView>
                                         </Grid>
+                                        <zxing:ZXingBarcodeImageView 
+                                    BarcodeFormat="QR_CODE"
+                                    HeightRequest="120" WidthRequest="120" Margin="10"
+                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                    BarcodeValue="{Binding QRCodeTextValue, FallbackValue='1'}">
+                                            <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                                <zxingcommon:EncodingOptions Width="200" Height="200"/>
+                                            </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                        </zxing:ZXingBarcodeImageView>
                                     </StackLayout>
                                 </Frame>
-                                </StackLayout>
+                                
+                            </StackLayout>
                         </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <!-- </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
-                <!--<zxing:ZXingBarcodeImageView
+            <zxing:ZXingBarcodeImageView
                             BarcodeValue="Acest bilet a fost rezervat prin aplicatia lui Andro"
                             BarcodeFormat="QR_CODE"
                             HorizontalOptions="FillAndExpand"
@@ -521,7 +521,7 @@
                     <zxing:ZXingBarcodeImageView.BarcodeOptions>
                         <zxingcommon:EncodingOptions Width="100" Height="100" />
                     </zxing:ZXingBarcodeImageView.BarcodeOptions>
-                </zxing:ZXingBarcodeImageView>  -->
+                </zxing:ZXingBarcodeImageView> -->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

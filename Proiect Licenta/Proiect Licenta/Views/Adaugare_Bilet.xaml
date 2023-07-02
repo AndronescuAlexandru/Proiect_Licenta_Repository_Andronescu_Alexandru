@@ -1793,13 +1793,15 @@
                                                            FontSize="13"
                                                            TextColor="Black"
                                                            Grid.Column="0"
-                                                           Grid.Row="1">
+                                                           Grid.Row="1"
+                                                           IsVisible="{Binding IsAvion}">
                                                     </Label>
                                                     <Label TextColor="Black"
                                                            FontSize="13"
                                                            Grid.Column="1"
                                                            Grid.Row="1"
-                                                           HorizontalTextAlignment="End">
+                                                           HorizontalTextAlignment="End"
+                                                           IsVisible="{Binding IsAvion}">
                                                         <Label.Text>
                                                             <MultiBinding StringFormat="{}{0} €">
                                                                 <Binding Path="TaxaDeAeroport"></Binding>

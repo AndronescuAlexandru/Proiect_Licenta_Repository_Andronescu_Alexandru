@@ -69,8 +69,8 @@
                                     TextTransform="None"
                                     WidthRequest="130"
                                     BackgroundColor="Transparent"
-                                    Padding="-10,0,0,0"
-                                    Clicked="LocPlecare_TextChanged">
+                                    Padding="-10,0,0,0">
+                                <!-- Clicked="LocPlecare_TextChanged"> -->
                             </Button>
                             <Button Grid.Column="1"
                                     x:Name="LabelColDestinatie"
@@ -80,15 +80,36 @@
                                     TextTransform="None"
                                     Padding="-20,0,0,0"
                                     WidthRequest="130"
-                                    BackgroundColor="Transparent"
-                                    Clicked="Destinatie_TextChanged">
+                                    BackgroundColor="Transparent">
+                                <!-- Clicked="Destinatie_TextChanged"> -->
                             </Button>
+
+                            <Grid Grid.Column="2">
+                                <Label FontAttributes="Bold"
+                                   FontSize="14.5"
+                                   TextColor="Black"
+                                   Grid.Column="0"
+                                   Margin="5,1,0,0"
+                                   x:Name="LabelColDataPlecare"></Label>
+
+                                <Label FontAttributes="Bold"
+                                   FontSize="14.5"
+                                   TextColor="Black"
+                                   Grid.Column="1"
+                                   Margin="-22,1,0,0"
+                                   IsVisible="False"
+                                   Text="test"
+                                   x:Name="LabelColDataIntoarcere"></Label>
+                            </Grid>
+                            
+                            <!--
                             <DatePicker Grid.Column="2"
                                         x:Name="LabelColDataPlecare"
                                         TextColor="Black"
                                         Margin="0,0,0,0"
+                                        IsEnabled="False"
                                         DateSelected="DataPlecare_TextChanged">
-                            </DatePicker>
+                            </DatePicker> -->
                         </Grid>
                     </Frame>
                 </Grid>

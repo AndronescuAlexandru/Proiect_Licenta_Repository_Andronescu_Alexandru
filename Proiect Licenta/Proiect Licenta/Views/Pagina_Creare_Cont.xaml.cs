@@ -17,6 +17,9 @@ namespace Proiect_Licenta.Views
 	{
 		short CodEmail, nume = 0, prenume = 0, email = 0, parola = 0,tara = 0, oras = 0, strada = 0, nr_strada = 0, cod_postal = 0, nr_telefon = 0;
 		private List<Models.User> users = new List<Models.User>();
+
+		bool check = true;
+
 		SqlConnection sql;
 		public static void SendEmail(string Message, string EmailAdress)
         {
@@ -24,7 +27,7 @@ namespace Proiect_Licenta.Views
             {
 				MailMessage messageEmail = new MailMessage();
 				SmtpClient smtpClient = new SmtpClient();
-				messageEmail.From = new MailAddress("alex_2001_22@yahoo.ro");
+				messageEmail.From = new MailAddress("proiect_licenta_esky_travel@yahoo.com");
 				messageEmail.To.Add(new MailAddress(EmailAdress));
 				messageEmail.Subject = "Codul pentru verificarea contului al aplicatiei Proiect Licenta";
 				messageEmail.Body = Message;
@@ -32,7 +35,7 @@ namespace Proiect_Licenta.Views
 				smtpClient.Host = "smtp.mail.yahoo.com";
 				smtpClient.EnableSsl = true;
 				smtpClient.UseDefaultCredentials = false;
-				smtpClient.Credentials = new NetworkCredential("alex_2001_22@yahoo.ro", "fubeempiwinoyakc");
+				smtpClient.Credentials = new NetworkCredential("proiect_licenta_esky_travel@yahoo.com", "tirjvtdltbcswopt");
 				smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
 				smtpClient.Send(messageEmail);
 			}
@@ -44,6 +47,9 @@ namespace Proiect_Licenta.Views
         public Pagina_Creare_Cont (List<Models.User> Users)
 		{
 			InitializeComponent ();
+
+			users.AddRange(Users);
+
 			Shell.SetBackButtonBehavior(this, new BackButtonBehavior
 			{
 				Command = new Command(() =>
@@ -76,33 +82,48 @@ namespace Proiect_Licenta.Views
 			string msg = "Codul dvs. pentru activarea contului este " + CodEmail.ToString();
 			if (nume == 1 && prenume == 1 && email == 1 && parola == 1)
             {
-				SendEmail(msg, AdresaEmailCont.Text);
-				HeaderPagina.Text = "Introduceti codul primit la adresa de e-mail pentru a valida contul";
-				NumeCont.IsVisible = false;
-				NumeCont.IsEnabled = false;
-				PrenumeCont.IsEnabled = false;
-				PrenumeCont.IsVisible = false;
-				AdresaEmailCont.IsEnabled = false;
-				AdresaEmailCont.IsVisible = false;
-				ParolaCont.IsEnabled = false;
-				ParolaCont.IsVisible = false;
-				OrasCont.IsVisible = false;
-				StradaCont.IsVisible = false;
-				Nr_StradaCont.IsVisible = false;
-				Cod_PostalCont.IsVisible = false;
-				Nr_TelefonCont.IsVisible = false;
-				TaraCont.IsVisible = false;
-				ButonConectareCont.IsEnabled = false;
-				ButonConectareCont.IsVisible = false;
-				ButonCreareCont.IsEnabled = false;
-				ButonCreareCont.IsVisible = false;
-				LabelConectareCont.IsVisible = false;
-				EntryCodEmail.IsVisible = true;
-				EntryCodEmail.IsEnabled = true;
-				ButonCodEmail.IsVisible = true;
-				ButonCodEmail.IsEnabled = true;
-				ButonCodEmail.BackgroundColor = Color.FromHex("#4383b2");
+				foreach(Models.User U in users)
+                {
+					if (U.Email == AdresaEmailCont.Text)
+					{
+						DisplayAlert("Adresa de email invalidă", "Există deja un cont cu adresa de email introdusă. Vă rugăm să folosiți altă adresă.", "Ok");
+						check = false;
+					}
+
+                }
+				if(check == true)
+                {
+					SendEmail(msg, AdresaEmailCont.Text);
+					HeaderPagina.Text = "Introduceti codul primit la adresa de e-mail pentru a valida contul";
+					NumeCont.IsVisible = false;
+					NumeCont.IsEnabled = false;
+					PrenumeCont.IsEnabled = false;
+					PrenumeCont.IsVisible = false;
+					AdresaEmailCont.IsEnabled = false;
+					AdresaEmailCont.IsVisible = false;
+					ParolaCont.IsEnabled = false;
+					ParolaCont.IsVisible = false;
+					OrasCont.IsVisible = false;
+					StradaCont.IsVisible = false;
+					Nr_StradaCont.IsVisible = false;
+					Cod_PostalCont.IsVisible = false;
+					Nr_TelefonCont.IsVisible = false;
+					TaraCont.IsVisible = false;
+					ButonConectareCont.IsEnabled = false;
+					ButonConectareCont.IsVisible = false;
+					ButonCreareCont.IsEnabled = false;
+					ButonCreareCont.IsVisible = false;
+					LabelConectareCont.IsVisible = false;
+					EntryCodEmail.IsVisible = true;
+					EntryCodEmail.IsEnabled = true;
+					ButonCodEmail.IsVisible = true;
+					ButonCodEmail.IsEnabled = true;
+					ButonCodEmail.BackgroundColor = Color.FromHex("#4383b2");
+				}
 			}
+			else
+				DisplayAlert("Câmpuri incomplete", "Nu ați completat toate câmpurile de mai sus. Va rugăm să introduceți datele lipsă.", "Ok");
+			check = true;
 
 		}
 
@@ -147,7 +168,7 @@ namespace Proiect_Licenta.Views
 			}
 			else
 			{
-				LabelCodGresit.IsVisible = true;
+				DisplayAlert("Cod incorect", "Din pacate ati introdus un cod gresit!. Va rugăm să introduceți codul primit la adresa de email introdusă.", "Ok");
 			}
 
 		}
